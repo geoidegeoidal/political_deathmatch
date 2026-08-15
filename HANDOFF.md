@@ -22,6 +22,9 @@ Instalar e integrar globalmente OpenSpec (`@fission-ai/openspec`) para su uso tr
   ```
 - **Flujo de Trabajo:** Usar comandos `/opsx-propose`, `/opsx-explore`, `/opsx-apply`, `/opsx-archive` tanto en Antigravity como en OpenCode.
 
+### Commits Relevantes
+- `2edda56`: feat: initialize OpenSpec SDD setup with Antigravity and OpenCode support
+
 ### Bloqueos
 - Ninguno.
 

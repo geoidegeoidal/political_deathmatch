@@ -1,5 +1,46 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (5ª) - Lanzamiento de Fase 3: Pipeline de Audio TTS & Renderizador de Estudio TV
+
+### Objetivo
+Lanzar la **Fase 3** bajo OpenSpec (`003-tts-audio-and-video-studio`), especificando el pipeline de síntesis de voz multi-voz con interrupciones y el motor de composición visual en 1080p para televisión.
+
+### Hecho por Antigravity (Gemini 3.7 Flash - Arquitectura & Layouts)
+- **OpenSpec Propuesta `003-tts-audio-and-video-studio`:**
+  - Creados `proposal.md`, `design.md`, `tasks.md`, `specs/audio-pipeline/spec.md` y `specs/video-studio/spec.md`.
+  - Especificado el archivo principal `openspec/specs/debate-engine/spec.md`.
+- **Tipos de Dominio Media (`src/types/media.ts`):**
+  - Interfaces `VoiceProfileConfig`, `AudioStemInfo`, `AudioTimeline`, `VideoRenderConfig` y `VideoFrameState`.
+- **Catálogo de Voces Neuronales (`src/config/voices.json`):**
+  - Mapeo de los 15 personajes con voces neuronales (chileno matinal, venezolano caudillo, mexicano punitivo, argentino ancap, español peninsular, etc.) con offsets de pitch y rate.
+- **Motor de Composición Visual de Estudio TV (`src/services/video-composer.ts`):**
+  - Compositor 1080p (1920x1080) con fondos de estudio, luces dinámicas, modo `SPEAKER_FOCUS`, modo `SPLIT_SCREEN_VERSUS` con alertas de interrupción, Generador de Caracteres (GC) rojo escandaloso, barra de noticias rodante (*ticker*) y termómetro de tensión en tiempo real.
+- **Commits (push OK a origin/master):**
+  - `e005bf7`: feat(phase3): create OpenSpec proposal 003, media types, neural voices catalog, and VideoComposer layout engine.
+
+### Repositorio Remoto
+- **URL:** [https://github.com/geoidegeoidal/political_deathmatch](https://github.com/geoidegeoidal/political_deathmatch)
+- **Branch:** `master` (Pushed & Tracked)
+
+---
+
+## 🚦 AVISO DE RELEVO / HANDOFF INTER-MODELOS (FASE 3)
+
+> [!IMPORTANT]
+> **Tareas de Antigravity (Arquitectura, Voces y Layouts Visuales) COMPLETADAS.**
+>
+> **RELEVO HACIA:** **OpenCode Go (Suscripción OpenCode: DeepSeek-V3 / Qwen 2.5 Coder 32B)**
+>
+> **Instrucciones para OpenCode Go:**
+> 1. Leer [`openspec/changes/003-tts-audio-and-video-studio/tasks.md`](file:///c:/Users/Tokyotech/sideprojects/political_deathmatch/openspec/changes/003-tts-audio-and-video-studio/tasks.md).
+> 2. Implementar el sintetizador de audio `src/services/tts-pipeline.ts` para generar los stems `.mp3` de cada turno usando `edge-tts` (o librería/CLI de síntesis compatible) basándose en `voices.json` y `debate_transcript.json`.
+> 3. Implementar el mezclador de audio `src/services/audio-mixer.ts` con ducking/overlap para interrupciones y exportación de `audio_timeline.json`.
+> 4. Crear el comando CLI `src/cli/render-audio.ts` para correr la generación de audio completa.
+> 5. Implementar el comando CLI `src/cli/render-video.ts` para componer el video 1080p final.
+> 6. Marcar tareas completadas en `tasks.md`, actualizar `HANDOFF.md` y hacer commit & push.
+
+---
+
 ## Sesión: 2026-08-16 (3ª) - Prompt Engineering de Turnos: Registro TV Chileno-Latino y Ejemplos Reales
 
 ### Objetivo

@@ -2,10 +2,14 @@ export type EmotionState = 'CALM' | 'TALKING' | 'ANGRY' | 'OUTRAGED' | 'SMUG' | 
 
 export type CameraCue = 'SPEAKER_FOCUS' | 'SPLIT_SCREEN_VERSUS' | 'WIDE_PANEL' | 'REACTION_SHOT';
 
+export type PersonaTier = 'INTELLECTUAL_SERIOUS' | 'COMBATIVE_EXTREME' | 'MODERATOR';
+
 export interface PersonaProfile {
   id: string;
   name: string;
+  alias: string;
   role: 'MODERATOR' | 'PANELIST';
+  tier: PersonaTier;
   archetype: string;
   ideology: string;
   tone: string;

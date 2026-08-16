@@ -65,7 +65,7 @@ export interface WeeklyAgenda {
 - **Runtime:** Node.js (TypeScript con `tsx` o compilado).
 - **RSS Parser:** `rss-parser` (rápido, sin dependencias nativas pesadas).
 - **HTTP Client:** Nativo `fetch` (Node 22+).
-- **LLM Client:** Conector ligero y compatible con OpenAI API format (permite conectar Gemini 2.5 Flash vía Google AI Studio o DeepSeek/OpenRouter con la misma interfaz).
+- **LLM Client:** Conector ligero y compatible con OpenAI API format (Gemini vía Google AI Studio, o Ollama local — OpenRouter desactivado desde 2026-08-16).
 
 ## 3. Error Handling & Resilience
 - Timeouts por feed: 6000ms con reintentos limitados.

@@ -66,8 +66,8 @@ Para optimizar el gasto de tokens durante el desarrollo y la ejecución:
 | **Video Studio Renderer** | Antigravity | `anthropic/claude-3-7-sonnet` / `gemini-2.5-pro` | **Medium** (4k tokens) | `deepseek-chat` (V3) |
 
 ### 2. Generación del Debate (Runtime de Simulación)
-- **Primario (Local $0 Tokens / Sin Censura):** `HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced` corriendo en **Ollama / vLLM / llama.cpp**.
-- **Backup (Nube sin censura):** `nousresearch/hermes-3-llama-3.1-405b` o `deepseek/deepseek-r1-distill-llama-70b` vía OpenRouter.
+- **Primario (único, $0 Tokens / Sin Censura):** `HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced` (`:Q4_K_M`, ~7.4 GB) corriendo en **Ollama** (`http://localhost:11434`).
+- **Fallback (offline):** Sintetizador heurístico local. **OpenRouter desactivado** — el debate corre 100% local.
 
 ---
 
@@ -109,13 +109,14 @@ npm install
 ```
 
 ### 2. Configurar Variables de Entorno (Opcional)
-Crea un archivo `.env` en la raíz (si deseas utilizar la API de Gemini o OpenRouter; de lo contrario el sistema utiliza el sintetizador heurístico local):
+Crea un archivo `.env` en la raíz (si deseas utilizar la API de Gemini para la pauta; de lo contrario el sistema utiliza Ollama local o el sintetizador heurístico local):
 
 ```env
-GEMINI_API_KEY="tu-clave-gemini"
-# OPENROUTER_API_KEY="tu-clave-openrouter"
+# GEMINI_API_KEY="tu-clave-gemini"   # Pauta editorial (opcional; sin ella usa Ollama/heurístico)
 # OLLAMA_HOST="http://localhost:11434"
 ```
+
+> **OpenRouter desactivado:** el debate y la pauta corren solo con Ollama local + fallback heurístico. No se necesita clave de OpenRouter.
 
 ### 3. Generar la Pauta Semanal en Vivo
 Descarga noticias reales de los últimos 7 días de Chile, LATAM y el Mundo, y genera la pauta del debate:
@@ -125,6 +126,21 @@ npm run pauta
 ```
 
 El resultado se exporta a [`weekly_agenda.json`](file:///c:/Users/Tokyotech/sideprojects/political_deathmatch/weekly_agenda.json) con los bloques estructurados, los cintillos de TV y los gatillantes por personaje.
+
+### 4. Simular el Debate Televisivo (4 Bloques)
+Ejecuta el orquestador multi-agente sobre la pauta generada (Ollama local sin censura → sintetizador heurístico local):
+
+```bash
+npm run debate
+# o: npx tsx src/cli/simulate-debate.ts
+```
+
+El guion de producción se exporta a [`debate_transcript.json`](file:///c:/Users/Tokyotech/sideprojects/political_deathmatch/debate_transcript.json) con turnos, emociones, cintillos (GC), marcas de interrupción y directivas de cámara.
+
+> **Runtime sin censura (recomendado):** instala [Ollama](https://ollama.com) y descarga el modelo local:
+> ```bash
+> ollama pull hf.co/HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced:Q4_K_M
+> ```
 
 ---
 

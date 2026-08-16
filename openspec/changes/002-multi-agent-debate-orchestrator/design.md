@@ -66,4 +66,5 @@ export interface DebateTranscript {
 - Si `tensionScore >= 75`, el orquestador programa un turno de interrupción inmediata con prefijos naturales (*"¡Momento!", "¡Eso es una aberración!", "¡Déjame terminar, no seas cínico!"*).
 
 ## 3. Integration with Local LLM
-- Utiliza la API local de Ollama (`/api/generate` o `/v1/chat/completions`) apuntando al modelo cuantizado `HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced`.
+- Utiliza la API local de Ollama (`/v1/chat/completions`) apuntando al modelo cuantizado `hf.co/HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced:Q4_K_M`.
+- **Sin OpenRouter:** el debate corre 100% local (Ollama → sintetizador heurístico offline).

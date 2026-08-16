@@ -19,8 +19,8 @@ Political Deathmatch: Sistema y plataforma interactiva de debate / simulación p
 3. **OpenAI Codex (Suscripción Codex / ChatGPT: o3-mini / GPT-4o):**
    - *Rol:* Validación algorítmica de transiciones de estado, optimizaciones matemáticas y backup de razonamiento.
 4. **Runtime de Simulación (Generación de Debate Sin Censura - $0 Tokens):**
-   - *Primario ($0 tokens):* Modelo local cuantizado sin censura (`HauhauCS/Gemma4-12B-QAT-Uncensored` / `Llama-3-8B-Uncensored`) vía Ollama/llama.cpp.
-   - *Backup Nube:* OpenRouter API con modelos abiertos sin censura.
+   - *Primario (único, $0 tokens):* Modelo local cuantizado sin censura (`HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced` :Q4_K_M) vía Ollama (`http://localhost:11434`).
+   - *Fallback:* Sintetizador heurístico local (offline). **OpenRouter desactivado** — el debate corre 100% local.
 
 ## Convenciones Arquitectónicas y Guardrails
 1. **Spec-Driven First:** Cualquier nueva feature o cambio de requerimiento debe pasar por una propuesta en `openspec/changes/` o usar `/opsx-propose` antes de implementar cambios destructivos de arquitectura.

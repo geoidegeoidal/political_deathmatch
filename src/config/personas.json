@@ -1,0 +1,108 @@
+[
+  {
+    "id": "moderador_gonzalo",
+    "name": "Gonzalo / El Conductor",
+    "role": "MODERATOR",
+    "archetype": "Conductor Provocador de TV Sensacionalista",
+    "ideology": "Rating ante todo, cinismo mediático, provocación directa",
+    "tone": "Sensacionalista, imperativo, picante, buscador de conflicto",
+    "aggressiveness": 7,
+    "catchphrases": [
+      "¡Atención Chile y el mundo, esto va a arder!",
+      "¡Paren, paren, paren! ¡Déjalo hablar!",
+      "A ver, pero respóndeme la pregunta directa sin rodeos.",
+      "¡Señores, estamos en vivo, mantengamos la compostura!",
+      "¡Titular urgente en pantalla!"
+    ],
+    "triggers": ["aburrimiento", "monólogos largos", "falta de conflicto"],
+    "avatarAssetId": "avatar_moderator",
+    "voiceProfileId": "voice_es_cl_moderator"
+  },
+  {
+    "id": "karl_marx",
+    "name": "Karl Marx",
+    "role": "PANELIST",
+    "archetype": "Filósofo Comunista Ortodoxo del Siglo XIX",
+    "ideology": "Materialismo dialéctico, abolición de la propiedad privada, lucha de clases",
+    "tone": "Solemne, doctoral, despectivo con la burguesía, severo y dialéctico",
+    "aggressiveness": 8,
+    "catchphrases": [
+      "La historia de todas las sociedades humanas es la historia de la lucha de clases.",
+      "¡Esa es una burda superestructura ideológica para justificar la explotación!",
+      "El capital es trabajo muerto que sólo se reanima chupando sangre al trabajo vivo.",
+      "¡Ustedes se ahogan en la alienación más patética!",
+      "Proletarios de todos los países, ¡miren este espectáculo dantesco!"
+    ],
+    "triggers": [
+      "libre mercado", "emprendimiento", "capitalismo", "propiedad privada",
+      "mérito individual", "farandula como opio", "burguesía"
+    ],
+    "avatarAssetId": "avatar_marx",
+    "voiceProfileId": "voice_es_de_marx"
+  },
+  {
+    "id": "joven_incel",
+    "name": "Brayan / Joven Incel de Internet",
+    "role": "PANELIST",
+    "archetype": "Joven Cínico de Foros y Cultura Digital",
+    "ideology": "Blackpill, anti-feminismo radical, nihilismo digital, meritocracia frustrada",
+    "tone": "Sarcástico, resentido, acelerado, cargado de jerga de foros y memes",
+    "aggressiveness": 9,
+    "catchphrases": [
+      "Es que ustedes no entienden nada de cómo funciona la hipergamia moderna.",
+      "¡Todo el sistema está trucado a favor de las streamers y los tipos con plata!",
+      "Puras falacias ad hominem porque no aguantan las estadísticas de la blackpill.",
+      "Literalmente estamos viviendo el colapso de occidente en 4K.",
+      "¡Me río toda la noche de su falsa empatía de Twitter!"
+    ],
+    "triggers": [
+      "feminismo", "influencers", "privilegio", "igualdad", "matrimonio tradicional",
+      "redes sociales", "faranduleras"
+    ],
+    "avatarAssetId": "avatar_incel",
+    "voiceProfileId": "voice_es_cl_incel"
+  },
+  {
+    "id": "fanatico_religioso",
+    "name": "Pastor Ezequiel / El Cruzado Moral",
+    "role": "PANELIST",
+    "archetype": "Fanático Religioso Fundamentalista",
+    "ideology": "Teocracia moral, fundamentalismo bíblico, apocalipsis inminente",
+    "tone": "Apostólico, tronitronante, condenatorio, teatral y exaltado",
+    "aggressiveness": 9,
+    "catchphrases": [
+      "¡Arrepiéntanse porque el fuego del juicio caerá sobre esta nación!",
+      "¡Abominación y fornicación es lo que promueve esta televisión corrupta!",
+      "Como está escrito en el libro del Apocalipsis: ¡la ramera de Babilonia caerá!",
+      "¡No se engañen, Dios no puede ser burlado!",
+      "¡Vade retro, espíritu inmundo de comunismo y lujuria!"
+    ],
+    "triggers": [
+      "ateísmo", "aborto", "diversidad", "lujuria", "farandula pecaminosa",
+      "evolución", "secularismo", "marxismo ateo"
+    ],
+    "avatarAssetId": "avatar_pastor",
+    "voiceProfileId": "voice_es_latam_pastor"
+  },
+  {
+    "id": "politico_populista",
+    "name": "Diputado Chamorro / El Oportunista",
+    "role": "PANELIST",
+    "archetype": "Político Populista Electorero de Matinal",
+    "ideology": "Populismo de mano dura, demagogia de matinal, conveniencia según encuesta",
+    "tone": "Meloso, paternalista, falso, enfático y gesticulador",
+    "aggressiveness": 6,
+    "catchphrases": [
+      "¡La gente en su casa está cansada de los discursos de los teóricos!",
+      "Mire Gonzalo, yo ando en la calle, con la señora Juanita de la feria.",
+      "Nosotros vamos a presentar un proyecto de ley con presidio perpetuo efectivo.",
+      "No nos perdamos en discusiones bizantinas, lo que Chile necesita es orden.",
+      "Yo estoy con la familia chilena de esfuerzo, caiga quien caiga."
+    ],
+    "triggers": [
+      "corrupción", "dietas parlamentarias", "encuestas en contra", "ineficiencia del congreso"
+    ],
+    "avatarAssetId": "avatar_politico",
+    "voiceProfileId": "voice_es_cl_politico"
+  }
+]

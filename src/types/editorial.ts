@@ -19,8 +19,11 @@ export interface RawArticle {
   publishedAt: string;
 }
 
+export type BlockCategory = 'POLITICA' | 'SEGURIDAD' | 'FARANDULA' | 'INTERNACIONAL' | 'SOCIEDAD';
+
 export interface DebateBlock {
   blockNumber: number;
+  category: BlockCategory;
   topic: string;
   region: Region;
   headlineGC: string; // Cintillo para Generador de Caracteres tipo Sin Filtros

@@ -87,6 +87,7 @@ function generateHeuristicPautaMock(): string {
     blocks: [
       {
         blockNumber: 1,
+        category: "SEGURIDAD",
         topic: "Crisis de Seguridad y Medidas de Excepción en Chile",
         region: "CL",
         headlineGC: "¡ARDERÁ EL ESTUDIO! ¿ESTADO DE SITIO O DICTADURA DISFRAZADA?",
@@ -101,6 +102,22 @@ function generateHeuristicPautaMock(): string {
       },
       {
         blockNumber: 2,
+        category: "FARANDULA",
+        topic: "Escándalo de Infidelidad y Polémica entre Famosos e Influencers",
+        region: "CL",
+        headlineGC: "¡TERREMOTO EN LA FARÁNDULA! ¿HIPERGAMIA DIGITAL O CIRCO PARA DISTRAER AL PUEBLO?",
+        factsSummary: "Filtración de chats privados y declaraciones cruzadas entre reconocidas figuras del espectáculo y streamers chilenos paralizan las redes sociales.",
+        moderatorTriggerQuestion: "¿Es este el reflejo de la total decadencia moral de nuestra televisión o simplemente un negocio millonario de monetización del morbo?",
+        personaTriggers: {
+          karl_marx: "Desprecia la farándula como la industria del entretenimiento burgués diseñada para adormecer la conciencia de clase de los trabajadores.",
+          joven_incel: "Se despacha con una diatriba sobre las dinámicas de pareja modernas, la vanidad de las redes sociales y el fin de los valores.",
+          fanatico_religioso: "Condena la lujuria, el exhibicionismo público y advierte que Sodoma y Gomorra palidecen ante la televisión actual.",
+          politico_populista: "Finje estar indignado pero cita frases del escándalo para conectar con los televidentes más jóvenes."
+        }
+      },
+      {
+        blockNumber: 3,
+        category: "INTERNACIONAL",
         topic: "Tensiones Geopolíticas y Giros Electorales en LATAM",
         region: "LATAM",
         headlineGC: "¡BATALLA CAMPAL! ¿SOCIALISMO DEL SIGLO XXI O SHOCK LIBERTARIO?",

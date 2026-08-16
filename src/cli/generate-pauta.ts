@@ -18,7 +18,7 @@ async function main() {
 
     agenda.blocks.forEach((block) => {
       console.log(`----------------------------------------------------------------`);
-      console.log(`[BLOQUE ${block.blockNumber}] [${block.region}] ${block.topic}`);
+      console.log(`[BLOQUE ${block.blockNumber}] [${block.category || 'POLITICA'}] [${block.region}] ${block.topic}`);
       console.log(`📺 GC: ${block.headlineGC}`);
       console.log(`📰 HECHOS: ${block.factsSummary}`);
       console.log(`🎙️ PREGUNTA MODERADOR: "${block.moderatorTriggerQuestion}"`);

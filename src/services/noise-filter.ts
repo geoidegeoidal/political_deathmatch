@@ -5,7 +5,6 @@ const DISCARD_KEYWORDS = [
   'partido', 'gol', 'goles', 'dt', 'tenis', 'nba', 'fórmula 1', 'formula 1',
   'horóscopo', 'horoscopo', 'zodiaco', 'astrología', 'astros',
   'clima', 'pronóstico del tiempo', 'lluvia en santiago', 'temperaturas',
-  'farándula', 'reality', 'concierto', 'alfombra roja', 'tiktoker', 'influencer',
   'receta', 'cocina', 'nutrición', 'dietas', 'lotería', 'kino', 'loto'
 ];
 
@@ -19,8 +18,15 @@ const POLITICAL_HOT_KEYWORDS = [
   'onu', 'derechos humanos', 'aborto', 'feminismo', 'ideología', 'escándalo', 'denuncia'
 ];
 
+const FARANDULA_HOT_KEYWORDS = [
+  'farándula', 'farandula', 'reality', 'infidelidad', 'quiebre', 'romance', 'animador',
+  'animadora', 'televisión', 'tv', 'tiktoker', 'influencer', 'polemica', 'polémica',
+  'concierto', 'cantante', 'actor', 'actriz', 'demanda', 'estafa', 'viral', 'escándalo sexual',
+  'redes sociales', 'streamer', 'onlyfans', 'funada', 'funa'
+];
+
 /**
- * Filtra artículos irrelevantes y prioriza noticias de fricción política/social de los últimos 7 días.
+ * Filtra artículos irrelevantes y prioriza noticias de fricción política/social y farándula de los últimos 7 días.
  */
 export function filterAndScoreArticles(
   articles: RawArticle[],
@@ -40,11 +46,12 @@ export function filterAndScoreArticles(
 
     const textToAnalyze = `${article.title} ${article.summary}`.toLowerCase();
 
-    // 2. Descartar si coincide con keywords de ruido (a menos que tenga explícito contenido político)
+    // 2. Descartar si coincide con keywords de ruido (deportes, clima, horóscopo)
     const hasDiscardKeyword = DISCARD_KEYWORDS.some(kw => textToAnalyze.includes(kw));
     const hasPoliticalKeyword = POLITICAL_HOT_KEYWORDS.some(kw => textToAnalyze.includes(kw));
+    const hasFarandulaKeyword = FARANDULA_HOT_KEYWORDS.some(kw => textToAnalyze.includes(kw));
 
-    if (hasDiscardKeyword && !hasPoliticalKeyword) {
+    if (hasDiscardKeyword && !hasPoliticalKeyword && !hasFarandulaKeyword) {
       return false;
     }
 

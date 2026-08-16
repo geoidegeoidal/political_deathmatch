@@ -12,9 +12,9 @@
     "region": "CL"
   },
   {
-    "id": "el-mostrador",
-    "name": "El Mostrador",
-    "url": "https://www.elmostrador.cl/destacado/feed/",
+    "id": "lacuarta-espectaculos",
+    "name": "La Cuarta Espectáculos & Farándula",
+    "url": "https://www.lacuarta.com/arc/outboundfeeds/rss/category/espectaculos/",
     "region": "CL"
   },
   {
@@ -30,6 +30,12 @@
     "region": "LATAM"
   },
   {
+    "id": "infobae-teleshow",
+    "name": "Infobae Teleshow / Farándula LATAM",
+    "url": "https://www.infobae.com/feeds/rss/teleshow/",
+    "region": "LATAM"
+  },
+  {
     "id": "bbc-mundo",
     "name": "BBC News Mundo",
     "url": "https://feeds.bbci.co.uk/mundo/rss.xml",
@@ -39,12 +45,6 @@
     "id": "dw-espanol",
     "name": "Deutsche Welle Español",
     "url": "https://rss.dw.com/rdf/rss-sp-all",
-    "region": "WORLD"
-  },
-  {
-    "id": "rt-espanol",
-    "name": "RT en Español",
-    "url": "https://actualidad.rt.com/rss",
     "region": "WORLD"
   },
   {

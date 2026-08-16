@@ -32,6 +32,8 @@
 - `2edda56`: feat: initialize OpenSpec SDD setup with Antigravity and OpenCode support
 - `0ffad6e`: docs: update HANDOFF.md with initial commit reference
 - `a6b10fd`: feat(editorial): implement 7-day multi-region RSS news scraper and weekly agenda engine
+- `b8dfb61`: docs: update HANDOFF.md with completed milestone and GitHub repo reference
+- `1d62642`: feat(spec): add OpenSpec proposal for 002-multi-agent-debate-orchestrator
 
 ### Repositorio Remoto
 - **URL:** [https://github.com/geoidegeoidal/political_deathmatch](https://github.com/geoidegeoidal/political_deathmatch)
@@ -42,10 +44,13 @@
 ## 🚦 AVISO DE RELEVO / HANDOFF INTER-MODELOS
 
 > [!IMPORTANT]
-> **Hito 1 (Editorial Desk & News Scraper) COMPLETADO.**
+> **Propuesta `002-multi-agent-debate-orchestrator` CREADA y SINCRONIZADA.**
 >
-> **Próximo Hito: Fase 2 - Motor Multi-Agente de Debate & Orquestador de Turnos.**
-> - **Asignación:** 
->   - **Diseño de Arquitectura y Máquina de Estados:** Antigravity (`anthropic/claude-3-7-sonnet` o `google/gemini-2.5-pro` con **Thinking: High**).
->   - **Implementación de Lógica de Turnos y Parsers:** OpenCode (`deepseek/deepseek-chat` V3 / `qwen-2.5-coder-32b`).
-> - **Estado:** Listo para iniciar propuesta `/opsx-propose "002-multi-agent-debate-orchestrator"`.
+> **Próxima Tarea: Implementación de la Fase 2 (Motor de Debate & FSM):**
+> 1. **Antigravity (Gemini 3.7 Flash - Thinking High):**
+>    - Diseñar el catálogo de personalidades `src/config/personas.json` (Marx, Incel, Fanático, Moderador).
+>    - Diseñar los system prompts de debate sin censura `src/prompts/persona-debate.prompt.ts`.
+>    - Diseñar la máquina de estados e interrupciones en `src/services/debate-orchestrator.ts`.
+> 2. **OpenCode Go (DeepSeek-V3 / Qwen 2.5 Coder):**
+>    - Implementar los tipos `src/types/debate.ts`.
+>    - Implementar el driver de Ollama `src/services/debate-runtime.ts` y CLI `src/cli/simulate-debate.ts`.

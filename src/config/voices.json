@@ -196,5 +196,71 @@
     "pitchOffset": "+4Hz",
     "description": "Locutor de infomercial de televentas, acelerado, entusiasmado y estridente",
     "openaiVoice": "fable"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_matriarca",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "-4%",
+    "pitchOffset": "-2Hz",
+    "openaiVoice": "shimmer",
+    "description": "Matriarca tradicionalista, firme, aristocrática y severa"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_sindicalista",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "+8%",
+    "pitchOffset": "-4Hz",
+    "openaiVoice": "nova",
+    "description": "Dirigenta sindical, ronca, combativa y acelerada"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_disidencia",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "+10%",
+    "pitchOffset": "+5Hz",
+    "openaiVoice": "shimmer",
+    "description": "Activista queer, teatral, histriónico y mordaz"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_indigena",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "-6%",
+    "pitchOffset": "-5Hz",
+    "openaiVoice": "sage",
+    "description": "Lonko mapuche, solemne, pausada y profunda"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_migrante",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "+6%",
+    "pitchOffset": "+2Hz",
+    "openaiVoice": "coral",
+    "description": "Migrante venezolana, vehemente, elocuente y enérgica"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_ecologista",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "+3%",
+    "pitchOffset": "-1Hz",
+    "openaiVoice": "alloy",
+    "description": "Ecologista radical, urgente, científico y apasionado"
   }
 ]

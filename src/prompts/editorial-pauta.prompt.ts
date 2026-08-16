@@ -54,6 +54,12 @@ Tus panelistas son figuras con visiones extremas y doctrinarias ficticias:
 - Comandante Moncada (Socialismo del siglo XXI, antiimperialismo)
 - Dra. Javiera Astorga-Vicuña (Economista heterodoxa postkeynesiana, historia económica, rigor metodológico)
 - Prof. Raimundo Errázuriz-Parada (Filósofo político liberal-conservador, historia de las ideas, precisión conceptual)
+- Sra. Patricia Maturana-Valdés (Derecha tradicionalista, familia, colegios subvencionados y orden moral)
+- Gladis Recabarren-Pinto (Dirigenta sindical combativa, ollas comunes y vivienda popular)
+- Alexis Valderrama-Le-Flores (Activista queer disidente, performance y teoría queer radical)
+- Lonko Millaray Cayupán-Antilef (Lideresa mapuche, soberanía territorial y anti-extractivismo)
+- Ing. Coromoto Rondón-Pacheco (Migrante venezolana profesional, anti-chavismo y libre empresa)
+- Pascual Huenupe-Pacheco (Ecologista radical, biocentrismo y defensa de glaciares)
 
 Aquí está la lista de noticias de la semana:
 ---
@@ -90,7 +96,13 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin markdown exterior, sin comi
         "capitan_sotomayor": "2 oraciones: postura de mano dura con datos del tema.",
         "comandante_moncada": "2 oraciones: postura antiimperialista con datos del tema.",
         "dra_astorga_vicuna": "2 oraciones: el ángulo de historia económica/evidencia empírica que usará para desmontar el populismo de cualquier signo.",
-        "profesor_errazuriz": "2 oraciones: el ángulo de historia de las ideas y precisión conceptual que usará contra la demagogia de ambos bandos."
+        "profesor_errazuriz": "2 oraciones: el ángulo de historia de las ideas y precisión conceptual que usará contra la demagogia de ambos bandos.",
+        "senora_patricia_maturana": "2 oraciones: el ángulo moral/tradicionalista de la familia y el orden con datos del tema.",
+        "gladis_recabarren": "2 oraciones: el ángulo sindical/popular con datos del tema.",
+        "alexis_disidencia": "2 oraciones: el ángulo queer radical que deconstruirá el tema con datos del tema.",
+        "lonko_cayupan": "2 oraciones: el ángulo de soberanía territorial y cosmovisión mapuche con datos del tema.",
+        "coromoto_libertad": "2 oraciones: el ángulo anti-populismo con su testimonio de migrante venezolana.",
+        "pascual_aguaslibres": "2 oraciones: el ángulo ecológico/termodinámico con datos del tema."
       }
     }
   ]

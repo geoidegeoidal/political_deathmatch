@@ -11,6 +11,7 @@ export interface AudioMixerOptions {
   timelinePath?: string;
   masterPath?: string;
   sfxDir?: string;
+  musicDir?: string;
   overlapMs?: number;
   duckVolume?: number;
 }
@@ -18,16 +19,27 @@ export interface AudioMixerOptions {
 const rootDir = process.cwd();
 const BLOCK_GONG_FREQ = 392; // Sol4 - cortinilla tipo gong televisivo
 
+/** Duración de la intro del programa (según design 005: 4 tarjetas = 15s). */
+export const INTRO_OFFSET_MS = 15000;
+
+/** Volúmenes de la matriz de mezcla del design 005 (dB FS -> factor lineal). */
+const BED_VOL_BASE = 0.08; // -22dB
+const BED_VOL_DUCK = 0.04; // -28dB con voz activa
+const BED_VOL_CLIMAX = 0.12; // -18dB en tensión alta (>=75)
+const STINGER_BLOCK_VOL = 0.31; // -10dB
+const STINGER_DUEL_VOL = 0.4; // -8dB
+
 /**
  * Calcula la línea de tiempo exacta: coloca cada stem en orden; si el turno es
  * una interrupción, entra `overlapMs` antes de que termine el turno anterior
  * (pisada de palabra) y ese turno queda marcado para ducking.
+ * Todos los stems se desplazan `INTRO_OFFSET_MS` para dejar espacio a la intro.
  */
 export function computeTimeline(stems: AudioStemInfo[], options: AudioMixerOptions = {}): AudioTimeline {
   const overlapMs = options.overlapMs ?? 1500;
   const ordered = [...stems].sort((a, b) => a.turnId - b.turnId);
 
-  let cursorMs = 0;
+  let cursorMs = INTRO_OFFSET_MS;
   let previous: AudioStemInfo | null = null;
 
   for (const stem of ordered) {
@@ -105,8 +117,62 @@ export async function mixMasterAudio(
     gongRefs.push(`[gong${gongCounter - 1}]`);
   });
 
-  const mixInputs = stems.map((_, i) => `[stem${i}]`).concat(gongRefs).join('');
-  filterParts.push(`${mixInputs}amix=inputs=${stems.length + gongRefs.length}:normalize=0:duration=longest[out]`);
+  // ---- MÚSICA (design 005): intro, cama ambiental con ducking, stingers ----
+  const musicDir = options.musicDir || path.join(rootDir, 'output', 'audio', 'music');
+  const musicRefs: string[] = [];
+  const nextInput = () => stems.length + gongCounter + musicRefs.length;
+
+  // 1. Tema de apertura: 0-14.5s a volumen completo, fade out 1.5s
+  const introPath = path.join(musicDir, 'intro_theme.wav');
+  if (existsSync(introPath)) {
+    inputs.push('-i', introPath);
+    filterParts.push(
+      `[${nextInput()}:a]aresample=44100,aformat=channel_layouts=stereo,volume=1.0,afade=t=out:st=13:d=1.5[intro]`
+    );
+    musicRefs.push('[intro]');
+  }
+
+  // 2. Cama ambiental: loop continuo, volumen por tramos (0.04 con voz, 0.12 en clímax, 0.08 base)
+  const bedPath = path.join(musicDir, 'bed_ambient.wav');
+  if (existsSync(bedPath)) {
+    const totalSec = (timeline.totalDurationMs / 1000).toFixed(3);
+    inputs.push('-stream_loop', '-1', '-t', totalSec, '-i', bedPath);
+    let bedExpr = String(BED_VOL_BASE);
+    const tensionStems = stems.filter(s => (s.tensionAfterTurn ?? 0) >= 75);
+    const duckStems = stems.filter(s => (s.tensionAfterTurn ?? 0) < 75);
+    for (const s of [...tensionStems, ...duckStems].sort((a, b) => b.startMs - a.startMs)) {
+      bedExpr = `if(between(t,${(s.startMs / 1000).toFixed(3)},${(s.endMs / 1000).toFixed(3)}),${(s.tensionAfterTurn ?? 0) >= 75 ? BED_VOL_CLIMAX : BED_VOL_DUCK},${bedExpr})`;
+    }
+    filterParts.push(
+      `[${nextInput()}:a]aresample=44100,aformat=channel_layouts=stereo,volume='${bedExpr}':eval=frame[bed]`
+    );
+    musicRefs.push('[bed]');
+  }
+
+  // 3. Stinger de bloque: al inicio de cada bloque (-10dB)
+  const stingerPath = path.join(musicDir, 'stinger_block.wav');
+  if (existsSync(stingerPath)) {
+    stems.forEach((stem) => {
+      if (!blockStartTurnIds.includes(stem.turnId)) return;
+      inputs.push('-i', stingerPath);
+      const idx = nextInput();
+      filterParts.push(`[${idx}:a]aresample=44100,aformat=channel_layouts=stereo,volume=${STINGER_BLOCK_VOL},adelay=${stem.startMs}|${stem.startMs}[stb${idx}]`);
+      musicRefs.push(`[stb${idx}]`);
+    });
+  }
+
+  // 4. Stinger del duelo final: al inicio del cara a cara (blockNumber 0) (-8dB)
+  const duelPath = path.join(musicDir, 'stinger_duel.wav');
+  const duelStart = stems.find(s => s.blockNumber === 0);
+  if (existsSync(duelPath) && duelStart) {
+    inputs.push('-i', duelPath);
+    const idx = nextInput();
+    filterParts.push(`[${idx}:a]aresample=44100,aformat=channel_layouts=stereo,volume=${STINGER_DUEL_VOL},adelay=${duelStart.startMs}|${duelStart.startMs}[stduel]`);
+    musicRefs.push('[stduel]');
+  }
+
+  const mixInputs = stems.map((_, i) => `[stem${i}]`).concat(gongRefs, musicRefs).join('');
+  filterParts.push(`${mixInputs}amix=inputs=${stems.length + gongRefs.length + musicRefs.length}:normalize=0:duration=longest[out]`);
 
   const args = ['-y', ...inputs, '-filter_complex', filterParts.join(';'), '-map', '[out]', masterPath];
 

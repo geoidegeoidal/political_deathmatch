@@ -11,7 +11,8 @@
     "video": "tsx src/cli/render-video.ts",
     "build": "tsc",
     "test": "node --test dist/**/*.test.js",
-    "assets": "tsx src/cli/generate-assets.ts"
+    "assets": "tsx src/cli/generate-assets.ts",
+    "music": "tsx src/cli/generate-music.ts"
   },
   "keywords": [
     "ai",

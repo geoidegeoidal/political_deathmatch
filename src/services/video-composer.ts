@@ -49,13 +49,107 @@ export class VideoComposer {
   }
 
   /**
+   * Tarjeta de la intro del programa (design 005: 4 tarjetas, ~15s total).
+   */
+  public renderIntroCardSvg(card: number, agendaTopics: string[] = []): string {
+    const bg = this.getAssetDataUri('background', 'SPEAKER_FOCUS_1') || this.getAssetDataUri('background', 'SPEAKER_FOCUS');
+    const bgTag = bg
+      ? `<image href="${bg}" x="0" y="0" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" />`
+      : `<rect width="1920" height="1080" fill="#020617" />`;
+    const avatar = (id: string) => this.getAssetDataUri('avatar', id);
+    const avatarCircle = (id: string, cx: number, cy: number, r: number, label: string, badge?: string) => {
+      const uri = avatar(id);
+      const name = xmlEscape(truncateText(stripNickname(this.personasMap.get(id)?.name || id).toUpperCase(), 18));
+      return `
+      <g transform="translate(${cx - r}, ${cy - r})">
+        <circle cx="${r}" cy="${r}" r="${r}" fill="#1E293B" stroke="#DC2626" stroke-width="4" />
+        ${uri ? `<clipPath id="ci${id}"><circle cx="${r}" cy="${r}" r="${r - 4}" /></clipPath>
+        <image href="${uri}" x="0" y="0" width="${r * 2}" height="${r * 2}" preserveAspectRatio="xMidYMid slice" clip-path="url(#ci${id})" />`
+        : `<text x="${r}" y="${r + 10}" font-family="${this.config.fontFamily}" font-size="44" text-anchor="middle">🎙️</text>`}
+        <rect x="${-r + 10}" y="${r * 2 - 34}" width="${r * 2 - 20}" height="28" rx="6" fill="#000000" opacity="0.75" />
+        <text x="${0}" y="${r * 2 - 14}" font-family="${this.config.fontFamily}" font-size="13" font-weight="700" fill="#FACC15" text-anchor="middle">${name}</text>
+        ${badge ? `<rect x="${r - 60}" y="${-10}" width="120" height="24" rx="12" fill="#DC2626" />
+        <text x="${r}" y="7" font-family="${this.config.fontFamily}" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">${badge}</text>` : ''}
+      </g>`;
+    };
+
+    if (card === 0) {
+      return `
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  ${bgTag}
+  <rect x="0" y="0" width="1920" height="1080" fill="#020617" opacity="0.45" />
+  <rect x="560" y="40" width="800" height="44" rx="22" fill="#DC2626" />
+  <text x="960" y="70" font-family="${this.config.fontFamily}" font-size="22" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">🔴 SEÑAL EN VIVO // SIN CENSURA</text>
+  <text x="960" y="470" font-family="${this.config.fontFamily}" font-size="110" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">POLITICAL DEATHMATCH <tspan fill="#EF4444">TV</tspan></text>
+  <text x="960" y="560" font-family="${this.config.fontFamily}" font-size="34" font-weight="700" fill="#FACC15" text-anchor="middle" letter-spacing="2">${BRAND_TAGLINE}</text>
+  <circle cx="960" cy="750" r="26" fill="#EF4444" /><circle cx="1040" cy="750" r="26" fill="#EF4444" /><circle cx="1120" cy="750" r="26" fill="#EF4444" />
+</svg>`;
+    }
+
+    if (card === 1) {
+      return `
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  ${bgTag}
+  <rect x="0" y="0" width="1920" height="90" fill="#000000" opacity="0.8" />
+  <text x="960" y="58" font-family="${this.config.fontFamily}" font-size="34" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">EL LINEUP DE FUEGO CRUZADO</text>
+  <rect x="90" y="120" width="520" height="840" rx="20" fill="#0F172A" opacity="0.9" stroke="#3B82F6" stroke-width="4" />
+  <text x="350" y="170" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#60A5FA" text-anchor="middle">BLOQUE POPULAR</text>
+  ${avatarCircle('comandante_moncada', 350, 380, 150, '', 'OUTRAGED')}
+  ${avatarCircle('gladis_recabarren', 350, 660, 150, '', 'ANGRY')}
+  ${avatarCircle('dra_astorga_vicuna', 350, 930, 120, '', 'CALM')}
+  <rect x="700" y="120" width="520" height="840" rx="20" fill="#09090B" opacity="0.9" stroke="#FACC15" stroke-width="4" />
+  <text x="960" y="170" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15" text-anchor="middle">CONDUCTOR Y ÁRBITRO</text>
+  ${avatarCircle('moderador_falcon', 960, 520, 230, '', 'EN VIVO')}
+  <rect x="1310" y="120" width="520" height="840" rx="20" fill="#0F172A" opacity="0.9" stroke="#DC2626" stroke-width="4" />
+  <text x="1570" y="170" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#F87171" text-anchor="middle">BLOQUE PUNITIVO</text>
+  ${avatarCircle('capitan_sotomayor', 1570, 380, 150, '', 'OUTRAGED')}
+  ${avatarCircle('senora_patricia_maturana', 1570, 660, 150, '', 'ANGRY')}
+  ${avatarCircle('maximiliano_vondercrypt', 1570, 930, 120, '', 'MOCKING')}
+</svg>`;
+    }
+
+    if (card === 2) {
+      const topics = agendaTopics.slice(0, 4);
+      return `
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  ${bgTag}
+  <rect x="0" y="0" width="1920" height="1080" fill="#020617" opacity="0.6" />
+  <text x="960" y="90" font-family="${this.config.fontFamily}" font-size="40" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">EPISODIO SEMANAL // CARTELERA DE COMBATE</text>
+  ${topics.map((t, i) => `
+  <rect x="160" y="${180 + i * 150}" width="1240" height="120" rx="12" fill="#111827" stroke="#DC2626" stroke-width="3" />
+  <text x="200" y="${240 + i * 150}" font-family="${this.config.fontFamily}" font-size="30" font-weight="800" fill="#FACC15">BLOQUE ${i + 1}</text>
+  <text x="200" y="${278 + i * 150}" font-family="${this.config.fontFamily}" font-size="24" font-weight="600" fill="#FFFFFF">${xmlEscape(truncateText(t.toUpperCase(), 60))}</text>`).join('')}
+  <g transform="translate(1500, 180)">
+    <text x="0" y="20" font-family="${this.config.fontFamily}" font-size="20" font-weight="900" fill="#EF4444">¡ESTUDIO EN LLAMAS! 95%</text>
+    <rect x="0" y="36" width="260" height="18" rx="9" fill="#1E293B" />
+    <rect x="0" y="36" width="247" height="18" rx="9" fill="url(#bgGrad)" style="fill:#EF4444" />
+  </g>
+</svg>`;
+    }
+
+    const guzman = avatar('moderador_falcon');
+    return `
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  ${bgTag}
+  <rect x="0" y="0" width="1920" height="1080" fill="#020617" opacity="0.4" />
+  ${guzman ? `<clipPath id="ciGuz"><circle cx="960" cy="480" r="300" /></clipPath>
+  <image href="${guzman}" x="660" y="180" width="600" height="600" preserveAspectRatio="xMidYMid slice" clip-path="url(#ciGuz)" />
+  <circle cx="960" cy="480" r="300" fill="none" stroke="#FACC15" stroke-width="8" />`
+  : `<text x="960" y="520" font-family="${this.config.fontFamily}" font-size="160" text-anchor="middle">🎙️</text>`}
+  <rect x="0" y="820" width="1920" height="110" fill="url(#gcGrad)" stroke="#FEF08A" stroke-width="2" />
+  <text x="60" y="885" font-family="${this.config.fontFamily}" font-size="38" font-weight="900" fill="#FFFFFF">GUZMÁN FALCÓN // EN VIVO</text>
+  <text x="60" y="915" font-family="${this.config.fontFamily}" font-size="20" font-weight="600" fill="#FDE68A">¿QUIÉN DOMINARÁ LA MESA HOY?</text>
+</svg>`;
+  }
+
+  /**
    * Genera el marcado SVG / Template visual para un fotograma o estado de turno específico.
    */
   public generateFrameSvg(state: VideoFrameState): string {
     const speaker = this.personasMap.get(state.activeSpeakerId);
     const opponent = state.targetSpeakerId ? this.personasMap.get(state.targetSpeakerId) : undefined;
     // En pantalla solo el nombre, sin sobrenombres (los sobrenombres viven en el guion)
-    const speakerName = stripNickname(speaker?.name || state.speakerName);
+    const speakerName = xmlEscape(stripNickname(speaker?.name || state.speakerName));
     const opponentName = opponent ? stripNickname(opponent.name) : '';
     const speakerAlias = '';
 
@@ -151,7 +245,7 @@ export class VideoComposer {
     speakerUri?: string,
     opponentUri?: string
   ): string {
-    const speakerName = stripNickname(speaker?.name || state.speakerName);
+    const speakerName = xmlEscape(stripNickname(speaker?.name || state.speakerName));
     const opponentName = opponent ? stripNickname(opponent.name) : '';
     if (state.cameraCue === 'SPLIT_SCREEN_VERSUS' && opponent) {
       return `
@@ -272,7 +366,7 @@ export class VideoComposer {
     const fontSize = headline.length > 90 ? 26 : headline.length > 60 ? 30 : 34;
     const firstY = lines.length === 1 ? 72 : 52;
     const lineDelta = 40;
-    const displayName = truncateText(name.toUpperCase(), 28);
+    const displayName = xmlEscape(truncateText(name.toUpperCase(), 28));
     return `
     <!-- GC / LOWER THIRDS -->
     <g transform="translate(100, 810)">
@@ -282,7 +376,7 @@ export class VideoComposer {
       <!-- Titular GC (envuelto en hasta 2 líneas, sin desbordar) -->
       ${lines.map((line, i) => `
       <text x="40" y="${firstY + i * lineDelta}" font-family="${this.config.fontFamily}" font-size="${fontSize}" font-weight="900" fill="#FFFFFF" letter-spacing="1">
-        ${line}
+        ${xmlEscape(line)}
       </text>`).join('')}
 
       <!-- Caja de Identificación del Orador (Negro/Dorado) -->
@@ -304,7 +398,7 @@ export class VideoComposer {
         ÚLTIMO MINUTO
       </text>
       <text x="260" y="32" font-family="${this.config.fontFamily}" font-size="18" font-weight="600" fill="#FFFFFF">
-        ${BRAND_TAGLINE} • DEBATIENDO EN VIVO SOBRE "${truncateText(topicTitle.toUpperCase(), 70)}" • EMISIÓN SIN FILTROS
+        ${BRAND_TAGLINE} • DEBATIENDO EN VIVO SOBRE "${xmlEscape(truncateText(topicTitle.toUpperCase(), 70))}" • EMISIÓN SIN FILTROS
       </text>
     </g>
     `;
@@ -335,6 +429,14 @@ function stripNickname(name: string): string {
 /** Corta un texto con elipsis si excede maxChars. */
 function truncateText(text: string, maxChars: number): string {
   return text.length > maxChars ? `${text.slice(0, maxChars - 1)}…` : text;
+}
+
+/** Escapa entidades XML en texto (evita xmlParseEntityRef con '&', '<', '>'). */
+function xmlEscape(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 /** Envuelve un titular en líneas de hasta maxChars (corta en espacios). */

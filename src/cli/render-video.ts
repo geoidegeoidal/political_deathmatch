@@ -84,15 +84,45 @@ async function main() {
     console.log(`   -> frame_${String(turn.turnId).padStart(3, '0')}.png (${turn.speakerName}, ${turn.cameraCue}, tension ${turn.tensionAfterTurn})`);
   }
 
-  console.log(`\n[RENDER] 3. Componiendo video con cortes por turno (30fps, sincronizado al timeline)...`);
+  console.log(`\n[RENDER] 3. Generando tarjetas de intro (4, ~15s con Ken Burns)...`);
+  const agendaPath = path.join(rootDir, 'weekly_agenda.json');
+  let agendaTopics: string[] = [];
+  try {
+    const agenda = JSON.parse(await readFile(agendaPath, 'utf-8')) as { blocks?: { topic?: string }[] };
+    agendaTopics = (agenda.blocks || []).map(b => b.topic || '').filter(Boolean);
+  } catch {
+    console.warn('[RENDER] weekly_agenda.json no encontrado; intro sin cartelera.');
+  }
+  const introDurations = [3.5, 4, 3.5, 4]; // 15s
+  const introPaths: string[] = [];
+  for (let c = 0; c < 4; c++) {
+    const svg = composer.renderIntroCardSvg(c, agendaTopics);
+    const p = path.join(framesDir, `intro_${c}.png`);
+    await sharp(Buffer.from(svg)).png().toFile(p);
+    introPaths.push(p);
+    console.log(`   -> intro_${c}.png (${introDurations[c]}s)`);
+  }
+
+  console.log(`\n[RENDER] 4. Componiendo video (intro + cortes por turno, 30fps, sincronizado al timeline)...`);
   const intervals = buildIntervals(timeline.stems);
 
   const args: string[] = ['-y'];
+  // Inputs de la intro: frame único + zoompan genera exactamente dur*30 frames
+  const introInputs: string[] = [];
+  introPaths.forEach((p, i) => {
+    args.push('-i', p);
+    introInputs.push(`[${i}:v]zoompan=z='min(zoom+0.0015,1.15)':d=${Math.round(introDurations[i] * 30)}:s=1920x1080:fps=30[intro${i}]`);
+  });
+  const introRefs = introPaths.map((_, i) => `[intro${i}]`);
+
+  // Inputs de los turnos (desplazados por la intro en el timeline)
+  const base = introPaths.length;
   intervals.forEach((iv) => {
     args.push('-loop', '1', '-t', ((iv.endMs - iv.startMs) / 1000).toFixed(3), '-i', framePaths.get(iv.turnId) as string);
   });
-  const concatFilter = intervals.map((_, i) => `[${i}:v]`).join('') + `concat=n=${intervals.length}:v=1:a=0[vout]`;
-  args.push('-filter_complex', concatFilter, '-map', '[vout]', '-c:v', 'libx264', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-r', '30', videoOnlyPath);
+  const turnRefs = intervals.map((_, i) => `[${base + i}:v]`);
+  const concatFilter = [...introRefs, ...turnRefs].join('') + `concat=n=${introRefs.length + turnRefs.length}:v=1:a=0[vout]`;
+  args.push('-filter_complex', `${introInputs.join(';')};${concatFilter}`, '-map', '[vout]', '-c:v', 'libx264', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-r', '30', videoOnlyPath);
 
   const renderRes = spawnSync(ffmpegBin(), args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
   if (renderRes.status !== 0) {

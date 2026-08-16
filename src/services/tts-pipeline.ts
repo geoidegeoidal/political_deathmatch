@@ -142,7 +142,8 @@ function buildStem(
     startMs: 0,
     endMs: 0,
     isInterruption: turn.isInterruption,
-    duckingApplied: false
+    duckingApplied: false,
+    tensionAfterTurn: turn.tensionAfterTurn
   };
 }
 

@@ -26,6 +26,7 @@ export interface AudioStemInfo {
   endMs: number;
   isInterruption: boolean;
   duckingApplied: boolean;
+  tensionAfterTurn?: number; // Para el ducking de la cama musical (>=75 => clímax)
 }
 
 export interface AudioTimeline {

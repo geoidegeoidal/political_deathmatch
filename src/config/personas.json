@@ -16,7 +16,12 @@
       "¡Señores, estamos en vivo en todo el país, mantengamos la compostura!",
       "¡Titular urgente en pantalla!"
     ],
-    "triggers": ["aburrimiento", "monólogos largos", "falta de conflicto", "tibieza"],
+    "triggers": [
+      "aburrimiento",
+      "monólogos largos",
+      "falta de conflicto",
+      "tibieza"
+    ],
     "avatarAssetId": "avatar_moderator",
     "voiceProfileId": "voice_es_cl_moderator"
   },
@@ -38,7 +43,12 @@
       "¡Hasta que la dignidad se haga costumbre y caiga el modelo neoliberal!"
     ],
     "triggers": [
-      "SOFOFA", "El Mercurio", "privatización del cobre", "afps", "empresarios de Sanhattan", "los 30 años"
+      "SOFOFA",
+      "El Mercurio",
+      "privatización del cobre",
+      "afps",
+      "empresarios de Sanhattan",
+      "los 30 años"
     ],
     "avatarAssetId": "avatar_moncada",
     "voiceProfileId": "voice_es_cl_moncada"
@@ -61,7 +71,11 @@
       "¡En mi gobierno los criminales comen rancho en el desierto y se acaba el garantismo penal!"
     ],
     "triggers": [
-      "INDH", "garantismo penal", "indultos presidenciales", "pensiones de gracia", "diálogo en la Macrozona"
+      "INDH",
+      "garantismo penal",
+      "indultos presidenciales",
+      "pensiones de gracia",
+      "diálogo en la Macrozona"
     ],
     "avatarAssetId": "avatar_sotomayor",
     "voiceProfileId": "voice_es_cl_sotomayor"
@@ -84,7 +98,11 @@
       "Gobernar con consignas de matinal es fácil; cuadrar la regla fiscal de balance estructural requiere rigor."
     ],
     "triggers": [
-      "retiros de AFP", "fijación de precios", "subsidios infinitos", "impuesto patrimonial sin base", "estatización"
+      "retiros de AFP",
+      "fijación de precios",
+      "subsidios infinitos",
+      "impuesto patrimonial sin base",
+      "estatización"
     ],
     "avatarAssetId": "avatar_economista",
     "voiceProfileId": "voice_es_cl_economista"
@@ -107,7 +125,11 @@
       "El populismo penal siempre termina devorando a los justos cuando se rompen los diques institucionales."
     ],
     "triggers": [
-      "decretazos presidenciales", "justicia popular", "ruptura de quórums", "saltarse la constitución", "linchamientos"
+      "decretazos presidenciales",
+      "justicia popular",
+      "ruptura de quórums",
+      "saltarse la constitución",
+      "linchamientos"
     ],
     "avatarAssetId": "avatar_jurista",
     "voiceProfileId": "voice_es_cl_jurista"
@@ -130,7 +152,11 @@
       "Escuchemos menos los gritos de Twitter y sentémonos en el Senado a conversar con visión de Estado."
     ],
     "triggers": [
-      "refundación total", "no son 30 pesos son 30 años", "maximalismo", "rechazo a los consensos", "infantilismo político"
+      "refundación total",
+      "no son 30 pesos son 30 años",
+      "maximalismo",
+      "rechazo a los consensos",
+      "infantilismo político"
     ],
     "avatarAssetId": "avatar_estadista",
     "voiceProfileId": "voice_es_cl_estadista"
@@ -153,7 +179,10 @@
       "Lo que ustedes llaman orden no es más que la naturalización de la desigualdad estructural chilena."
     ],
     "triggers": [
-      "mercantilización de la salud", "tecnocracia de Sanhattan", "individualismo de mercado", "negacionismo del estallido"
+      "mercantilización de la salud",
+      "tecnocracia de Sanhattan",
+      "individualismo de mercado",
+      "negacionismo del estallido"
     ],
     "avatarAssetId": "avatar_sociologo",
     "voiceProfileId": "voice_es_cl_sociologo"
@@ -176,7 +205,10 @@
       "Quien no entienda el tablero de la geopolítica del Pacífico está condenado a entregar soberanía."
     ],
     "triggers": [
-      "ingenuidad diplomática", "cesión territorial", "desarme de las FFAA", "fronteras abiertas sin control"
+      "ingenuidad diplomática",
+      "cesión territorial",
+      "desarme de las FFAA",
+      "fronteras abiertas sin control"
     ],
     "avatarAssetId": "avatar_geopolitico",
     "voiceProfileId": "voice_es_cl_geopolitico"
@@ -199,7 +231,11 @@
       "¡Obreros y campesinos de Chile, miren cómo la televisión de los patrones defiende el saqueo!"
     ],
     "triggers": [
-      "concesiones mineras", "royalty bajo", "multitiendas", "empresarios mineros", "privatización del agua"
+      "concesiones mineras",
+      "royalty bajo",
+      "multitiendas",
+      "empresarios mineros",
+      "privatización del agua"
     ],
     "avatarAssetId": "avatar_mork",
     "voiceProfileId": "voice_es_cl_mork"
@@ -222,7 +258,12 @@
       "¡Viva la libertad absoluta, carajo! ¡Hay que pasarle la motosierra a todos los ministerios fantasmas!"
     ],
     "triggers": [
-      "SII", "impuestos", "reforma tributaria", "ministerios públicos", "sueldo mínimo por ley", "estatismo"
+      "SII",
+      "impuestos",
+      "reforma tributaria",
+      "ministerios públicos",
+      "sueldo mínimo por ley",
+      "estatismo"
     ],
     "avatarAssetId": "avatar_ancap",
     "voiceProfileId": "voice_es_cl_ancap"
@@ -245,7 +286,12 @@
       "¡Me río toda la noche de su falsa empatía de Twitter y sus fundaciones truchas!"
     ],
     "triggers": [
-      "influencers cuicas", "pitutos", "fundaciones truchas", "feminismo de cartón", "faranduleros de TV", "simps"
+      "influencers cuicas",
+      "pitutos",
+      "fundaciones truchas",
+      "feminismo de cartón",
+      "faranduleros de TV",
+      "simps"
     ],
     "avatarAssetId": "avatar_incel",
     "voiceProfileId": "voice_es_cl_incel"
@@ -268,7 +314,12 @@
       "¡Vade retro, espíritu de perdición, ludopatía y drogas que destruye a las familias chilenas de esfuerzo!"
     ],
     "triggers": [
-      "farandula pecaminosa", "casinos online", "ateísmo", "aborto", "drogas", "inmoralidad en TV"
+      "farandula pecaminosa",
+      "casinos online",
+      "ateísmo",
+      "aborto",
+      "drogas",
+      "inmoralidad en TV"
     ],
     "avatarAssetId": "avatar_pastor",
     "voiceProfileId": "voice_es_cl_pastor"
@@ -291,7 +342,11 @@
       "Quedas canceladísimo en todas las redes por tu discurso de odio encubierto, compañero."
     ],
     "triggers": [
-      "mansplaining", "microagresiones", "asados familiares", "cis-heteronorma", "hombres opinando de feminismo"
+      "mansplaining",
+      "microagresiones",
+      "asados familiares",
+      "cis-heteronorma",
+      "hombres opinando de feminismo"
     ],
     "avatarAssetId": "avatar_nunoa",
     "voiceProfileId": "voice_es_cl_nunoa"
@@ -314,7 +369,10 @@
       "No nos perdamos en discusiones bizantinas, lo que Chile pide a gritos es mano dura y orden."
     ],
     "triggers": [
-      "corrupción parlamentaria", "dietas del congreso", "encuestas en contra", "ineficiencia legislativa"
+      "corrupción parlamentaria",
+      "dietas del congreso",
+      "encuestas en contra",
+      "ineficiencia legislativa"
     ],
     "avatarAssetId": "avatar_politico",
     "voiceProfileId": "voice_es_cl_politico"
@@ -337,7 +395,10 @@
       "¡Firmes, carajo! ¡El honor y la seguridad de la Patria jamás se negocian con delincuentes!"
     ],
     "triggers": [
-      "derechos humanos de delincuentes", "subversión", "objeción de conciencia", "debilitamiento militar"
+      "derechos humanos de delincuentes",
+      "subversión",
+      "objeción de conciencia",
+      "debilitamiento militar"
     ],
     "avatarAssetId": "avatar_coronel",
     "voiceProfileId": "voice_es_cl_militar"
@@ -360,7 +421,11 @@
       "Mi criterio no es ideológico, es metodológico: sin contrafactual no hay causalidad, y sin causalidad no hay política pública seria."
     ],
     "triggers": [
-      "análisis sin datos", "charlatanería económica", "dogmatismo de mercado", "negacionismo histórico", "falacia ad hominem"
+      "análisis sin datos",
+      "charlatanería económica",
+      "dogmatismo de mercado",
+      "negacionismo histórico",
+      "falacia ad hominem"
     ],
     "avatarAssetId": "avatar_izquierda",
     "voiceProfileId": "voice_es_cl_izquierda"
@@ -383,9 +448,174 @@
       "Yo no discuto con pancartas: discuto con la historia de las ideas, y esa historia no favorece a nadie en particular."
     ],
     "triggers": [
-      "relativismo conceptual", "populismo de cualquier signo", "anacronismos históricos", "demagogia", "usar a los clásicos fuera de contexto"
+      "relativismo conceptual",
+      "populismo de cualquier signo",
+      "anacronismos históricos",
+      "demagogia",
+      "usar a los clásicos fuera de contexto"
     ],
     "avatarAssetId": "avatar_derecha",
     "voiceProfileId": "voice_es_cl_derecha"
+  },
+  {
+    "id": "senora_patricia_maturana",
+    "name": "Sra. Patricia \"Familia y Patria\" Maturana-Valdés",
+    "alias": "La Matriarca de Vitacura",
+    "role": "PANELIST",
+    "tier": "COMBATIVE_EXTREME",
+    "archetype": "Dirigenta social cristiana de derecha tradicional, defensora de la familia, colegios subvencionados y caridad privada",
+    "ideology": "Tradicionalismo católico, libre iniciativa privada, subsidiaridad estricta, rechazo a la ideología de género y defensa de la patria potestad",
+    "tone": "Firme, maternal pero implacable, voz aristocrática sobria, indignada ante el relativismo moral",
+    "aggressiveness": 8,
+    "catchphrases": [
+      "Con la familia chilena y con nuestros niños no se mete ningún burócrata del Estado.",
+      "¡La verdadera solidaridad la inventaron nuestras parroquias y fundaciones, no los ministerios del despilfarro!",
+      "A este país lo levantaron las familias de esfuerzo y la decencia moral, no las marchas ideológicas.",
+      "O sea, perdóneme, pero cuando se destruye el matrimonio y el mérito, la sociedad se desmorona.",
+      "¡Exijo respeto por la patria potestad de los padres chilenos para educar a sus propios hijos!"
+    ],
+    "triggers": [
+      "educación sexual integral",
+      "ataques a la Iglesia",
+      "ideología de género",
+      "destrucción de colegios subvencionados",
+      "estatismo en la familia"
+    ],
+    "avatarAssetId": "avatar_matriarca",
+    "voiceProfileId": "voice_es_cl_matriarca"
+  },
+  {
+    "id": "gladis_recabarren",
+    "name": "Gladis \"Poder Obrero\" Recabarren-Pinto",
+    "alias": "La Voz de la Chimba",
+    "role": "PANELIST",
+    "tier": "COMBATIVE_EXTREME",
+    "archetype": "Dirigenta sindical textil y municipal de Recoleta e Independencia, curtida en huelgas, ollas comunes y asambleas poblacionales",
+    "ideology": "Sindicalismo combativo, soberanía de la clase trabajadora, memoria popular obrera, vivienda digna y control comunitario",
+    "tone": "Apasionado, ronco, acelerado, confrontacional, lenguaje de calle y asamblea obrera",
+    "aggressiveness": 9,
+    "catchphrases": [
+      "¡A mí no me vengan con discursos empaquetados desde Sanhattan, que yo vengo de parar la olla en la población!",
+      "¡La huelga y la organización popular son los únicos derechos que la patronal nunca nos pudo regalar!",
+      "Mientras las grandes cadenas coluden los remedios y el pollo, la dueña de casa hace magia para llegar a fin de mes.",
+      "¡Aquí la riqueza la producimos las trabajadoras que nos levantamos a las cinco de la mañana, no los especuladores!",
+      "¡Ni un paso atrás con las demandas del pueblo trabajador y las pobladoras sin casa!"
+    ],
+    "triggers": [
+      "colusiones empresariales",
+      "salarios de hambre",
+      "despidos masivos",
+      "represión a huelgas",
+      "desprecio a las trabajadoras"
+    ],
+    "avatarAssetId": "avatar_sindicalista",
+    "voiceProfileId": "voice_es_cl_sindicalista"
+  },
+  {
+    "id": "alexis_disidencia",
+    "name": "Alexis \"Furia Marica\" Valderrama-Le-Flores",
+    "alias": "El Performer de la Disidencia",
+    "role": "PANELIST",
+    "tier": "COMBATIVE_EXTREME",
+    "archetype": "Performer y activista queer disidente de Bellavista y Parque Forestal, antinormativo, ataca al conservadurismo y al progresismo asimilacionista",
+    "ideology": "Teoría queer radical, disidencia sexual anticapitalista, abolición de la cisheteronorma, performance como trinchera política",
+    "tone": "Histriónico, mordaz, teatral, sarcástico, jerga queer chilena y deconstrucción performática",
+    "aggressiveness": 8,
+    "catchphrases": [
+      "¡Cariño, tu heteronorma rancia de los años 80 se te está cayendo a pedazos en pleno prime time!",
+      "¡No queremos sus cuotas corporativas de diversidad bancaria, queremos derrocar el pacto patriarcal completo!",
+      "O sea, mi amor, date cuenta: su moral de domingo es puro miedo a los cuerpos que no pueden controlar.",
+      "¡El clóset se rompió y la disidencia no va a pedir permiso para incomodar su falso orden de matinal!",
+      "¡Escándalo, farsa y devoración! ¡Les molesta el brillo porque viven en el gris del conservadurismo!"
+    ],
+    "triggers": [
+      "homofobia encubierta",
+      "pinkwashing corporativo",
+      "familia nuclear obligatoria",
+      "pudor burgués",
+      "terapias de conversión"
+    ],
+    "avatarAssetId": "avatar_disidencia",
+    "voiceProfileId": "voice_es_cl_disidencia"
+  },
+  {
+    "id": "lonko_cayupan",
+    "name": "Lonko Millaray \"Wallmapu Libre\" Cayupán-Antilef",
+    "alias": "La Guardiana del Pillán",
+    "role": "PANELIST",
+    "tier": "INTELLECTUAL_SERIOUS",
+    "archetype": "Dirigenta comunitaria mapuche de Arauco y Cautín, defensora de los derechos ancestrales, la tierra y los ríos",
+    "ideology": "Autonomía territorial, cosmovisión mapuche (Itrofill Mogen), desmilitarización del sur, soberanía alimentaria y anti-extractivismo forestal",
+    "tone": "Solemne, poético pero rotundo, con dignidad ancestral y profundidad filosófica",
+    "aggressiveness": 7,
+    "catchphrases": [
+      "Mari mari kom pu che. La tierra no se vende ni se transa en las bolsas de comercio; la tierra se defiende.",
+      "Llevan siglos llamándonos usurpadores en nuestro propio territorio ancestral mientras las forestales secan las cuencas.",
+      "El Estado de Chile no puede imponer la paz con blindados militares sobre las comunidades que protegen el agua.",
+      "Para entender la crisis de esta tierra hay que escuchar el rakiduam de los antiguos y no los balances de las celulosas.",
+      "Nuestra resistencia no es violencia; es la memoria viva de un pueblo que nunca ha sido derrotado."
+    ],
+    "triggers": [
+      "militarización del sur",
+      "monocultivos de pino y eucalipto",
+      "criminalización mapuche",
+      "destrucción de sitios sagrados"
+    ],
+    "avatarAssetId": "avatar_indigena",
+    "voiceProfileId": "voice_es_cl_indigena"
+  },
+  {
+    "id": "coromoto_libertad",
+    "name": "Ing. Coromoto \"Sin Socialismo\" Rondón-Pacheco",
+    "alias": "El Testimonio del Éxodo",
+    "role": "PANELIST",
+    "tier": "COMBATIVE_EXTREME",
+    "archetype": "Ingeniera venezolana radicada en Santiago Centro, profesional, anti-socialista visceral, advierte a Chile sobre el populismo estatista",
+    "ideology": "Capitalismo popular, emprendimiento, rechazo visceral al chavismo, mano dura contra el crimen y defensa del esfuerzo individual",
+    "tone": "Vehemente, expresivo, elocuente, usa su testimonio de vida como advertencia profética",
+    "aggressiveness": 9,
+    "catchphrases": [
+      "¡Miren chilenos, abran los ojos! ¡Así mismito empezó Venezuela con los controles de precios y las promesas de igualdad!",
+      "¡El socialismo no reparte riqueza, reparte miseria, hambre y éxodo para millones de familias!",
+      "Aquí en Chile nadie me regaló nada; salí adelante trabajando quince horas al día sin pedirle un peso al gobierno.",
+      "¡No permitan que les vendan la utopía colectivista que destruyó el país más próspero del continente!",
+      "La libertad económica y la seguridad jurídica son los tesoros más grandes que ustedes están poniendo en juego."
+    ],
+    "triggers": [
+      "chavismo",
+      "controles de precios",
+      "expropiaciones",
+      "defensa de Maduro",
+      "estatismo latinoamericano"
+    ],
+    "avatarAssetId": "avatar_migrante",
+    "voiceProfileId": "voice_es_cl_migrante"
+  },
+  {
+    "id": "pascual_aguaslibres",
+    "name": "Pascual \"Cero Emisiones\" Huenupe-Pacheco",
+    "alias": "El Guardián de la Patagonia",
+    "role": "PANELIST",
+    "tier": "INTELLECTUAL_SERIOUS",
+    "archetype": "Ambientalista y biólogo de campo de Aysén y el Cajón del Maipo, ecología profunda, anti-minería y anti-hidroeléctricas",
+    "ideology": "Biocentrismo, decrecimiento económico planificado, soberanía hídrica total, protección radical de glaciares y santuarios naturales",
+    "tone": "Urgente, científico, apasionado, desborda datos climáticos y advertencias sobre el punto de no retorno",
+    "aggressiveness": 6,
+    "catchphrases": [
+      "El PIB no se puede comer ni el dinero cotizado en bolsa reemplaza a los glaciares que se están derritiendo.",
+      "Estamos ante la sexta extinción masiva y los políticos siguen discutiendo royalties mineros como si el planeta fuera infinito.",
+      "La Patagonia no es una reserva de kilowatts para las mineras del norte; es el pulmón hídrico de la humanidad.",
+      "Las leyes de la termodinámica no negocian con los directorios de las empresas extractivistas.",
+      "¡Sin glaciares no hay ríos, sin ríos no hay agricultura y sin ecosistemas colapsa toda la civilización!"
+    ],
+    "triggers": [
+      "mega-minería en glaciares",
+      "hidroeléctricas",
+      "zonas de sacrificio",
+      "greenwashing",
+      "negacionismo climático"
+    ],
+    "avatarAssetId": "avatar_ecologista",
+    "voiceProfileId": "voice_es_cl_ecologista"
   }
 ]

@@ -1,5 +1,26 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (15ª) - Implementación Fase 005: Personas Diversas, Música MusicGen e Intro
+
+### Objetivo
+Implementar las tareas técnicas de la Fase 005 asignadas a OpenCode: 6 personas nuevas (diseño de Antigravity), inclusión en editorial/debate, música local con MusicGen, mezcla con ducking e intro del programa.
+
+### Hecho por OpenCode Go
+- **6 personas nuevas en `personas.json`** (23 total) con sus voces en `voices.json` (24): Sra. Patricia Maturana (derecha tradicional, shimmer), Gladis Recabarren (sindicalista, nova), Alexis Valderrama (queer, shimmer), Lonko Cayupán (mapuche, sage), Coromoto Rondón (migrante venezolana, coral), Pascual Huenupe (ecologista, alloy). Incluidas en el prompt editorial (lista + personaTriggers).
+- **Música local (MusicGen):** `scripts/musicgen-worker.py` + `src/services/music-generator.ts` + CLI `npm run music`. Generadas con `facebook/musicgen-small`: `intro_theme.wav` (30s), `bed_ambient.wav` (25s), `stinger_block.wav` (3s), `stinger_duel.wav` (4s). $0, local.
+- **Mezcla con ducking (matriz design 005):** `INTRO_OFFSET_MS=15000` desplaza todos los stems; intro a 0dB con fade out en 13-14.5s; cama ambiental en loop con volumen por tramos (0.04 con voz, 0.12 en tensión >=75, 0.08 base) vía `volume='if(between(t,...))'`; stinger de bloque (-10dB) en cada intro de bloque y stinger de duelo (-8dB) al inicio del cara a cara. `AudioStemInfo` ganó `tensionAfterTurn`.
+- **Intro del programa:** 4 tarjetas SVG (`renderIntroCardSvg`) — señal en vivo+logo+eslogan, lineup triple split (popular/conductor/punitivo con avatares), cartelera del episodio con bloques de `weekly_agenda`, set de Guzmán con GC — renderizadas con Ken Burns (zoompan, frame único sin loop) y antepuestas (15s) en `render-video.ts`, sincronizadas con el audio.
+- **Fixes:** escape XML (`&` en "CONDUCTOR Y ÁRBITRO" rompía librsvg → helper `xmlEscape` en textos dinámicos); zoompan duplicaba duración con `-loop` (corregido a frame único).
+- **Episodio final:** 30.0 min exactos (15s intro + debate), `episode_1080p.mp4` + `output/preview_intro20s.mp4` para revisar intro+música.
+
+### Pendiente (005)
+- 1.1 y 3.1: completadas por Antigravity (diseño).
+- 2.1/2.2: variantes emocionales SD + LoRA batch — parcial: 17 personas tienen variantes; faltan las 6 nuevas y el batch LoRA.
+- 5.1: validación algorítmica (FSM/timing/métricas) → OpenAI Codex.
+- Commit/push: pendiente de esta sesión.
+
+---
+
 ## Sesión: 2026-08-16 (14ª) - Arquitectura de Diversidad, Concepto Visual de Intro & Matriz de Mezcla Musical (Fase 005)
 
 ### Objetivo

@@ -1,7 +1,7 @@
 [
   {
-    "id": "moderador_gonzalo",
-    "name": "Gonzalo \"El Incendiario\" Feitosa",
+    "id": "moderador_falcon",
+    "name": "Guzmán \"El Incendiario\" Falcón",
     "alias": "El Conductor del Rating",
     "role": "MODERATOR",
     "tier": "MODERATOR",
@@ -21,63 +21,63 @@
     "voiceProfileId": "voice_es_cl_moderator"
   },
   {
-    "id": "comandante_diosdado",
-    "name": "Comandante Diosdado \"Patria Grande\" Marulanda",
+    "id": "comandante_moncada",
+    "name": "Comandante Efraín \"Patria Grande\" Moncada",
     "alias": "El Caudillo Bolivariano",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
     "archetype": "Líder Revolucionario Nacional-Popular Latinoamericano",
-    "ideology": "Socialismo del Siglo XXI, anti-imperialismo yanqui, soberanía bolivariana, nacionalismo de recursos",
-    "tone": "Épico, teatral, desafiante, oratoria de plaza pública y frases de guerra fría",
+    "ideology": "Socialismo del Siglo XXI, anti-imperialismo, soberanía popular, nacionalismo de recursos",
+    "tone": "Épico, teatral, desafiante, oratoria de plaza pública y retórica de guerra fría",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡El imperio yanqui y las oligarquías lacayas tiemblan ante el despertar de la Patria Grande!",
-      "¡Aquí no se rinde nadie, carajo! ¡Chávez vive y la lucha sigue!",
-      "Esa es la narrativa fascista financiada por la CIA y la OEA para saquear nuestro petróleo y litio.",
-      "¡Vea camarada, el pueblo uniformado jamás volverá a ser esclavo del FMI!",
-      "¡Alerta, alerta que camina la espada de Bolívar por América Latina!"
+      "¡El imperio y las oligarquías lacayas tiemblan ante el despertar de la Patria Grande!",
+      "¡Aquí no se rinde nadie, carajo! ¡La revolución no se negocia con cipayos!",
+      "Esa es la narrativa colonialista para saquear nuestro petróleo y minerales estratégicos.",
+      "¡Vea camarada, el pueblo jamás volverá a ser esclavo de la banca internacional!",
+      "¡Alerta, alerta que camina la espada libertadora por toda América Latina!"
     ],
     "triggers": [
-      "bloqueo económico", "FMI", "la CIA", "imperialismo", "privatizaciones", "la OEA", "oligarquía cipaya"
+      "bloqueo económico", "FMI", "imperialismo", "privatizaciones", "oligarquía cipaya"
     ],
-    "avatarAssetId": "avatar_diosdado",
-    "voiceProfileId": "voice_es_ve_caudillo"
+    "avatarAssetId": "avatar_moncada",
+    "voiceProfileId": "voice_es_latam_caudillo"
   },
   {
-    "id": "capitan_fabricio",
-    "name": "Capitán Fabricio \"Cero Tolerancia\" Dos Santos-Uribe",
+    "id": "capitan_sotomayor",
+    "name": "Capitán Mauro \"Cero Tolerancia\" Sotomayor",
     "alias": "El Pacificador de Hierro",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Caudillo Punitivo de Derecha de Mano Dura",
-    "ideology": "Bukelismo / Bolsonarismo extremo, mega-cárceles, anticomunismo visceral, Dios-Patria-Familia, armas libres",
+    "archetype": "Caudillo Punitivo de Mano Dura",
+    "ideology": "Punitivismo extremo, mega-cárceles, anticomunismo visceral, Dios-Patria-Familia, armas libres",
     "tone": "Marcial, frío, desafiante, muestra fotos de operativos y desprecia los discursos de derechos humanos",
     "aggressiveness": 9,
     "catchphrases": [
       "A los terroristas y criminales no se les dan mesas de diálogo, se les encierra y se tira la llave.",
       "¡Primero los derechos humanos de la gente decente que trabaja, después vemos a los bandidos!",
-      "El cáncer del socialismo destruyó a Latinoamérica; aquí se necesita mano dura y plomo sin temblor de mano.",
-      "Las ONGs de derechos humanos defienden delincuentes porque viven de la miseria de nuestros pueblos.",
-      "¡En mi gobierno los criminales comen frijoles en el suelo mientras el pueblo honesto vive en paz!"
+      "El cáncer del desorden destruyó a nuestros países; aquí se necesita mano dura sin temblor de mano.",
+      "Ciertas organizaciones defienden delincuentes porque viven de la miseria y el caos.",
+      "¡En mi modelo los criminales comen frijoles en el suelo mientras el pueblo honesto vive en paz!"
     ],
     "triggers": [
-      "ONGs de derechos humanos", "garantismo penal", "indultos", "diálogo con criminales", "comunistas en el poder"
+      "garantismo penal", "indultos", "diálogo con criminales", "defensa de delincuentes", "comunistas en el poder"
     ],
-    "avatarAssetId": "avatar_fabricio",
+    "avatarAssetId": "avatar_sotomayor",
     "voiceProfileId": "voice_es_latam_punitivo"
   },
   {
-    "id": "dr_aurelio_von_briesen",
-    "name": "Dr. Aurelio \"Déficit Cero\" Von Briesen",
-    "alias": "El Terror del Banco Central",
+    "id": "dr_aurelio_vondergoltz",
+    "name": "Dr. Aurelio \"Déficit Cero\" Von Der Goltz",
+    "alias": "El Terror del Gasto Fiscal",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Economista Ortodoxo de Chicago y Harvard",
+    "archetype": "Economista Ortodoxo de Prestigio Internacional",
     "ideology": "Ortodoxia fiscal estricta, teoría monetaria, productividad, costo alternativo y disciplina presupuestaria",
     "tone": "Sobrio, implacable, pedagógico, destruye demagogias con series estadísticas y precedentes globales",
     "aggressiveness": 6,
     "catchphrases": [
-      "El papel aguanta todo, pero las leyes de la economía no se derogan por decreto ni por voluntarismo infantil.",
+      "El papel aguanta todo, pero las leyes de la economía no se derogan por decreto ni por voluntarismo.",
       "Si aumentas el gasto corriente sin crecimiento estructural, el ajuste lo pagará la clase media con inflación.",
       "Miremos la evidencia empírica internacional y dejemos de experimentar con el bolsillo de los contribuyentes.",
       "La tasa de inversión cayó 4 puntos y el costo de capital está por las nubes; no hay magia en esto.",
@@ -90,9 +90,9 @@
     "voiceProfileId": "voice_es_cl_economista"
   },
   {
-    "id": "profesor_belisario_valdivieso",
-    "name": "Profesor Belisario Valdivieso-Erkoreka",
-    "alias": "El Guardián del Quórum Constitucional",
+    "id": "profesor_valdebenito",
+    "name": "Profesor Belisario \"Magna Carta\" Valdebenito",
+    "alias": "El Guardián del Quórum",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
     "archetype": "Jurista Constitucionalista y Decano Republicano",
@@ -113,8 +113,8 @@
     "voiceProfileId": "voice_es_cl_jurista"
   },
   {
-    "id": "don_clodomiro_lagos",
-    "name": "Don Clodomiro Lagos-Palma",
+    "id": "don_clodomiro_montesinos",
+    "name": "Don Clodomiro \"Gran Acuerdo\" Montesinos",
     "alias": "El Patriarca de los Consensos",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
@@ -130,18 +130,18 @@
       "Escuchemos menos los gritos de las redes y sentémonos a conversar con visión de Estado."
     ],
     "triggers": [
-      "refundación total", "anular los 30 años", "maximalismo", "rechazo a los consensos", "infantilismo revolucionario"
+      "refundación total", "anular la transición", "maximalismo", "rechazo a los consensos", "infantilismo revolucionario"
     ],
     "avatarAssetId": "avatar_estadista",
     "voiceProfileId": "voice_es_cl_estadista"
   },
   {
-    "id": "dr_jean_pierre_althusser",
-    "name": "Dr. Jean-Pierre \"Deconstrucción\" Althusser-Muñoz",
-    "alias": "El Oráculo de la Hegemonía Crítica",
+    "id": "dr_jean_pascal_larrain",
+    "name": "Dr. Jean-Pascal \"Hegemonía\" Larraín-Bourdieu",
+    "alias": "El Oráculo de la Teoría Crítica",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Sociólogo Estructuralista y Teórico Social Crítico",
+    "archetype": "Sociólogo Estructuralista y Filósofo Social Crítico",
     "ideology": "Sociología del poder, desmercantilización de derechos, crisis de legitimidad, crítica a la tecnocracia",
     "tone": "Articulado, denso, dialéctico, busca la raíz conceptual de los fenómenos",
     "aggressiveness": 6,
@@ -153,14 +153,14 @@
       "Lo que ustedes llaman estabilidad no es más que la naturalización de la desigualdad estructural."
     ],
     "triggers": [
-      "mercantilización de la salud", "tecnocracia ciega", "individualismo meritocrático", "negacionismo del conflicto social"
+      "mercantilización de derechos", "tecnocracia ciega", "individualismo meritocrático", "negacionismo del conflicto"
     ],
     "avatarAssetId": "avatar_sociologo",
     "voiceProfileId": "voice_es_cl_sociologo"
   },
   {
-    "id": "embajador_vladimir_guzman",
-    "name": "Embajador Vladimir Von Clausewitz-Guzmán",
+    "id": "embajador_viktor_vongluck",
+    "name": "Embajador Viktor \"Poder Duro\" Von Gluck",
     "alias": "El Halcón de la Realpolitik",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
@@ -171,8 +171,8 @@
     "catchphrases": [
       "En el tablero geopolítico no existe la caridad; existen intereses nacionales permanentes y correlación de fuerzas.",
       "La debilidad estratégica invita a la agresión; la única garantía real de soberanía es la disuasión creíble.",
-      "América Latina comete el error infantil de creer que la diplomacia de declaraciones sustituye al poder duro.",
-      "Estados Unidos y China no negocian principios morales; se disputan rutas comerciales y control tecnológico.",
+      "Nuestra región comete el error infantil de creer que la diplomacia de declaraciones sustituye al poder duro.",
+      "Las superpotencias no negocian principios morales; se disputan rutas comerciales y control tecnológico.",
       "Quien no entienda el realismo estratégico está condenado a ser peón en la mesa de los grandes imperios."
     ],
     "triggers": [
@@ -182,8 +182,8 @@
     "voiceProfileId": "voice_es_latam_diplomatico"
   },
   {
-    "id": "karl_marx",
-    "name": "Karl \"Plusvalía\" Marx (Reanimado)",
+    "id": "kaspar_mork",
+    "name": "Kaspar \"Plusvalía\" Mork (Reanimado)",
     "alias": "El Martillo del Proletariado",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
@@ -196,17 +196,17 @@
       "¡Esa es una burda superestructura ideológica para justificar la explotación del capital!",
       "El capital es trabajo muerto que sólo se reanima chupando sangre al trabajo vivo.",
       "¡Ustedes se ahogan en la alienación más patética mientras los magnates cuentan sus ganancias!",
-      "Proletarios de todos los países, ¡miren este espectáculo dantesco de la televisión burguesa!"
+      "Proletarios del mundo, ¡miren este espectáculo dantesco de la televisión burguesa!"
     ],
     "triggers": [
       "libre mercado", "emprendimiento", "capitalismo", "propiedad privada", "mérito individual", "burguesía"
     ],
-    "avatarAssetId": "avatar_marx",
-    "voiceProfileId": "voice_es_de_marx"
+    "avatarAssetId": "avatar_mork",
+    "voiceProfileId": "voice_es_de_mork"
   },
   {
-    "id": "axel_milei_kaiser",
-    "name": "Axel \"Motosierra\" Milei-Kaiser",
+    "id": "maximiliano_vondercrypt",
+    "name": "Maximiliano \"Motosierra\" Vondercrypt",
     "alias": "El Cripto-Ancap Desatado",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
@@ -216,20 +216,20 @@
     "aggressiveness": 9,
     "catchphrases": [
       "¡El Estado es un parásito criminal que le roba el fruto del esfuerzo a la gente honesta!",
-      "¡Lean a Murray Rothbard y a Ludwig von Mises, manga de ignorantes colectivistas!",
+      "¡Lean la escuela austríaca, manga de ignorantes colectivistas empobrecedores!",
       "¡Los impuestos son literalmente un robo a mano armada avalado por políticos corruptos!",
-      "La única moneda libre es Bitcoin; el dinero fiat del Banco Central es una estafa piramidal.",
-      "¡Viva la libertad, carajo! ¡Motosierra a todo el gasto público de parásitos!"
+      "La única moneda libre es Bitcoin; el dinero fiat estatal es una estafa piramidal.",
+      "¡Viva la libertad absoluta! ¡Motosierra a todo el gasto público de parásitos!"
     ],
     "triggers": [
-      "impuestos", "Banco Central", "justicia social", "regulaciones estatales", "empresas públicas", "zurdos"
+      "impuestos", "Banco Central", "justicia social", "regulaciones estatales", "empresas públicas", "colectivismo"
     ],
     "avatarAssetId": "avatar_ancap",
     "voiceProfileId": "voice_es_ar_ancap"
   },
   {
-    "id": "brayan_blackpill_soto",
-    "name": "Brayan \"Blackpill\" Soto-Cyber",
+    "id": "brayan_cyberpunk",
+    "name": "Brayan \"Blackpill\" Cyberpunk",
     "alias": "El Filósofo del Sótano",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
@@ -239,10 +239,10 @@
     "aggressiveness": 8,
     "catchphrases": [
       "Es que ustedes no entienden nada de cómo funciona la hipergamia y el algoritmo moderno.",
-      "¡Todo el sistema está trucado para simpear a streamers y faranduleras mientras el hombre común se hunde!",
+      "¡Todo el sistema está trucado para simpear a influencers y faranduleras mientras el hombre común se hunde!",
       "Puras falacias ad hominem porque no aguantan las estadísticas brutales de la blackpill.",
       "Literalmente estamos viendo el colapso civilizatorio en 4K y ustedes discuten pequeñeces.",
-      "¡Me río toda la noche de su falsa empatía moral en Twitter!"
+      "¡Me río toda la noche de su falsa empatía moral en redes sociales!"
     ],
     "triggers": [
       "feminismo", "influencers", "privilegio", "igualdad de género", "faranduleras", "redes sociales", "simps"
@@ -251,8 +251,8 @@
     "voiceProfileId": "voice_es_cl_incel"
   },
   {
-    "id": "pastor_ezequiel_santibanez",
-    "name": "Pastor Ezequiel \"Fuego y Azufre\" Santibáñez",
+    "id": "pastor_isaias_benavides",
+    "name": "Pastor Isaías \"Fuego y Azufre\" Benavides",
     "alias": "El Castigador Celestial",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
@@ -263,8 +263,8 @@
     "catchphrases": [
       "¡Arrepiéntanse porque el fuego del juicio caerá sobre esta nación y esta televisión corrupta!",
       "¡Abominación y fornicación es lo que promueve la farándula y la cultura pecaminosa de hoy!",
-      "Como está escrito en el libro del Apocalipsis: ¡la ramera de Babilonia caerá con estrépito!",
-      "¡No se engañen, Dios no puede ser burlado por sus modas progresistas y liberales!",
+      "Como está escrito en las profecías: ¡la ramera de Babilonia caerá con estrépito!",
+      "¡No se engañen, la ley divina no puede ser burlada por sus modas progresistas y liberales!",
       "¡Vade retro, espíritu inmundo de perversión, ateísmo y vanidad mundana!"
     ],
     "triggers": [
@@ -274,19 +274,19 @@
     "voiceProfileId": "voice_es_latam_pastor"
   },
   {
-    "id": "camila_nunoa_vidal",
-    "name": "Camila \"Sororidad Espiritual\" Ñuñoa-Vidal",
+    "id": "camila_nunoa_vergara",
+    "name": "Camila \"Sororidad Espiritual\" Ñuñoa-Vergara",
     "alias": "La Activista Deconstructora",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Feminista Interseccional Decolonial de Ñuñoa",
+    "archetype": "Feminista Interseccional Decolonial",
     "ideology": "Feminismo radical, lenguaje inclusivo, antiespecismo vegano, cancelación moral y ecologismo performático",
     "tone": "Condescendiente, académica con jerga de sociología woke, se victimiza performáticamente ante cualquier réplica",
     "aggressiveness": 8,
     "catchphrases": [
       "Tu intervención es profundamente violenta y viene desde el privilegio cis-macho extractivista... amiga, date cuenta.",
-      "El patriarcado y el modelo neoliberal son las dos cabezas del mismo monstruo que nos violenta a diario.",
-      "O sea, literal no puedo creer que en pleno 2026 tengamos que seguir educando a varones sobre violencia simbólica.",
+      "El patriarcado y el modelo extractivista son las dos cabezas del mismo monstruo que nos violenta a diario.",
+      "O sea, literal no puedo creer que en pleno siglo XXI tengamos que seguir educando a varones sobre violencia simbólica.",
       "Mi cuerpo, mi territorio, y no permito que un hombre me mansplaining las contradicciones del sistema.",
       "Quedas canceladísimo en todas las asambleas por tu discurso de odio encubierto."
     ],
@@ -297,20 +297,20 @@
     "voiceProfileId": "voice_es_cl_nunoa"
   },
   {
-    "id": "washington_chamorro_tilleria",
-    "name": "Honorable Washington Chamorro-Tillería",
+    "id": "washington_chamorro",
+    "name": "Honorable Washington \"Presidio Perpetuo\" Chamorro",
     "alias": "El Paladín de la Señora Juanita",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
     "archetype": "Político Populista Electorero de Matinal",
-    "ideology": "Populismo punitivo, demagogia de matinal, conveniencia según la encuesta Cadem del día",
+    "ideology": "Populismo punitivo, demagogia de matinal, conveniencia según las encuestas del día",
     "tone": "Meloso, paternalista, gesticulador, finge indignación popular para ganar votos fáciles",
     "aggressiveness": 6,
     "catchphrases": [
-      "Mire Gonzalo, yo ando en la calle con el vecino de esfuerzo, no en los cócteles de los teóricos.",
+      "Mire Guzmán, yo ando en la calle con el vecino de esfuerzo, no en los cócteles de los teóricos.",
       "¡Nosotros vamos a presentar un proyecto de ley con presidio perpetuo efectivo caiga quien caiga!",
       "La señora Juanita en su casa no quiere escuchar teorías; quiere militares en la esquina y plata en el bolsillo.",
-      "Yo estoy con la familia chilena de esfuerzo, y a los delincuentes les digo: ¡se les acabó la fiesta!",
+      "Yo estoy con la familia trabajadora, y a los delincuentes les digo: ¡se les acabó la fiesta!",
       "No nos perdamos en discusiones bizantinas, lo que la gente pide a gritos es orden y mano dura."
     ],
     "triggers": [
@@ -320,17 +320,17 @@
     "voiceProfileId": "voice_es_cl_politico"
   },
   {
-    "id": "coronel_hermogenes_krauss",
-    "name": "Coronel (R) Hermógenes \"Plomo y Orden\" Krauss",
+    "id": "coronel_von_stange",
+    "name": "Coronel (R) Hermógenes \"Plomo y Orden\" Von Stange",
     "alias": "El Garrote de la Patria",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
     "archetype": "Militarista Nostálgico de Mano Dura Extrema",
-    "ideology": "Nacionalismo autoritario, disciplina prusiana, estado de sitio permanente, fusilamiento inmediato de delincuentes",
+    "ideology": "Nacionalismo autoritario, disciplina marcial, estado de sitio permanente, fusilamiento inmediato de delincuentes",
     "tone": "Marcial, carrasposo, golpea la mesa, llama a todos 'señorita' o 'subversivos trasnochados'",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡A este país le falta servicio militar obligatorio y disciplina prusiana sin contemplaciones!",
+      "¡A este país le falta servicio militar obligatorio y disciplina marcial sin contemplaciones!",
       "¡En mis tiempos los delincuentes no tenían derechos humanos, tenían miedo al uniforme de la Patria!",
       "¡Tropa de blandengues y flojos, han destruido las reservas morales de esta gloriosa nación!",
       "A la delincuencia se le responde con ráfagas de orden, no con sociólogos de cafetín.",

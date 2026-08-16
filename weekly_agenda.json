@@ -12,10 +12,10 @@
       "factsSummary": "Durante los últimos 7 días se intensificó la presión parlamentaria por desplegar a las Fuerzas Armadas en zonas urbanas tras una seguidilla de crímenes de alto impacto.",
       "moderatorTriggerQuestion": "¿Hasta cuándo esperamos para sacar a los militares a la calle con plenas facultades, o le tienen pánico a los organismos de derechos humanos?",
       "personaTriggers": {
-        "karl_marx": "Denuncia que las FFAA y la policía son el brazo armado del capital para reprimir a la clase trabajadora ante el fracaso del modelo neoliberal.",
-        "joven_incel": "Sostiene que la sociedad moderna está podrida por la falta de disciplina y pide mano dura sin restricciones ni 'corrección política'.",
-        "fanatico_religioso": "Interpreta el desborde de violencia como castigo divino ante la pérdida de valores morales y la secularización.",
-        "politico_populista": "Promete cárceles de máxima seguridad y penas del infierno para ganar votos fáciles en el matinal."
+        "kaspar_mork": "Denuncia que las FFAA y la policía son el brazo armado del capital para reprimir a la clase trabajadora.",
+        "brayan_cyberpunk": "Sostiene que la sociedad moderna está podrida por la falta de disciplina y pide mano dura sin 'corrección política'.",
+        "pastor_isaias_benavides": "Interpreta el desborde de violencia como castigo divino ante la pérdida de valores morales.",
+        "washington_chamorro": "Promete cárceles de máxima seguridad y penas del infierno para ganar votos fáciles en el matinal."
       }
     },
     {
@@ -24,13 +24,13 @@
       "topic": "Escándalo de Infidelidad y Polémica entre Famosos e Influencers",
       "region": "CL",
       "headlineGC": "¡TERREMOTO EN LA FARÁNDULA! ¿HIPERGAMIA DIGITAL O CIRCO PARA DISTRAER AL PUEBLO?",
-      "factsSummary": "Filtración de chats privados y declaraciones cruzadas entre reconocidas figuras del espectáculo y streamers chilenos paralizan las redes sociales.",
+      "factsSummary": "Filtración de chats privados y declaraciones cruzadas entre reconocidas figuras del espectáculo y streamers paralizan las redes sociales.",
       "moderatorTriggerQuestion": "¿Es este el reflejo de la total decadencia moral de nuestra televisión o simplemente un negocio millonario de monetización del morbo?",
       "personaTriggers": {
-        "karl_marx": "Desprecia la farándula como la industria del entretenimiento burgués diseñada para adormecer la conciencia de clase de los trabajadores.",
-        "joven_incel": "Se despacha con una diatriba sobre las dinámicas de pareja modernas, la vanidad de las redes sociales y el fin de los valores.",
-        "fanatico_religioso": "Condena la lujuria, el exhibicionismo público y advierte que Sodoma y Gomorra palidecen ante la televisión actual.",
-        "politico_populista": "Finje estar indignado pero cita frases del escándalo para conectar con los televidentes más jóvenes."
+        "kaspar_mork": "Desprecia la farándula como la industria del entretenimiento burgués diseñada para adormecer la conciencia de clase.",
+        "brayan_cyberpunk": "Se despacha con una diatriba sobre las dinámicas de pareja modernas, la vanidad de las redes sociales y el fin de los valores.",
+        "pastor_isaias_benavides": "Condena la lujuria, el exhibicionismo público y advierte que Sodoma y Gomorra palidecen ante la televisión actual.",
+        "washington_chamorro": "Finge estar indignado pero cita frases del escándalo para conectar con los televidentes más jóvenes."
       }
     },
     {
@@ -42,10 +42,10 @@
       "factsSummary": "Declaraciones cruzadas entre mandatarios de la región marcan una fractura diplomática sobre el rumbo económico y las relaciones internacionales.",
       "moderatorTriggerQuestion": "¿El modelo de shock económico es la única salida para América Latina o estamos ante un experimento inhumano?",
       "personaTriggers": {
-        "karl_marx": "Analiza el imperialismo y la extracción de recursos como la raíz histórica de la miseria latinoamericana.",
-        "joven_incel": "Defiende el libre mercado extremo y ridiculiza el estado de bienestar con memes y datos de internet.",
-        "fanatico_religioso": "Alerta sobre la agenda globalista y los peligros de desviarse de los mandatos bíblicos.",
-        "politico_populista": "Se acomoda al discurso de moda buscando no perder votos de ninguno de los dos bandos."
+        "kaspar_mork": "Analiza el imperialismo y la extracción de recursos como la raíz histórica de la miseria latinoamericana.",
+        "brayan_cyberpunk": "Defiende el libre mercado extremo y ridiculiza el estado de bienestar con memes y datos de internet.",
+        "pastor_isaias_benavides": "Alerta sobre la agenda globalista y los peligros de desviarse de los mandatos bíblicos.",
+        "washington_chamorro": "Se acomoda al discurso de moda buscando no perder votos de ninguno de los dos bandos."
       }
     },
     {

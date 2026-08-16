@@ -25,7 +25,8 @@ Political Deathmatch: Sistema y plataforma interactiva de debate / simulación p
 ## Convenciones Arquitectónicas y Guardrails
 1. **Spec-Driven First:** Cualquier nueva feature o cambio de requerimiento debe pasar por una propuesta en `openspec/changes/` o usar `/opsx-propose` antes de implementar cambios destructivos de arquitectura.
 2. **RSS-First Scraper:** Priorizar RSS/Atom feeds oficiales de medios de comunicación para evitar bloqueos por Cloudflare/bot detectors; fallback a scrapers HTTP ligeros.
-3. **Type-Safe Strictness:** Sin tipos flexibles (`any`). Tipado estricto en interfaces y modelos de dominio.
-4. **Handoff Inter-Modelos Estricto:** Cuando un modelo/entorno finaliza una tarea o hito, debe verificar a quién corresponde la siguiente tarea según la Matriz. Si la siguiente tarea pertenece a otro modelo (ej. pasar de Antigravity a OpenCode con DeepSeek-V3 o viceversa), **debe detenerse de inmediato**, emitir el aviso explícito de relevo con las instrucciones claras para el siguiente modelo y actualizar `HANDOFF.md` sin ejecutar código fuera de su asignación.
-5. **No Fluff & High Signal:** Decisiones documentadas en las especificaciones vivas (`openspec/specs/`).
-6. **Continuidad de Sesión:** Actualizar `HANDOFF.md` al finalizar cada sesión de trabajo.
+3. **100% Fictional Parodies (Cero Nombres Reales):** Todos los nombres, personajes, alias y perfiles deben ser parodias satíricas creativas y 100% ficticias para evitar denuncias, demandas de difamación o strikes en YouTube.
+4. **Type-Safe Strictness:** Sin tipos flexibles (`any`). Tipado estricto en interfaces y modelos de dominio.
+5. **Handoff Inter-Modelos Estricto:** Cuando un modelo/entorno finaliza una tarea o hito, debe verificar a quién corresponde la siguiente tarea según la Matriz. Si la siguiente tarea pertenece a otro modelo (ej. pasar de Antigravity a OpenCode con DeepSeek-V3 o viceversa), **debe detenerse de inmediato**, emitir el aviso explícito de relevo con las instrucciones claras para el siguiente modelo y actualizar `HANDOFF.md` sin ejecutar código fuera de su asignación.
+6. **No Fluff & High Signal:** Decisiones documentadas en las especificaciones vivas (`openspec/specs/`).
+7. **Continuidad de Sesión:** Actualizar `HANDOFF.md` al finalizar cada sesión de trabajo.

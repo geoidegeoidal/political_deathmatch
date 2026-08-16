@@ -69,13 +69,13 @@ export class DebateOrchestrator {
   }
 
   private selectTargetPanelistForBlock(block: DebateBlock): PersonaProfile {
-    // Si el bloque es Farándula, apuntar primero al Incel o a Marx
+    // Si el bloque es Farándula, apuntar primero a Brayan o a Kaspar Mork
     if (block.category === 'FARANDULA') {
-      return this.panelists.find(p => p.id === 'joven_incel') || this.panelists[0];
+      return this.panelists.find(p => p.id === 'brayan_cyberpunk') || this.panelists[0];
     }
-    // Si es seguridad o política, apuntar a Marx o al Político
+    // Si es seguridad o política, apuntar a Sotomayor o a Von Der Goltz
     if (block.category === 'SEGURIDAD') {
-      return this.panelists.find(p => p.id === 'karl_marx') || this.panelists[0];
+      return this.panelists.find(p => p.id === 'capitan_sotomayor') || this.panelists[0];
     }
     return this.panelists[Math.floor(Math.random() * this.panelists.length)];
   }

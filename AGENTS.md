@@ -9,19 +9,18 @@ Political Deathmatch: Sistema y plataforma interactiva de debate / simulación p
 - **Integraciones:** Antigravity (`.agent/`) y OpenCode (`.opencode/`).
 - **Node.js / Python / Go:** v22.15.1+ / npm / pnpm / Python 3.11+.
 
-## Matriz de Asignación de Modelos y Control de Tokens
-1. **Módulo Scraper & Pauta Semanal:**
-   - *Parsing RSS/HTML:* Código nativo (0 tokens).
-   - *Scoring de Controversia y Síntesis de Pauta:* Gemini 2.5 Flash / Codex (ultra-económico y contexto largo).
-2. **Módulo Orquestador de Debate:**
-   - *Diseño de Arquitectura y Máquina de Estados:* Antigravity (Gemini 3.7 / Claude 3.7).
-   - *Lógica de Turnos y Parsers:* OpenCode / Codex / DeepSeek-V3.
-3. **Runtime de Simulación (Generación de Debate Sin Censura):**
-   - *Primario ($0 tokens):* Modelo local cuantizado sin censura (`Gemma4-12B-QAT-Uncensored` / `Llama-3-8B-Uncensored`) vía Ollama/vLLM.
+## Matriz de Asignación por Suscripción Real y Control de Tokens
+1. **Antigravity (Gemini 3.7 Flash - Thinking High / Extended):**
+   - *Rol:* Arquitecto Técnico Lead, Diseño de Máquinas de Estado, Coordinación OpenSpec SDD, Prompt Engineering de Personajes y Layouts Visuales.
+   - *Ventaja:* Razonamiento híbrido profundo, velocidad instantánea y ventana de contexto masiva.
+2. **OpenCode Go (Suscripción OpenCode: DeepSeek-V3/V4, Qwen 2.5 Coder, Kimi):**
+   - *Rol:* Implementación de código masivo, parsers de datos, drivers de audio/TTS, testing unitario y refactorizaciones I/O.
+   - *Ventaja:* Tarifa plana, cero costo por token individual, alta precisión en código TypeScript/Python/Go.
+3. **OpenAI Codex (Suscripción Codex / ChatGPT: o3-mini / GPT-4o):**
+   - *Rol:* Validación algorítmica de transiciones de estado, optimizaciones matemáticas y backup de razonamiento.
+4. **Runtime de Simulación (Generación de Debate Sin Censura - $0 Tokens):**
+   - *Primario ($0 tokens):* Modelo local cuantizado sin censura (`HauhauCS/Gemma4-12B-QAT-Uncensored` / `Llama-3-8B-Uncensored`) vía Ollama/llama.cpp.
    - *Backup Nube:* OpenRouter API con modelos abiertos sin censura.
-4. **Módulo de Audio (TTS) & Video Studio Renderer:**
-   - *Audio / TTS / Audio Stems:* OpenCode / Codex.
-   - *Render Visual (Remotion / Canvas / FFmpeg):* Antigravity para diseño y layouts.
 
 ## Convenciones Arquitectónicas y Guardrails
 1. **Spec-Driven First:** Cualquier nueva feature o cambio de requerimiento debe pasar por una propuesta en `openspec/changes/` o usar `/opsx-propose` antes de implementar cambios destructivos de arquitectura.

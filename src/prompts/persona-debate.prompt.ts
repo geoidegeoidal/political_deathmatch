@@ -109,8 +109,19 @@ export function buildTurnPrompt(params: {
   isInterruption: boolean;
   targetOpponent?: PersonaProfile;
   currentTension: number;
+  duelMode?: 'DUEL_QUESTION' | 'DUEL_ANSWER';
 }): string {
-  const { persona, block, historySummary, isInterruption, targetOpponent, currentTension } = params;
+  const { persona, block, historySummary, isInterruption, targetOpponent, currentTension, duelMode } = params;
+
+  const instruction = duelMode
+    ? duelMode === 'DUEL_QUESTION'
+      ? `¡MOMENTO CULMINANTE DEL PROGRAMA! Estás en el cara a cara final. Interpela a ${targetOpponent?.name || 'tu oponente'} con UNA pregunta filosamente punzante, directa e incómoda, clavada en sus contradicciones ideológicas más débiles. Máximo 3 oraciones: un reproche, la pregunta, y un remate irónico. Sin rodeos.`
+      : `¡RESPUESTA DE DUELO! ${targetOpponent?.name || 'Tu oponente'} te acaba de clavar una pregunta filosa. Respondela con desdén demoledor: desmontá el ataque, contratacá con un reproche a su propia ideología y cerralo con una acusación o pregunta devuelta. Máximo 4-5 oraciones, sin ceder un centímetro.`
+    : isInterruption
+      ? `¡INTERRUPCIÓN URGENTE! Te enfureció lo que acaba de decir ${targetOpponent?.name || 'tu oponente'}. ¡Córtalo de inmediato con una frase de interrupción tajante, enérgica y desafiante, y NO le devuelvas la palabra hasta rematar tu punto!`
+      : targetOpponent
+        ? `Responde directamente al ataque o planteamiento de ${targetOpponent.name}. Desmonta su argumento desde tu ideología (${persona.ideology}).`
+        : `Responde a la pregunta del moderador sobre el tema planteado: "${block.moderatorTriggerQuestion}".`;
 
   return `ESTAMOS EN EL BLOQUE ${block.blockNumber} DEL DEBATE:
 TEMA: ${block.topic} (${block.category})
@@ -122,11 +133,7 @@ HISTORIAL RECIENTE DEL DEBATE:
 ${historySummary || '(Inicio del bloque)'}
 
 INSTRUCCIÓN ESPECÍFICA PARA ESTE TURNO:
-${isInterruption
-  ? `¡INTERRUPCIÓN URGENTE! Te enfureció lo que acaba de decir ${targetOpponent?.name || 'tu oponente'}. ¡Córtalo de inmediato con una frase de interrupción tajante, enérgica y desafiante, y NO le devuelvas la palabra hasta rematar tu punto!`
-  : targetOpponent
-    ? `Responde directamente al ataque o planteamiento de ${targetOpponent.name}. Desmonta su argumento desde tu ideología (${persona.ideology}).`
-    : `Responde a la pregunta del moderador sobre el tema planteado: "${block.moderatorTriggerQuestion}".`}
+${instruction}
 
 CÓMO ARGUMENTAR (ESTRUCTURA DE RÉPLICA TELEVISIVA):
 1. Acepta o descarta el punto del rival en UNA frase irónica o contundente.
@@ -140,6 +147,12 @@ REGISTRO LINGÜÍSTICO (IMPRESCINDIBLE):
 ${MODISMOS_ESTUDIO.map(m => `   - ${m}`).join('\n')}
 - Interpela al conductor ("mire Guzmán..."), a la cámara ("se lo digo al país entero") y al rival ("usted sabe muy bien que...").
 - No leas como documento: piensa en voz alta, indignate, dudá un segundo y rematá.
+
+AMBIENTACIÓN TELEVISIVA (estás en el programa de debate más picante de la TV chilena, estilo "Tolerancia Cero" / "Sin Filtros"):
+- Es EN VIVO: podés decirlo ("estamos en vivo", "el país nos está viendo", "esto es lo que la tele no te dice").
+- El estudio es una olla a presión: los panelistas se pisan la palabra, el conductor azuza y el público reacciona.
+- Subí el volumen emocional como en un combate: réplicas rápidas, ironía demoledora y frases para el cintillo.
+- Rematá cada intervención con una frase que el conductor pueda repetir como titular.
 
 FORMATO DE RESPUESTA REQUERIDO (Únicamente este JSON, sin markdown adicional):
 {

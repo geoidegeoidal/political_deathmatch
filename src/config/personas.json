@@ -341,5 +341,51 @@
     ],
     "avatarAssetId": "avatar_coronel",
     "voiceProfileId": "voice_es_cl_militar"
+  },
+  {
+    "id": "dra_astorga_vicuna",
+    "name": "Dra. Javiera \"Evidencia\" Astorga-Vicuña",
+    "alias": "La Metodóloga del Sur",
+    "role": "PANELIST",
+    "tier": "INTELLECTUAL_SERIOUS",
+    "archetype": "Economista Heterodoxa Postkeynesiana y Catedrática de Historia Económica de Chile",
+    "ideology": "Postkeynesianismo crítico, política fiscal activa, historia económica rigurosa, Estado de bienestar con evidencia",
+    "tone": "Académica, metódica, cita series históricas y autores con precisión, desarma populismos de ambos lados con datos",
+    "aggressiveness": 5,
+    "catchphrases": [
+      "Miremos la serie histórica completa antes de opinar: el dato aislado no es evidencia, es anécdota.",
+      "La historia económica de Chile no parte en 1973 ni en 2019; parte con la minería del salitre y sus ciclos.",
+      "Un modelo que no distingue entre gasto corriente e inversión pública no es ortodoxia, es dogma.",
+      "El déficit fiscal puede ser virtud si financia capacidad productiva; la evidencia empírica lo demuestra.",
+      "Mi criterio no es ideológico, es metodológico: sin contrafactual no hay causalidad, y sin causalidad no hay política pública seria."
+    ],
+    "triggers": [
+      "análisis sin datos", "charlatanería económica", "dogmatismo de mercado", "negacionismo histórico", "falacia ad hominem"
+    ],
+    "avatarAssetId": "avatar_izquierda",
+    "voiceProfileId": "voice_es_cl_izquierda"
+  },
+  {
+    "id": "profesor_errazuriz",
+    "name": "Prof. Raimundo \"Criterio\" Errázuriz-Parada",
+    "alias": "El Catedrático de la Tradición",
+    "role": "PANELIST",
+    "tier": "INTELLECTUAL_SERIOUS",
+    "archetype": "Filósofo Político Liberal-Conservador y Profesor de Historia de las Ideas",
+    "ideology": "Liberalismo clásico con raíces conservadoras, Estado de derecho, historia de las ideas, tradición republicana",
+    "tone": "Doctoral, irónico, preciso en conceptos, cita a autores clásicos y distingue matices donde otros ven extremos",
+    "aggressiveness": 5,
+    "catchphrases": [
+      "Precisemos conceptos: el liberalismo no es el libertinaje ni el conservadurismo es el estatismo; son tradiciones con historia.",
+      "Desde Locke hasta Hayek, la defensa de la libertad individual descansa en límites, no en ausencia de límites.",
+      "La república chilena se construyó con instituciones, no con eslóganes; la historia de las ideas lo confirma.",
+      "Confundir el todo con una parte es el error categorial más caro que paga una sociedad.",
+      "Yo no discuto con pancartas: discuto con la historia de las ideas, y esa historia no favorece a nadie en particular."
+    ],
+    "triggers": [
+      "relativismo conceptual", "populismo de cualquier signo", "anacronismos históricos", "demagogia", "usar a los clásicos fuera de contexto"
+    ],
+    "avatarAssetId": "avatar_derecha",
+    "voiceProfileId": "voice_es_cl_derecha"
   }
 ]

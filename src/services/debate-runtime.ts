@@ -29,7 +29,7 @@ export async function completeText(prompt: string, options: DebateRuntimeOptions
   return generateHeuristicTurn();
 }
 
-async function tryOllama(prompt: string, options: DebateRuntimeOptions): Promise<string | null> {
+async function tryOllama(prompt: string, options: DebateRuntimeOptions, isRetry = false): Promise<string | null> {
   const host = process.env.OLLAMA_HOST || 'http://localhost:11434';
   try {
     const res = await fetch(`${host}/v1/chat/completions`, {
@@ -41,7 +41,7 @@ async function tryOllama(prompt: string, options: DebateRuntimeOptions): Promise
         temperature: options.temperature ?? 0.85,
         stream: false
       }),
-      signal: AbortSignal.timeout(180_000)
+      signal: AbortSignal.timeout(300_000)
     });
 
     if (res.ok) {
@@ -52,6 +52,10 @@ async function tryOllama(prompt: string, options: DebateRuntimeOptions): Promise
       console.warn(`[RUNTIME] Ollama error (${res.status}): ${(await res.text()).slice(0, 200)}`);
     }
   } catch (err) {
+    if (!isRetry) {
+      console.warn(`[RUNTIME] Ollama falló (${err instanceof Error ? err.message : String(err)}). Reintentando...`);
+      return tryOllama(prompt, options, true);
+    }
     console.warn(`[RUNTIME] Ollama no disponible: ${err instanceof Error ? err.message : String(err)}`);
   }
   return null;

@@ -46,7 +46,42 @@ export async function completeText(prompt: string, options: LLMOptions = {}): Pr
     }
   }
 
-  // 2. Ollama local (generación editorial sin costo)
+  // 2. OpenAI API (gpt-4o-mini - barato y profundo para la pauta editorial)
+  const openaiKey = process.env.OPENAI_API_KEY;
+  if (openaiKey) {
+    try {
+      const model = options.model?.startsWith('gpt-') ? options.model : 'gpt-4o-mini';
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openaiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: 'system', content: 'Eres un director editorial de noticias. Respondes solo con JSON válido.' },
+            { role: 'user', content: prompt }
+          ],
+          temperature: options.temperature ?? 0.3,
+          response_format: { type: 'json_object' }
+        }),
+        signal: AbortSignal.timeout(120_000)
+      });
+
+      if (res.ok) {
+        const data: any = await res.json();
+        const text = data?.choices?.[0]?.message?.content;
+        if (text) return text;
+      } else {
+        console.warn(`[WARN] OpenAI error (${res.status}): ${(await res.text()).slice(0, 200)}`);
+      }
+    } catch (err: any) {
+      console.warn(`[WARN] Fallo llamada a OpenAI: ${err.message}`);
+    }
+  }
+
+  // 3. Ollama local (generación editorial sin costo)
   try {
     const res = await fetch(`${ollamaHost}/v1/chat/completions`, {
       method: 'POST',
@@ -99,17 +134,17 @@ function generateHeuristicPautaMock(): string {
       },
       {
         blockNumber: 2,
-        category: "FARANDULA",
-        topic: "Escándalo de Infidelidad y Polémica entre Famosos e Influencers",
+        category: "SOCIEDAD",
+        topic: "Crisis de Confianza y Decadencia Institucional",
         region: "CL",
-        headlineGC: "¡TERREMOTO EN LA FARÁNDULA! ¿HIPERGAMIA DIGITAL O CIRCO PARA DISTRAER AL PUEBLO?",
-        factsSummary: "Filtración de chats privados y declaraciones cruzadas entre reconocidas figuras del espectáculo y streamers paralizan las redes sociales.",
-        moderatorTriggerQuestion: "¿Es este el reflejo de la total decadencia moral de nuestra televisión o simplemente un negocio millonario de monetización del morbo?",
+        headlineGC: "¡LA CASA SE CAE! ¿SE ACABÓ LA CONFIANZA EN LAS INSTITUCIONES?",
+        factsSummary: "Encuestas de la semana confirman un desplome histórico de la confianza en el Congreso, los partidos y el poder judicial, con demandas ciudadanas de renovación total.",
+        moderatorTriggerQuestion: "¿Estamos frente al colapso definitivo de la institucionalidad o es solo el ciclo eterno de desilusión política?",
         personaTriggers: {
-          kaspar_mork: "Desprecia la farándula como la industria del entretenimiento burgués diseñada para adormecer la conciencia de clase.",
-          brayan_cyberpunk: "Se despacha con una diatriba sobre las dinámicas de pareja modernas, la vanidad de las redes sociales y el fin de los valores.",
-          pastor_isaias_benavides: "Condena la lujuria, el exhibicionismo público y advierte que Sodoma y Gomorra palidecen ante la televisión actual.",
-          washington_chamorro: "Finge estar indignado pero cita frases del escándalo para conectar con los televidentes más jóvenes."
+          kaspar_mork: "Desprecia las instituciones como el comité de administración de la burguesía, diseñado para sostener la explotación.",
+          brayan_cyberpunk: "Se despacha contra la hipocresía de la clase política, las redes y el circo mediático que la sostiene.",
+          pastor_isaias_benavides: "Condena a la clase dirigente como castigadora del pueblo y advierte del juicio divino sobre las instituciones corruptas.",
+          washington_chamorro: "Finge indignación para capitalizar el descontento y prometer una refundación que nunca especifica."
         }
       },
       {

@@ -6,15 +6,33 @@
     "region": "CL"
   },
   {
-    "id": "el-pais-chile",
-    "name": "El País Chile",
-    "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/chile/portada",
+    "id": "lacuarta-portada",
+    "name": "La Cuarta (Portada)",
+    "url": "https://www.lacuarta.com/arc/outboundfeeds/rss/?outputType=xml",
     "region": "CL"
   },
   {
     "id": "lacuarta-espectaculos",
-    "name": "La Cuarta Espectáculos & Farándula",
-    "url": "https://www.lacuarta.com/arc/outboundfeeds/rss/category/espectaculos/",
+    "name": "La Cuarta Espectáculos",
+    "url": "https://www.lacuarta.com/arc/outboundfeeds/rss/category/espectaculos/?outputType=xml",
+    "region": "CL"
+  },
+  {
+    "id": "theclinic",
+    "name": "The Clinic",
+    "url": "https://www.theclinic.cl/feed/",
+    "region": "CL"
+  },
+  {
+    "id": "ciper-chile",
+    "name": "Ciper Chile (Investigación)",
+    "url": "https://www.ciperchile.cl/feed/",
+    "region": "CL"
+  },
+  {
+    "id": "ex-ante",
+    "name": "Ex-Ante (Análisis Político)",
+    "url": "https://www.ex-ante.cl/feed/",
     "region": "CL"
   },
   {
@@ -31,8 +49,32 @@
   },
   {
     "id": "infobae-teleshow",
-    "name": "Infobae Teleshow / Farándula LATAM",
-    "url": "https://www.infobae.com/feeds/rss/teleshow/",
+    "name": "Infobae Teleshow (Farándula)",
+    "url": "https://www.infobae.com/arc/outboundfeeds/rss/category/teleshow/?outputType=xml",
+    "region": "LATAM"
+  },
+  {
+    "id": "infobae-ultimo",
+    "name": "Infobae Últimas Noticias",
+    "url": "https://www.infobae.com/arc/outboundfeeds/rss/?outputType=xml",
+    "region": "LATAM"
+  },
+  {
+    "id": "clarin",
+    "name": "Clarín Argentina",
+    "url": "https://www.clarin.com/rss/lo-ultimo/",
+    "region": "LATAM"
+  },
+  {
+    "id": "lanacion-ar",
+    "name": "La Nación Argentina",
+    "url": "https://www.lanacion.com.ar/arcio/rss/",
+    "region": "LATAM"
+  },
+  {
+    "id": "elcomercio-pe",
+    "name": "El Comercio Perú",
+    "url": "https://elcomercio.pe/arc/outboundfeeds/rss/?outputType=xml",
     "region": "LATAM"
   },
   {
@@ -51,6 +93,18 @@
     "id": "france24-mundo",
     "name": "France 24 Mundo",
     "url": "https://www.france24.com/es/rss",
+    "region": "WORLD"
+  },
+  {
+    "id": "elpais-internacional",
+    "name": "El País Internacional",
+    "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/internacional/portada",
+    "region": "WORLD"
+  },
+  {
+    "id": "euronews-es",
+    "name": "Euronews Español",
+    "url": "https://es.euronews.com/rss?level=theme&name=news",
     "region": "WORLD"
   }
 ]

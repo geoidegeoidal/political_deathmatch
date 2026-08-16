@@ -28,6 +28,8 @@ export interface DebateBlock {
   region: Region;
   headlineGC: string; // Cintillo para Generador de Caracteres tipo Sin Filtros
   factsSummary: string;
+  contextoHistorico?: string; // Contexto político/histórico para profundidad del debate
+  climaxIdea?: string; // Momento de mayor conflicto planificado del bloque
   moderatorTriggerQuestion: string;
   personaTriggers: Record<string, string>; // e.g. { karl_marx: "...", joven_incel: "..." }
 }

@@ -35,7 +35,7 @@ export function filterAndScoreArticles(
   const now = Date.now();
   const maxAgeMs = maxDaysAgo * 24 * 60 * 60 * 1000;
 
-  return articles.filter(article => {
+  const filtered = articles.filter(article => {
     // 1. Filtro temporal (últimos 7 días)
     if (article.publishedAt) {
       const pubDate = new Date(article.publishedAt).getTime();
@@ -62,4 +62,27 @@ export function filterAndScoreArticles(
 
     return true;
   });
+
+  return dedupeByTitle(filtered);
+}
+
+/** Elimina duplicados por título normalizado (misma noticia cubierta por varios medios). */
+export function dedupeByTitle(articles: RawArticle[]): RawArticle[] {
+  const seen = new Map<string, RawArticle>();
+  for (const a of articles) {
+    const normalized = a.title
+      .toLowerCase()
+      .replace(/[^a-z0-9áéíóúñü]+/g, ' ')
+      .trim()
+      .replace(/\s+/g, ' ');
+    if (!normalized) continue;
+    const key = normalized.length > 40 ? normalized.slice(0, 40) : normalized;
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, a);
+    } else if ((a.summary || '').length > (existing.summary || '').length) {
+      seen.set(key, a);
+    }
+  }
+  return [...seen.values()];
 }

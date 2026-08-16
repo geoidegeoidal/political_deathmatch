@@ -1,0 +1,152 @@
+[
+  {
+    "voiceProfileId": "voice_es_cl_moderator",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "+5%",
+    "pitchOffset": "+2Hz",
+    "description": "Conductor chileno enérgico, televisivo y rápido para interrumpir"
+  },
+  {
+    "voiceProfileId": "voice_es_latam_caudillo",
+    "provider": "edge-tts",
+    "voiceName": "es-VE-SebastianNeural",
+    "locale": "es-VE",
+    "gender": "MALE",
+    "rateOffset": "+0%",
+    "pitchOffset": "-4Hz",
+    "description": "Caudillo venezolano con oratoria épica y voz profunda"
+  },
+  {
+    "voiceProfileId": "voice_es_latam_punitivo",
+    "provider": "edge-tts",
+    "voiceName": "es-MX-JorgeNeural",
+    "locale": "es-MX",
+    "gender": "MALE",
+    "rateOffset": "-2%",
+    "pitchOffset": "-6Hz",
+    "description": "Mando militar punitivo, voz grave y tajante"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_economista",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "-5%",
+    "pitchOffset": "-3Hz",
+    "description": "Economista sobrio, pausado, tono académico"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_jurista",
+    "provider": "edge-tts",
+    "voiceName": "es-ES-AlvaroNeural",
+    "locale": "es-ES",
+    "gender": "MALE",
+    "rateOffset": "-8%",
+    "pitchOffset": "-5Hz",
+    "description": "Constitucionalista solemne y formal"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_estadista",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "-6%",
+    "pitchOffset": "-8Hz",
+    "description": "Estadista veterano con voz reposada y firme"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_sociologo",
+    "provider": "edge-tts",
+    "voiceName": "es-ES-ManuelNeural",
+    "locale": "es-ES",
+    "gender": "MALE",
+    "rateOffset": "-2%",
+    "pitchOffset": "-2Hz",
+    "description": "Sociólogo intelectual y articulado"
+  },
+  {
+    "voiceProfileId": "voice_es_latam_diplomatico",
+    "provider": "edge-tts",
+    "voiceName": "es-ES-AlvaroNeural",
+    "locale": "es-ES",
+    "gender": "MALE",
+    "rateOffset": "-3%",
+    "pitchOffset": "-4Hz",
+    "description": "Diplomático geopolítico frío y calculador"
+  },
+  {
+    "voiceProfileId": "voice_es_de_mork",
+    "provider": "edge-tts",
+    "voiceName": "es-ES-AlvaroNeural",
+    "locale": "es-ES",
+    "gender": "MALE",
+    "rateOffset": "-8%",
+    "pitchOffset": "-12Hz",
+    "description": "Filósofo comunista cavernoso y severo"
+  },
+  {
+    "voiceProfileId": "voice_es_ar_ancap",
+    "provider": "edge-tts",
+    "voiceName": "es-AR-TomasNeural",
+    "locale": "es-AR",
+    "gender": "MALE",
+    "rateOffset": "+12%",
+    "pitchOffset": "+5Hz",
+    "description": "Libertario argentino ultra-acelerado y efusivo"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_incel",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "+8%",
+    "pitchOffset": "+6Hz",
+    "description": "Joven de internet sarcástico y acelerado"
+  },
+  {
+    "voiceProfileId": "voice_es_latam_pastor",
+    "provider": "edge-tts",
+    "voiceName": "es-CO-GonzaloNeural",
+    "locale": "es-CO",
+    "gender": "MALE",
+    "rateOffset": "+2%",
+    "pitchOffset": "+4Hz",
+    "description": "Pastor fundamentalista teatral y vibrante"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_nunoa",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "+2%",
+    "pitchOffset": "+4Hz",
+    "description": "Activista deconstructora con tono agudo y condescendiente"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_politico",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "+0%",
+    "pitchOffset": "-1Hz",
+    "description": "Político populista con tono meloso de matinal"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_militar",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "-4%",
+    "pitchOffset": "-10Hz",
+    "description": "Militarista nostálgico con voz de mando carrasposa"
+  }
+]

@@ -17,6 +17,7 @@ Lanzar la **Fase 3** bajo OpenSpec (`003-tts-audio-and-video-studio`), especific
   - Compositor 1080p (1920x1080) con fondos de estudio, luces dinámicas, modo `SPEAKER_FOCUS`, modo `SPLIT_SCREEN_VERSUS` con alertas de interrupción, Generador de Caracteres (GC) rojo escandaloso, barra de noticias rodante (*ticker*) y termómetro de tensión en tiempo real.
 - **Commits (push OK a origin/master):**
   - `e005bf7`: feat(phase3): create OpenSpec proposal 003, media types, neural voices catalog, and VideoComposer layout engine.
+  - `b312cd2`: feat(personas): adjust all 15 personas and voices to 100% authentic Chilean archetypes and sociocultural registers.
 
 ### Repositorio Remoto
 - **URL:** [https://github.com/geoidegeoidal/political_deathmatch](https://github.com/geoidegeoidal/political_deathmatch)

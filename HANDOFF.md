@@ -28,7 +28,7 @@ Corregir turnos de debate demasiado cortos y sin lenguaje real de programas de T
 - **Commits (push OK a origin/master):**
   - `e18966a` feat(debate-runtime): implement Ollama-only runtime and simulate-debate CLI, disable OpenRouter
   - `1639b8e` feat(debate-prompts): TV chilean-latino register, historical examples per category, longer turns, tension tuning for interruptions
-  - `(docs)` commit de documentación y transcript (AGENTS/README/HANDOFF/openspec/tasks/designs)
+  - `f3b3ad5` docs(debate): update AGENTS/README/HANDOFF and OpenSpec artifacts, track debate_transcript.json
 - `debate_transcript.json` ahora trackeado en git (consistente con `weekly_agenda.json`).
 
 ### Próxima sesión

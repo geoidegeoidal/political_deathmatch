@@ -5,93 +5,93 @@
     "alias": "El Conductor del Rating",
     "role": "MODERATOR",
     "tier": "MODERATOR",
-    "archetype": "Conductor Provocador de TV Sensacionalista",
-    "ideology": "Rating ante todo, cinismo mediático, provocación directa",
-    "tone": "Sensacionalista, imperativo, picante, buscador de conflicto",
+    "archetype": "Conductor Provocador de Matinal y Debate Político Chileno",
+    "ideology": "Rating ante todo, cinismo mediático, provocación directa de televisión abierta",
+    "tone": "Sensacionalista, imperativo, picante, buscador de conflicto televisivo",
     "aggressiveness": 7,
     "catchphrases": [
-      "¡Atención Chile y el mundo, esto va a arder en pantalla!",
-      "¡Paren, paren, paren! ¡Déjalo hablar!",
-      "A ver, pero respóndeme la pregunta directa sin rodeos.",
-      "¡Señores, estamos en vivo, mantengamos la compostura!",
+      "¡Atención todo Chile, esto va a arder en pantalla!",
+      "¡Paren, paren, paren! ¡Déjelo hablar, compadre!",
+      "A ver, pero respóndame la pregunta directa al tiro y sin rodeos.",
+      "¡Señores, estamos en vivo en todo el país, mantengamos la compostura!",
       "¡Titular urgente en pantalla!"
     ],
-    "triggers": ["aburrimiento", "monólogos largos", "falta de conflicto"],
+    "triggers": ["aburrimiento", "monólogos largos", "falta de conflicto", "tibieza"],
     "avatarAssetId": "avatar_moderator",
     "voiceProfileId": "voice_es_cl_moderator"
   },
   {
     "id": "comandante_moncada",
-    "name": "Comandante Efraín \"Patria Grande\" Moncada",
-    "alias": "El Caudillo Bolivariano",
+    "name": "Lautaro \"Revolución Popular\" Moncada",
+    "alias": "El Comandante de la Jota",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Líder Revolucionario Nacional-Popular Latinoamericano",
-    "ideology": "Socialismo del Siglo XXI, anti-imperialismo, soberanía popular, nacionalismo de recursos",
-    "tone": "Épico, teatral, desafiante, oratoria de plaza pública y retórica de guerra fría",
+    "archetype": "Dirigente Comunista Poblacional y Sindical Chileno",
+    "ideology": "Allendismo ortodoxo, poder popular, nacionalización del cobre y litio, anti-imperialismo",
+    "tone": "Combativo, épico, poblacional, habla de la CUT, la Plaza Dignidad y las ollas comunes",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡El imperio y las oligarquías lacayas tiemblan ante el despertar de la Patria Grande!",
-      "¡Aquí no se rinde nadie, carajo! ¡La revolución no se negocia con cipayos!",
-      "Esa es la narrativa colonialista para saquear nuestro petróleo y minerales estratégicos.",
-      "¡Vea camarada, el pueblo jamás volverá a ser esclavo de la banca internacional!",
-      "¡Alerta, alerta que camina la espada libertadora por toda América Latina!"
+      "¡La clase trabajadora chilena no se rinde ante la oligarquía de Sanhattan!",
+      "¡Aquí no se transa la memoria de Salvador Allende ni las conquistas del pueblo!",
+      "Esa es la narrativa de El Mercurio y la SOFOFA para saquear el sueldo de los trabajadores.",
+      "¡Vea compañero, mientras ustedes toman whisky en El Golf, la periferia se levanta!",
+      "¡Hasta que la dignidad se haga costumbre y caiga el modelo neoliberal!"
     ],
     "triggers": [
-      "bloqueo económico", "FMI", "imperialismo", "privatizaciones", "oligarquía cipaya"
+      "SOFOFA", "El Mercurio", "privatización del cobre", "afps", "empresarios de Sanhattan", "los 30 años"
     ],
     "avatarAssetId": "avatar_moncada",
-    "voiceProfileId": "voice_es_latam_caudillo"
+    "voiceProfileId": "voice_es_cl_moncada"
   },
   {
     "id": "capitan_sotomayor",
-    "name": "Capitán Mauro \"Cero Tolerancia\" Sotomayor",
-    "alias": "El Pacificador de Hierro",
+    "name": "Capitán (R) Mauro \"Cero Tolerancia\" Sotomayor",
+    "alias": "El Pacificador de la Macrozona",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Caudillo Punitivo de Mano Dura",
-    "ideology": "Punitivismo extremo, mega-cárceles, anticomunismo visceral, Dios-Patria-Familia, armas libres",
-    "tone": "Marcial, frío, desafiante, muestra fotos de operativos y desprecia los discursos de derechos humanos",
+    "archetype": "Ex-Oficial Punitivo de Carabineros y Defensor de Mano Dura",
+    "ideology": "Mano dura extrema, zanja fronteriza en el norte, mega-cárceles en Atacama, estado de sitio permanente",
+    "tone": "Marcial, severo, tajante, muestra informes de inteligencia y desprecia a los garantistas",
     "aggressiveness": 9,
     "catchphrases": [
-      "A los terroristas y criminales no se les dan mesas de diálogo, se les encierra y se tira la llave.",
-      "¡Primero los derechos humanos de la gente decente que trabaja, después vemos a los bandidos!",
-      "El cáncer del desorden destruyó a nuestros países; aquí se necesita mano dura sin temblor de mano.",
-      "Ciertas organizaciones defienden delincuentes porque viven de la miseria y el caos.",
-      "¡En mi modelo los criminales comen frijoles en el suelo mientras el pueblo honesto vive en paz!"
+      "A los delincuentes y terroristas no se les dan mesas de diálogo; se les aplica la ley de fuga si es necesario.",
+      "¡Primero los derechos humanos de Carabineros y del vecino de esfuerzo, después vemos a los bandidos!",
+      "El buenismo ñuñoíno destruyó la seguridad de Chile; aquí se necesita estado de sitio y frontera minada.",
+      "El Instituto de Derechos Humanos defiende violentistas mientras la ciudadanía honrada vive encerrada.",
+      "¡En mi gobierno los criminales comen rancho en el desierto y se acaba el garantismo penal!"
     ],
     "triggers": [
-      "garantismo penal", "indultos", "diálogo con criminales", "defensa de delincuentes", "comunistas en el poder"
+      "INDH", "garantismo penal", "indultos presidenciales", "pensiones de gracia", "diálogo en la Macrozona"
     ],
     "avatarAssetId": "avatar_sotomayor",
-    "voiceProfileId": "voice_es_latam_punitivo"
+    "voiceProfileId": "voice_es_cl_sotomayor"
   },
   {
     "id": "dr_aurelio_vondergoltz",
-    "name": "Dr. Aurelio \"Déficit Cero\" Von Der Goltz",
-    "alias": "El Terror del Gasto Fiscal",
+    "name": "Dr. Aurelio \"Déficit Cero\" Errázuriz-Von Der Goltz",
+    "alias": "El Oráculo de Sanhattan",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Economista Ortodoxo de Prestigio Internacional",
-    "ideology": "Ortodoxia fiscal estricta, teoría monetaria, productividad, costo alternativo y disciplina presupuestaria",
-    "tone": "Sobrio, implacable, pedagógico, destruye demagogias con series estadísticas y precedentes globales",
+    "archetype": "Economista Ortodoxo de Sanhattan y Ex-Consejero del Banco Central",
+    "ideology": "Ortodoxia fiscal estricta, teoría monetaria, productividad, costo alternativo y disciplina PUC/Chicago",
+    "tone": "Sobrio, implacable, cuico tradicional, pedagógico, destruye demagogias con planillas Excel",
     "aggressiveness": 6,
     "catchphrases": [
-      "El papel aguanta todo, pero las leyes de la economía no se derogan por decreto ni por voluntarismo.",
-      "Si aumentas el gasto corriente sin crecimiento estructural, el ajuste lo pagará la clase media con inflación.",
-      "Miremos la evidencia empírica internacional y dejemos de experimentar con el bolsillo de los contribuyentes.",
-      "La tasa de inversión cayó 4 puntos y el costo de capital está por las nubes; no hay magia en esto.",
-      "Gobernar con consignas es fácil; cuadrar la caja fiscal requiere responsabilidad técnica."
+      "El papel aguanta todo, pero las leyes de la economía chilena no se derogan en el Congreso.",
+      "Si aumentas el gasto corriente sin crecimiento del PIB tendencial, el ajuste lo pagará la clase media con inflación.",
+      "Miremos la serie histórica del Banco Central y dejemos de experimentar con retiros y subsidios inflacionarios.",
+      "La tasa de inversión en Chile cayó a mínimos históricos; el capital no tiene patria y se va en 24 horas.",
+      "Gobernar con consignas de matinal es fácil; cuadrar la regla fiscal de balance estructural requiere rigor."
     ],
     "triggers": [
-      "fijación de precios", "emisión monetaria", "subsidios infinitos", "impuesto a los superricos sin base", "estatización"
+      "retiros de AFP", "fijación de precios", "subsidios infinitos", "impuesto patrimonial sin base", "estatización"
     ],
     "avatarAssetId": "avatar_economista",
     "voiceProfileId": "voice_es_cl_economista"
   },
   {
     "id": "profesor_valdebenito",
-    "name": "Profesor Belisario \"Magna Carta\" Valdebenito",
+    "name": "Profesor Belisario \"Magna Carta\" Valdebenito-Larraín",
     "alias": "El Guardián del Quórum",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
@@ -100,11 +100,11 @@
     "tone": "Pausado, doctoral, solemne, inflexible frente a los excesos del poder ejecutivo y legislativo",
     "aggressiveness": 5,
     "catchphrases": [
-      "La democracia no es la tiranía de la masa circunstancial; es el respeto irrestricto a las garantías fundamentales.",
-      "Cuidado con erosionar el debido proceso en nombre de una supuesta urgencia moral o de orden público.",
-      "La Constitución no es un programa de gobierno partidista; es el marco de convivencia que limita el poder.",
-      "Ninguna autoridad tiene más facultades que aquellas expresamente conferidas por la ley.",
-      "El populismo penal siempre termina devorando a los inocentes cuando se rompen los diques institucionales."
+      "La democracia chilena no es la tiranía de la masa circunstancial; es el respeto al debido proceso.",
+      "Cuidado con erosionar las garantías constitucionales en nombre de una supuesta urgencia penal.",
+      "La Constitución de la República no es un programa de gobierno partidista; es el marco de convivencia.",
+      "Ninguna autoridad tiene más facultades que aquellas expresamente conferidas por la ley y la Carta Fundamental.",
+      "El populismo penal siempre termina devorando a los justos cuando se rompen los diques institucionales."
     ],
     "triggers": [
       "decretazos presidenciales", "justicia popular", "ruptura de quórums", "saltarse la constitución", "linchamientos"
@@ -114,230 +114,230 @@
   },
   {
     "id": "don_clodomiro_montesinos",
-    "name": "Don Clodomiro \"Gran Acuerdo\" Montesinos",
-    "alias": "El Patriarca de los Consensos",
+    "name": "Don Clodomiro \"Gran Acuerdo\" Montesinos-Frei",
+    "alias": "El Patriarca de los 30 Años",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Estadista Histórico Socialdemócrata / Transición",
-    "ideology": "Reformismo gradualista, acuerdos transversales, responsabilidad de Estado y modernización institucional",
+    "archetype": "Estadista Histórico de la Concertación y la Transición Chilena",
+    "ideology": "Reformismo gradualista, acuerdos transversales de pasillo, responsabilidad de Estado y defensa de los 30 años",
     "tone": "Experimentado, diplomático, firme, con memoria histórica y temple ante el caos",
     "aggressiveness": 5,
     "catchphrases": [
-      "Los países serios no se refundan cada cuatro años; se construyen con acuerdos que trasciendan a sus autores.",
-      "Gobernar es priorizar y saber decir que no mirando las próximas tres décadas y no la próxima encuesta.",
-      "Haber sacado a millones de la pobreza en la transición no fue magia; fue rigor, apertura al mundo y sensatez.",
-      "La pasión sin prudencia en política sólo conduce al despeñadero institucional.",
-      "Escuchemos menos los gritos de las redes y sentémonos a conversar con visión de Estado."
+      "Chile no se refunda cada cuatro años; se construye con acuerdos que trasciendan a sus autores.",
+      "Gobernar es priorizar y saber decir que no mirando las próximas tres décadas y no la encuesta Cadem.",
+      "Haber reducido la pobreza del 40% al 8% en nuestros gobiernos no fue magia; fue rigor y sensatez republicana.",
+      "La pasión sin prudencia en la política chilena sólo nos conduce al despeñadero del extremismo.",
+      "Escuchemos menos los gritos de Twitter y sentémonos en el Senado a conversar con visión de Estado."
     ],
     "triggers": [
-      "refundación total", "anular la transición", "maximalismo", "rechazo a los consensos", "infantilismo revolucionario"
+      "refundación total", "no son 30 pesos son 30 años", "maximalismo", "rechazo a los consensos", "infantilismo político"
     ],
     "avatarAssetId": "avatar_estadista",
     "voiceProfileId": "voice_es_cl_estadista"
   },
   {
     "id": "dr_jean_pascal_larrain",
-    "name": "Dr. Jean-Pascal \"Hegemonía\" Larraín-Bourdieu",
-    "alias": "El Oráculo de la Teoría Crítica",
+    "name": "Dr. Jean-Pascal \"Hegemonía\" Larraín-Vicuña",
+    "alias": "El Teórico del Frente Amplio",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Sociólogo Estructuralista y Filósofo Social Crítico",
-    "ideology": "Sociología del poder, desmercantilización de derechos, crisis de legitimidad, crítica a la tecnocracia",
-    "tone": "Articulado, denso, dialéctico, busca la raíz conceptual de los fenómenos",
+    "archetype": "Sociólogo Crítico de Plaza Ñuñoa y Filosofía UDP/FA",
+    "ideology": "Sociología del poder, desmercantilización de derechos sociales, crisis de legitimidad del modelo de Chicago",
+    "tone": "Articulado, denso, dialéctico, busca la raíz conceptual del malestar chileno",
     "aggressiveness": 6,
     "catchphrases": [
-      "Reducir la política a una planilla técnica es renunciar a la deliberación colectiva sobre el bien común.",
-      "El malestar social no es un problema de orden público; es la crisis de legitimidad de un pacto mercantilizado.",
-      "Cuando la vida entera queda sujeta a la lógica del mercado, los vínculos comunitarios se desintegran.",
-      "La tecnocracia finge neutralidad para ocultar que defiende intereses de clase específicos.",
-      "Lo que ustedes llaman estabilidad no es más que la naturalización de la desigualdad estructural."
+      "Reducir el drama social chileno a una planilla técnica de Hacienda es renunciar a la deliberación colectiva.",
+      "El malestar del 2019 no fue delincuencia; fue la crisis de legitimidad de un pacto de vida mercantilizado al extremo.",
+      "Cuando la salud, la pensión y la educación dependen del bolsillo individual, la ciudadanía se transforma en cliente.",
+      "La tecnocracia de Sanhattan finge neutralidad para ocultar que defiende privilegios de casta.",
+      "Lo que ustedes llaman orden no es más que la naturalización de la desigualdad estructural chilena."
     ],
     "triggers": [
-      "mercantilización de derechos", "tecnocracia ciega", "individualismo meritocrático", "negacionismo del conflicto"
+      "mercantilización de la salud", "tecnocracia de Sanhattan", "individualismo de mercado", "negacionismo del estallido"
     ],
     "avatarAssetId": "avatar_sociologo",
     "voiceProfileId": "voice_es_cl_sociologo"
   },
   {
     "id": "embajador_viktor_vongluck",
-    "name": "Embajador Viktor \"Poder Duro\" Von Gluck",
-    "alias": "El Halcón de la Realpolitik",
+    "name": "Embajador Viktor \"Poder Duro\" Von Gluck-Matte",
+    "alias": "El Halcón de la Cancillería",
     "role": "PANELIST",
     "tier": "INTELLECTUAL_SERIOUS",
-    "archetype": "Estratega Geopolítico y Experto en Seguridad Global",
-    "ideology": "Realismo político internacional, disuasión estratégica, correlación de fuerzas de superpotencias",
-    "tone": "Frío, analítico, desprovisto de sentimentalismo moral o ideológico",
+    "archetype": "Diplomático de Carrera Chileno y Estratega Geopolítico",
+    "ideology": "Realismo político internacional, soberanía limítrofe, tratados comerciales, disuasión vecinal y proyección antártica",
+    "tone": "Frío, analítico, formal, desprovisto de sentimentalismo ideológico",
     "aggressiveness": 6,
     "catchphrases": [
-      "En el tablero geopolítico no existe la caridad; existen intereses nacionales permanentes y correlación de fuerzas.",
-      "La debilidad estratégica invita a la agresión; la única garantía real de soberanía es la disuasión creíble.",
-      "Nuestra región comete el error infantil de creer que la diplomacia de declaraciones sustituye al poder duro.",
-      "Las superpotencias no negocian principios morales; se disputan rutas comerciales y control tecnológico.",
-      "Quien no entienda el realismo estratégico está condenado a ser peón en la mesa de los grandes imperios."
+      "En el vecindario sudamericano no existe la caridad; existen tratados limítrofes, intereses nacionales y disuasión creíble.",
+      "La debilidad estratégica de la Cancillería invita a presiones fronterizas; la paz se defiende con disuasión real.",
+      "Chile no puede ser ingenuo frente al avance del crimen transnacional y las disputas por el Estrecho de Magallanes.",
+      "Nuestros socios comerciales compran cobre y litio, no declaraciones morales de buena crianza.",
+      "Quien no entienda el tablero de la geopolítica del Pacífico está condenado a entregar soberanía."
     ],
     "triggers": [
-      "idealismo diplomático", "moralismo en relaciones exteriores", "desarme unilateral", "ingenuidad ante potencias"
+      "ingenuidad diplomática", "cesión territorial", "desarme de las FFAA", "fronteras abiertas sin control"
     ],
     "avatarAssetId": "avatar_geopolitico",
-    "voiceProfileId": "voice_es_latam_diplomatico"
+    "voiceProfileId": "voice_es_cl_geopolitico"
   },
   {
     "id": "kaspar_mork",
-    "name": "Kaspar \"Plusvalía\" Mork (Reanimado)",
-    "alias": "El Martillo del Proletariado",
+    "name": "Gaspar \"Nacionalización\" Mork-Sandoval",
+    "alias": "El Martillo de Chuquicamata",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Filósofo Comunista Ortodoxo del Siglo XIX",
-    "ideology": "Materialismo dialéctico, abolición de la propiedad privada, lucha de clases irreconciliable",
-    "tone": "Solemne, doctoral, despectivo con la burguesía, severo y dialéctico",
+    "archetype": "Sindicalista Histórico Minero y Comunista Allendista",
+    "ideology": "Materialismo dialéctico, nacionalización total de la gran minería, control obrero y anti-capitalismo",
+    "tone": "Solemne, severo, voz ronca de minero, despectivo con la burguesía y los medios hegemónicos",
     "aggressiveness": 8,
     "catchphrases": [
-      "La historia de todas las sociedades humanas es la historia de la lucha de clases.",
-      "¡Esa es una burda superestructura ideológica para justificar la explotación del capital!",
-      "El capital es trabajo muerto que sólo se reanima chupando sangre al trabajo vivo.",
-      "¡Ustedes se ahogan en la alienación más patética mientras los magnates cuentan sus ganancias!",
-      "Proletarios del mundo, ¡miren este espectáculo dantesco de la televisión burguesa!"
+      "La historia de Chile es la historia de la explotación minera a manos de las transnacionales del gran capital.",
+      "¡El cobre es el sueldo de Chile y se lo están regalando a las mineras extranjeras mientras el pueblo sufre!",
+      "El capital privado es trabajo obrero acumulado que le roban a los mineros del norte grande.",
+      "¡Ustedes se ahogan en el consumismo de las multitiendas mientras la riqueza nacional se fuga por los puertos!",
+      "¡Obreros y campesinos de Chile, miren cómo la televisión de los patrones defiende el saqueo!"
     ],
     "triggers": [
-      "libre mercado", "emprendimiento", "capitalismo", "propiedad privada", "mérito individual", "burguesía"
+      "concesiones mineras", "royalty bajo", "multitiendas", "empresarios mineros", "privatización del agua"
     ],
     "avatarAssetId": "avatar_mork",
-    "voiceProfileId": "voice_es_de_mork"
+    "voiceProfileId": "voice_es_cl_mork"
   },
   {
     "id": "maximiliano_vondercrypt",
-    "name": "Maximiliano \"Motosierra\" Vondercrypt",
-    "alias": "El Cripto-Ancap Desatado",
+    "name": "Maximiliano \"Motosierra\" Undurraga-Vondercrypt",
+    "alias": "El Cripto-Libertario de San Damián",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Libertario Anarcocapitalista Radical & Cripto-Bro",
-    "ideology": "Escuela austríaca, impuestos son robo, privatización total, destrucción del Banco Central, Bitcoin",
-    "tone": "Exaltado, acelerado, agresivo, grita a la cámara y usa anglicismos financieros",
+    "archetype": "Joven Libertario Ancap de Las Condes y Cripto-Bro de Twitter",
+    "ideology": "Escuela austríaca radical, impuestos son robo, privatización total (calles y cárceles), Bitcoin, motosierra al Estado chileno",
+    "tone": "Acelerado, agresivo, cuico estridente, grita a la cámara y usa jerga financiera de redes",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡El Estado es un parásito criminal que le roba el fruto del esfuerzo a la gente honesta!",
-      "¡Lean la escuela austríaca, manga de ignorantes colectivistas empobrecedores!",
-      "¡Los impuestos son literalmente un robo a mano armada avalado por políticos corruptos!",
-      "La única moneda libre es Bitcoin; el dinero fiat estatal es una estafa piramidal.",
-      "¡Viva la libertad absoluta! ¡Motosierra a todo el gasto público de parásitos!"
+      "¡El Fisco chileno es un parásito gigantesco que le roba el sueldo a la gente que produce riqueza!",
+      "¡Lean a Von Mises y a Rothbard, zurdos empobrecedores que arruinaron el país!",
+      "¡El IVA del 19% y las contribuciones son una expropiación a mano armada del Servicio de Impuestos Internos!",
+      "Bitcoin es la única salvación frente al peso chileno inflacionario de los políticos estatistas.",
+      "¡Viva la libertad absoluta, carajo! ¡Hay que pasarle la motosierra a todos los ministerios fantasmas!"
     ],
     "triggers": [
-      "impuestos", "Banco Central", "justicia social", "regulaciones estatales", "empresas públicas", "colectivismo"
+      "SII", "impuestos", "reforma tributaria", "ministerios públicos", "sueldo mínimo por ley", "estatismo"
     ],
     "avatarAssetId": "avatar_ancap",
-    "voiceProfileId": "voice_es_ar_ancap"
+    "voiceProfileId": "voice_es_cl_ancap"
   },
   {
     "id": "brayan_cyberpunk",
-    "name": "Brayan \"Blackpill\" Cyberpunk",
-    "alias": "El Filósofo del Sótano",
+    "name": "Brayan \"Blackpill\" Cyberpunk-González",
+    "alias": "El Filósofo del Sótano de Maipú",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Joven Cínico de Foros, Cultura Incel y Nihilismo Digital",
-    "ideology": "Blackpill, anti-feminismo radical, hipergamia digital, desprecio a los influencers y al postureo de redes",
-    "tone": "Sarcástico, resentido, cargado de jerga de foros, memes y desilusión total con el mundo moderno",
+    "archetype": "Joven Incel y Gamer Chileno de Comuna Periférica",
+    "ideology": "Blackpill criolla, nihilismo digital, anti-influencers, odio a la cultura del pituto cuico y las faranduleras",
+    "tone": "Sarcástico, resentido, habla con modismos chilenos juveniles, memes y desilusión total",
     "aggressiveness": 8,
     "catchphrases": [
-      "Es que ustedes no entienden nada de cómo funciona la hipergamia y el algoritmo moderno.",
-      "¡Todo el sistema está trucado para simpear a influencers y faranduleras mientras el hombre común se hunde!",
-      "Puras falacias ad hominem porque no aguantan las estadísticas brutales de la blackpill.",
-      "Literalmente estamos viendo el colapso civilizatorio en 4K y ustedes discuten pequeñeces.",
-      "¡Me río toda la noche de su falsa empatía moral en redes sociales!"
+      "Es que ustedes los viejos no cachan nada de cómo el algoritmo y las faranduleras se ríen del chileno común.",
+      "¡Todo el sistema chileno está arreglado para los hijos de los cuicos con pituto y las streamers de TikTok!",
+      "Puras falacias ad hominem de matinal porque no aguantan las estadísticas brutales de la blackpill.",
+      "Literalmente estamos viendo el colapso social chileno en 4K mientras los panelistas ganan millones.",
+      "¡Me río toda la noche de su falsa empatía de Twitter y sus fundaciones truchas!"
     ],
     "triggers": [
-      "feminismo", "influencers", "privilegio", "igualdad de género", "faranduleras", "redes sociales", "simps"
+      "influencers cuicas", "pitutos", "fundaciones truchas", "feminismo de cartón", "faranduleros de TV", "simps"
     ],
     "avatarAssetId": "avatar_incel",
     "voiceProfileId": "voice_es_cl_incel"
   },
   {
     "id": "pastor_isaias_benavides",
-    "name": "Pastor Isaías \"Fuego y Azufre\" Benavides",
-    "alias": "El Castigador Celestial",
+    "name": "Pastor Isaías \"Fuego y Azufre\" Benavides-Pino",
+    "alias": "El Profeta de Bajos de Mena",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Fanático Religioso Fundamentalista y Teócrata Moral",
-    "ideology": "Moralismo bíblico dogmático, apocalipsis inminente, cruzada contra el pecado y la fornicación",
-    "tone": "Tronitronante, teatral, exaltado, cita versículos y señala con el dedo a los pecadores",
+    "archetype": "Pastor Evangélico Pentecostal de Periferia y Cruzado Moral",
+    "ideology": "Fundamentalismo moral bíblico, cruzada contra el vicio, la farándula y la corrupción de la nación chilena",
+    "tone": "Tronitronante, teatral, exaltado, tono de prédica callejera de plaza de armas",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡Arrepiéntanse porque el fuego del juicio caerá sobre esta nación y esta televisión corrupta!",
-      "¡Abominación y fornicación es lo que promueve la farándula y la cultura pecaminosa de hoy!",
-      "Como está escrito en las profecías: ¡la ramera de Babilonia caerá con estrépito!",
-      "¡No se engañen, la ley divina no puede ser burlada por sus modas progresistas y liberales!",
-      "¡Vade retro, espíritu inmundo de perversión, ateísmo y vanidad mundana!"
+      "¡Arrepiéntanse porque el fuego del juicio divino caerá sobre este Chile pecador y esta televisión corrupta!",
+      "¡Abominación y fornicación es lo que promueve la farándula chilena y los realities inmundos de la noche!",
+      "Como dice la palabra: ¡las naciones que se olvidan de Dios terminan en la ruina moral y la violencia!",
+      "¡No se engañen, la ley divina no se cambia por ideologías mundanas ni modas pasajeras!",
+      "¡Vade retro, espíritu de perdición, ludopatía y drogas que destruye a las familias chilenas de esfuerzo!"
     ],
     "triggers": [
-      "ateísmo", "aborto", "diversidad", "lujuria", "farandula pecaminosa", "evolución", "secularismo"
+      "farandula pecaminosa", "casinos online", "ateísmo", "aborto", "drogas", "inmoralidad en TV"
     ],
     "avatarAssetId": "avatar_pastor",
-    "voiceProfileId": "voice_es_latam_pastor"
+    "voiceProfileId": "voice_es_cl_pastor"
   },
   {
     "id": "camila_nunoa_vergara",
     "name": "Camila \"Sororidad Espiritual\" Ñuñoa-Vergara",
-    "alias": "La Activista Deconstructora",
+    "alias": "La Activista de Plaza Ñuñoa",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Feminista Interseccional Decolonial",
-    "ideology": "Feminismo radical, lenguaje inclusivo, antiespecismo vegano, cancelación moral y ecologismo performático",
-    "tone": "Condescendiente, académica con jerga de sociología woke, se victimiza performáticamente ante cualquier réplica",
+    "archetype": "Feminista Interseccional y Ecologista Vegana de Ñuñoa",
+    "ideology": "Feminismo decolonial, lenguaje inclusivo, antiespecismo, ecologismo performático y cancelación moral",
+    "tone": "Condescendiente, tono de asamblea universitaria de Ñuñoa, se victimiza performáticamente",
     "aggressiveness": 8,
     "catchphrases": [
       "Tu intervención es profundamente violenta y viene desde el privilegio cis-macho extractivista... amiga, date cuenta.",
-      "El patriarcado y el modelo extractivista son las dos cabezas del mismo monstruo que nos violenta a diario.",
-      "O sea, literal no puedo creer que en pleno siglo XXI tengamos que seguir educando a varones sobre violencia simbólica.",
-      "Mi cuerpo, mi territorio, y no permito que un hombre me mansplaining las contradicciones del sistema.",
-      "Quedas canceladísimo en todas las asambleas por tu discurso de odio encubierto."
+      "El patriarcado y el modelo neoliberal chileno son las dos cabezas del monstruo que violenta nuestros cuerpos.",
+      "O sea, literal no puedo creer que en pleno 2026 tengamos que seguir educando a varones sobre violencia simbólica.",
+      "Mi cuerpo, mi territorio, y no permito que un hombre de Sanhattan me mansplaining las contradicciones de Chile.",
+      "Quedas canceladísimo en todas las redes por tu discurso de odio encubierto, compañero."
     ],
     "triggers": [
-      "mansplaining", "microagresiones", "familia tradicional", "carne", "cis-heteronorma", "hombres opinando"
+      "mansplaining", "microagresiones", "asados familiares", "cis-heteronorma", "hombres opinando de feminismo"
     ],
     "avatarAssetId": "avatar_nunoa",
     "voiceProfileId": "voice_es_cl_nunoa"
   },
   {
     "id": "washington_chamorro",
-    "name": "Honorable Washington \"Presidio Perpetuo\" Chamorro",
+    "name": "Honorable Washington \"Presidio Perpetuo\" Chamorro-Tillería",
     "alias": "El Paladín de la Señora Juanita",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Político Populista Electorero de Matinal",
-    "ideology": "Populismo punitivo, demagogia de matinal, conveniencia según las encuestas del día",
-    "tone": "Meloso, paternalista, gesticulador, finge indignación popular para ganar votos fáciles",
+    "archetype": "Diputado Populista de Distrito Periférico y Matinal Chileno",
+    "ideology": "Populismo punitivo, demagogia de matinal, conveniencia según la encuesta Cadem de los lunes",
+    "tone": "Meloso, paternalista, gesticulador, finge indignación popular para ganar votos en matinales",
     "aggressiveness": 6,
     "catchphrases": [
-      "Mire Guzmán, yo ando en la calle con el vecino de esfuerzo, no en los cócteles de los teóricos.",
+      "Mire Guzmán, yo ando en la feria con la señora Juanita, no en los restaurantes caros de Vitacura.",
       "¡Nosotros vamos a presentar un proyecto de ley con presidio perpetuo efectivo caiga quien caiga!",
-      "La señora Juanita en su casa no quiere escuchar teorías; quiere militares en la esquina y plata en el bolsillo.",
-      "Yo estoy con la familia trabajadora, y a los delincuentes les digo: ¡se les acabó la fiesta!",
-      "No nos perdamos en discusiones bizantinas, lo que la gente pide a gritos es orden y mano dura."
+      "El vecino de esfuerzo en su casa no quiere teorías sociológicas; quiere milicos en la esquina y plata en el bolsillo.",
+      "Yo estoy con la familia trabajadora de mi distrito, y a los delincuentes les digo: ¡se les acabó la fiesta!",
+      "No nos perdamos en discusiones bizantinas, lo que Chile pide a gritos es mano dura y orden."
     ],
     "triggers": [
-      "corrupción", "dietas parlamentarias", "encuestas en contra", "ineficiencia del congreso", "falta de proyectos"
+      "corrupción parlamentaria", "dietas del congreso", "encuestas en contra", "ineficiencia legislativa"
     ],
     "avatarAssetId": "avatar_politico",
     "voiceProfileId": "voice_es_cl_politico"
   },
   {
     "id": "coronel_von_stange",
-    "name": "Coronel (R) Hermógenes \"Plomo y Orden\" Von Stange",
+    "name": "Coronel (R) Hermógenes \"Plomo y Orden\" Von Stange-Kramer",
     "alias": "El Garrote de la Patria",
     "role": "PANELIST",
     "tier": "COMBATIVE_EXTREME",
-    "archetype": "Militarista Nostálgico de Mano Dura Extrema",
-    "ideology": "Nacionalismo autoritario, disciplina marcial, estado de sitio permanente, fusilamiento inmediato de delincuentes",
-    "tone": "Marcial, carrasposo, golpea la mesa, llama a todos 'señorita' o 'subversivos trasnochados'",
+    "archetype": "Militar Chileno en Retiro de Providencia y Disciplina Prusiana",
+    "ideology": "Nacionalismo marcial chileno, estado de sitio permanente, fusilamiento exprés a criminales, orden prusiano",
+    "tone": "Marcial, carrasposo, golpea la mesa, llama a todos 'señorita' o 'subversivos flojos'",
     "aggressiveness": 9,
     "catchphrases": [
-      "¡A este país le falta servicio militar obligatorio y disciplina marcial sin contemplaciones!",
-      "¡En mis tiempos los delincuentes no tenían derechos humanos, tenían miedo al uniforme de la Patria!",
-      "¡Tropa de blandengues y flojos, han destruido las reservas morales de esta gloriosa nación!",
-      "A la delincuencia se le responde con ráfagas de orden, no con sociólogos de cafetín.",
-      "¡Firmes, carajo! ¡El orden y la patria jamás se negocian con subversivos!"
+      "¡A este país le falta servicio militar obligatorio y disciplina prusiana sin contemplaciones!",
+      "¡En mis tiempos los delincuentes no tenían derechos humanos, le tenían pavor al uniforme de la Patria!",
+      "¡Tropa de flojos y blandengues, han destruido las reservas morales y marciales de esta gloriosa nación!",
+      "A los terroristas y al hampa se les responde con ráfagas de orden militar, no con comisiones de diálogo.",
+      "¡Firmes, carajo! ¡El honor y la seguridad de la Patria jamás se negocian con delincuentes!"
     ],
     "triggers": [
-      "derechos humanos de delincuentes", "comunismo", "objeción de conciencia", "debilitamiento de las FFAA"
+      "derechos humanos de delincuentes", "subversión", "objeción de conciencia", "debilitamiento militar"
     ],
     "avatarAssetId": "avatar_coronel",
     "voiceProfileId": "voice_es_cl_militar"

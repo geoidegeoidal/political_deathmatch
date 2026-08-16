@@ -5,29 +5,29 @@
     "voiceName": "es-CL-LorenzoNeural",
     "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "+5%",
+    "rateOffset": "+8%",
     "pitchOffset": "+2Hz",
-    "description": "Conductor chileno enérgico, televisivo y rápido para interrumpir"
+    "description": "Conductor chileno de matinal/debate, enérgico, televisivo y rápido"
   },
   {
-    "voiceProfileId": "voice_es_latam_caudillo",
+    "voiceProfileId": "voice_es_cl_moncada",
     "provider": "edge-tts",
-    "voiceName": "es-VE-SebastianNeural",
-    "locale": "es-VE",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
     "rateOffset": "+0%",
     "pitchOffset": "-4Hz",
-    "description": "Caudillo venezolano con oratoria épica y voz profunda"
+    "description": "Dirigente comunista poblacional chileno, combativo y apasionado"
   },
   {
-    "voiceProfileId": "voice_es_latam_punitivo",
+    "voiceProfileId": "voice_es_cl_sotomayor",
     "provider": "edge-tts",
-    "voiceName": "es-MX-JorgeNeural",
-    "locale": "es-MX",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
     "rateOffset": "-2%",
-    "pitchOffset": "-6Hz",
-    "description": "Mando militar punitivo, voz grave y tajante"
+    "pitchOffset": "-8Hz",
+    "description": "Ex-oficial de Carabineros chileno, marcial, grave y tajante"
   },
   {
     "voiceProfileId": "voice_es_cl_economista",
@@ -36,18 +36,18 @@
     "locale": "es-CL",
     "gender": "MALE",
     "rateOffset": "-5%",
-    "pitchOffset": "-3Hz",
-    "description": "Economista sobrio, pausado, tono académico"
+    "pitchOffset": "-2Hz",
+    "description": "Economista de Sanhattan chileno, sobrio, técnico y pausado"
   },
   {
     "voiceProfileId": "voice_es_cl_jurista",
     "provider": "edge-tts",
-    "voiceName": "es-ES-AlvaroNeural",
-    "locale": "es-ES",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "-8%",
+    "rateOffset": "-7%",
     "pitchOffset": "-5Hz",
-    "description": "Constitucionalista solemne y formal"
+    "description": "Constitucionalista chileno solemne, formal y reflexivo"
   },
   {
     "voiceProfileId": "voice_es_cl_estadista",
@@ -56,48 +56,48 @@
     "locale": "es-CL",
     "gender": "MALE",
     "rateOffset": "-6%",
-    "pitchOffset": "-8Hz",
-    "description": "Estadista veterano con voz reposada y firme"
+    "pitchOffset": "-7Hz",
+    "description": "Estadista concertacionista chileno veterano, voz pausada y reposada"
   },
   {
     "voiceProfileId": "voice_es_cl_sociologo",
     "provider": "edge-tts",
-    "voiceName": "es-ES-ManuelNeural",
-    "locale": "es-ES",
-    "gender": "MALE",
-    "rateOffset": "-2%",
-    "pitchOffset": "-2Hz",
-    "description": "Sociólogo intelectual y articulado"
-  },
-  {
-    "voiceProfileId": "voice_es_latam_diplomatico",
-    "provider": "edge-tts",
-    "voiceName": "es-ES-AlvaroNeural",
-    "locale": "es-ES",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
     "rateOffset": "-3%",
+    "pitchOffset": "-1Hz",
+    "description": "Sociólogo chileno de Plaza Ñuñoa, intelectual y articulado"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_geopolitico",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "-4%",
     "pitchOffset": "-4Hz",
-    "description": "Diplomático geopolítico frío y calculador"
+    "description": "Diplomático chileno de carrera, frío, analítico y formal"
   },
   {
-    "voiceProfileId": "voice_es_de_mork",
+    "voiceProfileId": "voice_es_cl_mork",
     "provider": "edge-tts",
-    "voiceName": "es-ES-AlvaroNeural",
-    "locale": "es-ES",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "-8%",
-    "pitchOffset": "-12Hz",
-    "description": "Filósofo comunista cavernoso y severo"
+    "rateOffset": "-6%",
+    "pitchOffset": "-10Hz",
+    "description": "Sindicalista minero chileno histórico, voz ronca y potente"
   },
   {
-    "voiceProfileId": "voice_es_ar_ancap",
+    "voiceProfileId": "voice_es_cl_ancap",
     "provider": "edge-tts",
-    "voiceName": "es-AR-TomasNeural",
-    "locale": "es-AR",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "+12%",
-    "pitchOffset": "+5Hz",
-    "description": "Libertario argentino ultra-acelerado y efusivo"
+    "rateOffset": "+14%",
+    "pitchOffset": "+4Hz",
+    "description": "Joven libertario chileno de Las Condes, acelerado y estridente"
   },
   {
     "voiceProfileId": "voice_es_cl_incel",
@@ -105,19 +105,19 @@
     "voiceName": "es-CL-LorenzoNeural",
     "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "+8%",
-    "pitchOffset": "+6Hz",
-    "description": "Joven de internet sarcástico y acelerado"
+    "rateOffset": "+9%",
+    "pitchOffset": "+5Hz",
+    "description": "Gamer e incel chileno de Maipú, sarcástico y acelerado"
   },
   {
-    "voiceProfileId": "voice_es_latam_pastor",
+    "voiceProfileId": "voice_es_cl_pastor",
     "provider": "edge-tts",
-    "voiceName": "es-CO-GonzaloNeural",
-    "locale": "es-CO",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "+2%",
-    "pitchOffset": "+4Hz",
-    "description": "Pastor fundamentalista teatral y vibrante"
+    "rateOffset": "+3%",
+    "pitchOffset": "+3Hz",
+    "description": "Pastor evangélico chileno de periferia, teatral y vibrante"
   },
   {
     "voiceProfileId": "voice_es_cl_nunoa",
@@ -126,8 +126,8 @@
     "locale": "es-CL",
     "gender": "FEMALE",
     "rateOffset": "+2%",
-    "pitchOffset": "+4Hz",
-    "description": "Activista deconstructora con tono agudo y condescendiente"
+    "pitchOffset": "+3Hz",
+    "description": "Activista chilena de Plaza Ñuñoa, voz femenina con entonación de Ñuñoa"
   },
   {
     "voiceProfileId": "voice_es_cl_politico",
@@ -135,9 +135,9 @@
     "voiceName": "es-CL-LorenzoNeural",
     "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "+0%",
-    "pitchOffset": "-1Hz",
-    "description": "Político populista con tono meloso de matinal"
+    "rateOffset": "+1%",
+    "pitchOffset": "-2Hz",
+    "description": "Diputado populista chileno de matinal, tono meloso y paternalista"
   },
   {
     "voiceProfileId": "voice_es_cl_militar",
@@ -145,8 +145,8 @@
     "voiceName": "es-CL-LorenzoNeural",
     "locale": "es-CL",
     "gender": "MALE",
-    "rateOffset": "-4%",
-    "pitchOffset": "-10Hz",
-    "description": "Militarista nostálgico con voz de mando carrasposa"
+    "rateOffset": "-5%",
+    "pitchOffset": "-12Hz",
+    "description": "Militar chileno en retiro, carrasposo, marcial y grave"
   }
 ]

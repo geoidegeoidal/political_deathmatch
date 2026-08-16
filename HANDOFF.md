@@ -29,6 +29,8 @@
 - `2e7572f`: feat(debate-engine): implement FSM orchestrator, personas catalog, farandula pauta support, and debate prompts
 - `6bf55bb`: docs: update HANDOFF.md with OpenCode Go handoff instructions
 - `52599bc`: feat(personas): add complete roster of 15 creative characters including Latin Left & Latin Right icons
+- `dea299d`: docs: update HANDOFF.md with 15 personas commit reference
+- `421a160`: feat(legal): replace all character names with 100% fictional satirical parodies to prevent copyright/defamation issues
 
 ### Repositorio Remoto
 - **URL:** [https://github.com/geoidegeoidal/political_deathmatch](https://github.com/geoidegeoidal/political_deathmatch)

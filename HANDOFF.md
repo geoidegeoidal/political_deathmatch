@@ -27,6 +27,8 @@
 - `1d62642`: feat(spec): add OpenSpec proposal for 002-multi-agent-debate-orchestrator
 - `8d0ebaf`: docs: update HANDOFF.md with proposal 002 handoff notice
 - `2e7572f`: feat(debate-engine): implement FSM orchestrator, personas catalog, farandula pauta support, and debate prompts
+- `6bf55bb`: docs: update HANDOFF.md with OpenCode Go handoff instructions
+- `52599bc`: feat(personas): add complete roster of 15 creative characters including Latin Left & Latin Right icons
 
 ### Repositorio Remoto
 - **URL:** [https://github.com/geoidegeoidal/political_deathmatch](https://github.com/geoidegeoidal/political_deathmatch)

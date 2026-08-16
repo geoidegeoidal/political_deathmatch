@@ -1,5 +1,25 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (12ª) - Sin Filtros: Desmadre, Insultos por Tensión y Calmas del Animador
+
+### Objetivo
+Hacer el debate más acalorado y con estética Sin Filtros: sacarse en cara contradicciones, desmadre con insultos cuando sube el tono, y el animador llamando a la calma. Además: eliminar los comerciales y variar las frases del animador.
+
+### Hecho por OpenCode Go
+- **Comerciales eliminados:** se quitaron los infomerciales (generateCommercial, LOCUTOR, DYSTOPIAN_PRODUCTS) y el anuncio de "vamos a publicidad" del resumen de bloque. Flujo directo entre bloques.
+- **Animador con variantes:** pools de 3 plantillas para intro, bajada, pregunta y resumen (sin repeticiones entre bloques). Intro/bajada/pregunta conservan el patrón de cintillo para el parsing de GC.
+- **Debate Sin Filtros:**
+  - Prompt: "sacarle EN CARA al rival sus contradicciones" + directiva de insultos condicionada a la tensión (`insultDirective`: >=70 permite "hipócrita", "mentiroso", "cínico", "farsante", "demagogo"...).
+  - Orquestador: tensión base 55→68, pregunta +10→+15, umbral de interrupción 75→70, crossfire 3→4 rondas, tensionDelta +5 a +25.
+  - **Nuevo turno "calma del animador"**: si la tensión llega a >=88 en medio del fuego cruzado, el conductor interviene ("¡Ya, ya, ya! ¡Cálmense, que esto es EN VIVO!") y baja la tensión 15 puntos.
+- **Verificado:** 50 turnos, **23 interrupciones** (antes ~7), 29.8 min, 50 frames/73 cortes, `episode_1080p.mp4` + preview 120s. Push `6a43464`.
+- **Trampa:** ternario con comillas dentro de una interpolación de template literal rompió el parseo (esbuild: "Expected } but found )") — resuelto moviendo la directiva a una variable precalculada `insultDirective`. Regla: evitar ternarios largos con strings anidados dentro de `${...}`.
+
+### Pendiente
+- Commit/push de docs (esta entrada). Fase 004 (avatares) y Fase 4 (distribución) pendientes. Rotar token HF (expuesto en chat).
+
+---
+
 ## Sesión: 2026-08-16 (10ª) - Mayoría de Bloques Chilenos + Validación Editorial con Feedback
 
 ### Objetivo

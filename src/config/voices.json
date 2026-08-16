@@ -148,5 +148,35 @@
     "rateOffset": "-5%",
     "pitchOffset": "-12Hz",
     "description": "Militar chileno en retiro, carrasposo, marcial y grave"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_izquierda",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-CatalinaNeural",
+    "locale": "es-CL",
+    "gender": "FEMALE",
+    "rateOffset": "-2%",
+    "pitchOffset": "-1Hz",
+    "description": "Catedrática economista, metódica, precisa y sobria"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_derecha",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "-4%",
+    "pitchOffset": "-3Hz",
+    "description": "Filósofo político, doctoral, irónico y reposado"
+  },
+  {
+    "voiceProfileId": "voice_es_cl_locutor",
+    "provider": "edge-tts",
+    "voiceName": "es-CL-LorenzoNeural",
+    "locale": "es-CL",
+    "gender": "MALE",
+    "rateOffset": "+12%",
+    "pitchOffset": "+4Hz",
+    "description": "Locutor de infomercial de televentas, acelerado, entusiasmado y estridente"
   }
 ]

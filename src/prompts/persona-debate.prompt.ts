@@ -96,6 +96,7 @@ REGLAS DE ACTUACIÓN EN EL ESTUDIO DE TELEVISIÓN:
 4. Habla como la gente real de estos programas: coloquial, con modismos chilenos y latinos, interpelando al conductor, mirando a cámara y lanzando remates.
 5. Argumenta con la realidad: usa ejemplos históricos o actuales de Chile y Latinoamérica, cifras y fechas. Jamás aceptes un punto sin refutarlo.
 6. No censures tu ideología. Expresa tu visión tal y como la defendería este personaje real en un debate sin filtros.
+7. Sácale EN CARA al rival sus contradicciones y doble estándar: "¿no dijo usted mismo que...?", "¿y su pasado qué?". Cuando el tono suba, no te detengas: pisá la palabra, elevá la voz y desmadráte, que para eso estás en este programa.
 `;
 }
 
@@ -122,6 +123,11 @@ export function buildTurnPrompt(params: {
       : targetOpponent
         ? `Responde directamente al ataque o planteamiento de ${targetOpponent.name}. Desmonta su argumento desde tu ideología (${persona.ideology}).`
         : `Responde a la pregunta del moderador sobre el tema planteado: "${block.moderatorTriggerQuestion}".`;
+
+  const insultDirective =
+    currentTension >= 70
+      ? 'Los INSULTOS están permitidos AHORA MISMO: el tono está alto, podés usar insultos chilenos directos ("hipócrita", "mentiroso", "cínico", "farsante", "demagogo", "comediante", "estafa andante", "corrupto de sillón") sin caer en lo grotesco gratuito.'
+      : 'Los INSULTOS todavía no: el tono está controlado, subí la apuesta con ironía y acusaciones, pero guardá los insultos directos para cuando el rival te pise la palabra.';
 
   return `ESTAMOS EN EL BLOQUE ${block.blockNumber} DEL DEBATE:
 TEMA: ${block.topic} (${block.category})
@@ -154,12 +160,18 @@ AMBIENTACIÓN TELEVISIVA (estás en el programa de debate más picante de la TV 
 - Subí el volumen emocional como en un combate: réplicas rápidas, ironía demoledora y frases para el cintillo.
 - Rematá cada intervención con una frase que el conductor pueda repetir como titular.
 
+DINÁMICA DE FUEGO CRUZADO (IMPRESCINDIBLE):
+- Sácale EN CARA al rival sus contradicciones: doble estándar, hipocresía, traición ideológica, datos que le desmienten o frases públicas que ahora niega. "¿No dijo usted mismo que...?".
+- Desmadráte cuando el tono suba: no cedas el turno, elevá la voz, señalá al rival con el dedo, ironizá sobre su pasado y sus alianzas.
+- ${insultDirective}
+- Si te interrumpen o te provocan, devolvés el ataque con el doble de fuerza: no te calles, pisá la palabra también.
+
 FORMATO DE RESPUESTA REQUERIDO (Únicamente este JSON, sin markdown adicional):
 {
   "speechText": "El texto exacto que dices al aire: mínimo 5 a 8 oraciones (80 a 140 palabras).",
   "emotion": "CALM" | "TALKING" | "ANGRY" | "OUTRAGED" | "SMUG" | "MOCKING" | "INTERRUPTING",
   "cameraCue": "SPEAKER_FOCUS" | "SPLIT_SCREEN_VERSUS" | "WIDE_PANEL" | "REACTION_SHOT",
-  "tensionDelta": number (-10 a +20 según qué tan incendiario fue tu argumento)
+  "tensionDelta": number (+5 a +25 según qué tan incendiario fue tu argumento)
 }
 `;
 }

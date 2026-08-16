@@ -32,8 +32,10 @@ export class VideoComposer {
   public generateFrameSvg(state: VideoFrameState): string {
     const speaker = this.personasMap.get(state.activeSpeakerId);
     const opponent = state.targetSpeakerId ? this.personasMap.get(state.targetSpeakerId) : undefined;
-    const speakerName = speaker?.name || state.speakerName;
-    const speakerAlias = speaker?.alias || state.speakerAlias;
+    // En pantalla solo el nombre, sin sobrenombres (los sobrenombres viven en el guion)
+    const speakerName = stripNickname(speaker?.name || state.speakerName);
+    const opponentName = opponent ? stripNickname(opponent.name) : '';
+    const speakerAlias = '';
 
     return `
 <svg width="${this.config.width}" height="${this.config.height}" viewBox="0 0 ${this.config.width} ${this.config.height}" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +76,7 @@ export class VideoComposer {
   
   <rect x="520" y="24" width="140" height="42" rx="6" fill="#DC2626" />
   <text x="590" y="52" font-family="${this.config.fontFamily}" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle">
-    BLOQUE ${state.blockNumber}
+    ${state.blockNumber === 0 ? 'DUELO FINAL' : `BLOQUE ${state.blockNumber}`}
   </text>
 
   <!-- Termómetro de Tensión / Rating -->
@@ -110,6 +112,8 @@ export class VideoComposer {
   }
 
   private renderMainStageSvg(state: VideoFrameState, speaker?: PersonaProfile, opponent?: PersonaProfile): string {
+    const speakerName = stripNickname(speaker?.name || state.speakerName);
+    const opponentName = opponent ? stripNickname(opponent.name) : '';
     if (state.cameraCue === 'SPLIT_SCREEN_VERSUS' && opponent) {
       return `
       <!-- SPLIT SCREEN VERSUS -->
@@ -119,7 +123,7 @@ export class VideoComposer {
         <text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">🗣️</text>
         <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
         <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#FFFFFF" text-anchor="middle">
-          ${speaker?.name || state.speakerName}
+          ${speakerName}
         </text>
         ${state.isInterruption ? `
           <rect x="260" y="30" width="300" height="46" rx="6" fill="#DC2626" />
@@ -139,7 +143,7 @@ export class VideoComposer {
         <text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">😠</text>
         <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
         <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#94A3B8" text-anchor="middle">
-          ${opponent.name}
+          ${opponentName}
         </text>
       </g>
       `;
@@ -181,7 +185,7 @@ export class VideoComposer {
       <!-- Caja de Identificación del Orador (Negro/Dorado) -->
       <rect x="0" y="-56" width="620" height="56" rx="6" fill="#09090B" stroke="#DC2626" stroke-width="2" />
       <text x="24" y="-18" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15">
-        ${name.toUpperCase()} <tspan font-size="18" font-weight="500" fill="#E2E8F0">| ${alias}</tspan>
+        ${name.toUpperCase()}${alias ? ` <tspan font-size="18" font-weight="500" fill="#E2E8F0">| ${alias}</tspan>` : ''}
       </text>
     </g>
     `;
@@ -218,4 +222,9 @@ export class VideoComposer {
         return '🎙️';
     }
   }
+}
+
+/** Quita los sobrenombres entre comillas del nombre para pantalla: 'Capitán Mauro "Cero Tolerancia" Sotomayor' -> 'Capitán Mauro Sotomayor'. */
+function stripNickname(name: string): string {
+  return name.replace(/\s*"[^"]*"/g, '').trim();
 }

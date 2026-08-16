@@ -1,5 +1,126 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (10ª) - Mayoría de Bloques Chilenos + Validación Editorial con Feedback
+
+### Objetivo
+La pauta debe priorizar SIEMPRE la discusión política nacional chilena: mínimo 3 de 4 bloques con región CL.
+
+### Hecho por OpenCode Go
+- **Prompt editorial reforzado:** bloques 1 y 2 = CHILE obligatorio, bloque 3 = CL preferente, bloque 4 = único foráneo (WORLD/LATAM). Criterio: priorizar temas chilenos con más noticias.
+- **Validación con feedback en `agenda-generator.ts`:** tras parsear, si <3 bloques CL se reintenta (hasta 4 intentos) enviando al LLM el error de validación y la orden de corregir usando la sección === CHILE === de las noticias.
+- **Verificado:** pauta final 3/4 bloques chilenos (crisis vivienda, violencia/seguridad, riña fatal) + 1 internacional (Colombia). 806 noticias seleccionadas.
+- **Episodio final re-renderizado:** 39 turnos, 28m22s (debate) → 29.0 min (audio/video), 7 interrupciones, `episode_1080p.mp4` + `preview_episodio120s.mp4`.
+
+### Pendiente
+- Commit/push acumulado (sesiones 6ª-10ª). Fase 004 (avatares) y Fase 4 (distribución) pendientes.
+
+---
+
+## Sesión: 2026-08-16 (9ª) - Formato Final del Capítulo: Apertura LLM, Bajada, Comerciales Distópicos, Duelo Final, Cierre con Humor
+
+### Objetivo
+Rediseñar el formato del capítulo según nuevas reglas: sin farándula, bajada de noticias del conductor, apertura/cierre/comerciales regenerados en cada episodio, duelo final entre 2 panelistas aleatorios, comerciales distópicos con voz de infomercial, y 2 personajes intelectuales nuevos.
+
+### Hecho por OpenCode Go
+- **Pauta sin farándula:** prompt editorial con 4 bloques (POLITICA/SEGURIDAD, INTERNACIONAL, SOCIEDAD, fricción restante) y prohibición explícita de farándula/espectáculos. Mock heurístico actualizado (bloque 2 → SOCIEDAD institucional).
+- **Bajada de noticias:** nuevo turno del conductor tras el intro de cada bloque ("¡Antes de que estalle la discusión, la BAJADA DE NOTICIAS...") con factsSummary + contextoHistorico + climaxIdea.
+- **Apertura de capítulo (LLM):** nuevo turno inicial generado por el modelo con la persona del conductor (tema, bloques, duelo, hype). Se regenera en cada episodio.
+- **Comerciales distópicos (LLM + voz de infomercial):** un infomercial por bloque con producto distópico aleatorio (Sirena Ciudadano 3000, App VigilanteVecino, Muro de Emergencia Rápida...). Locutor = `locutor_televentas` (persona sintética, NO debatiente; voz `voice_es_cl_locutor` rate +12%).
+- **Duelo final:** 2 panelistas aleatorios se interpelan (pregunta filosa → respuesta → pregunta → respuesta) + cierre del programa generado por LLM que **bromea citando los choques reales del episodio** y cierra con el eslogan.
+- **2 personajes intelectuales nuevos:** Dra. Javiera Astorga-Vicuña (postkeynesiana, historia económica, izquierda) y Prof. Raimundo Errázuriz-Parada (liberal-conservador, historia de las ideas, derecha) — tier INTELLECTUAL_SERIOUS, con muletillas metodológicas. Incluidos en pauta (personaTriggers) y voces.
+- **Fix JSON crudo:** `extractPlainText()` rescata `speechText` cuando el modelo devuelve JSON en las generaciones libres (apertura/comercial/cierre).
+- **Nombres sin sobrenombres en visuales:** `stripNickname()` en VideoComposer (solo guiones conservan los sobrenombres). Header "DUELO FINAL" para blockNumber 0.
+- **Emoción en TTS OpenAI:** instrucciones por turno con directiva emocional (ANGRY→furioso, OUTRAGED→indignado gritando, SMUG→arrogante...).
+- **⚠️ Trampa de encoding:** los intentos de reemplazo con PowerShell (Get-Content/Set-Content) corrompieron `debate-orchestrator.ts` (UTF-8→ANSI mojibake). Reparado invirtiendo la codificación (cp1252→UTF-8). **Regla: nunca editar TS con PowerShell; usar edit tool.**
+- **Render final:** 39 turnos, 30m47s, 6 interrupciones, episodio 57.6MB (`episode_1080p.mp4`), preview 120s.
+
+### Decidido
+- Formato de capítulo final: APERTURA LLM → 4 bloques (intro+bajada+debate+comercial) → DUELO FINAL → CIERRE LLM con humor.
+- Los comerciales, apertura y cierre se regeneran con cada capítulo (LLM, no plantillas).
+
+### Bloqueantes / pendientes
+- Commit/push acumulado de sesiones 6ª-9ª (grande).
+- Fase 004 (avatares FLUX + eslogan) sigue pendiente de aplicar.
+- El cierre LLM puede tardar (historial del episodio) — timeout de Ollama ya en 300s.
+
+### Próxima sesión
+- Commitear. Aplicar 004. Fase 4 distribución.
+
+---
+
+## Sesión: 2026-08-16 (8ª) - Captura de Noticias, Pauta Profunda y Guion Televisivo + Pipeline OpenAI
+
+### Objetivo
+Antes del lanzamiento: (1) más noticias capturadas, (2) pauta más profunda, (3) guion más natural y televisivo (estilo Tolerancia Cero / Sin Filtros), y (4) voces OpenAI como motor final.
+
+### Hecho por OpenCode Go
+- **Captura (feeds.json 9→18 fuentes verificadas en vivo):** +La Cuarta Portada (100 items), The Clinic, Ciper, Ex-Ante, Infobae Último, Clarín, La Nación AR, El Comercio PE, El País Internacional, Euronews. Se descartaron por Cloudflare: Emol, La Tercera, Bío-Bío, CNN Chile, T13, Publimetro, CNN Español. **721 noticias / 649 seleccionadas** (antes ~100). Feeds de farándula corregidos (variante `arc/outboundfeeds/rss/category/...`).
+- **Fetcher:** timeout 6s→10s, reintento por feed, parseo de `content:encoded` (detalle 900 chars), dedupe por URL y por título (en noise-filter).
+- **Pauta profunda:** prompt reescrito — 5 bloques, `factsSummary` 4-6 oraciones con datos/cifras/fechas, nuevo `contextoHistorico` y `climaxIdea` (tipos extendidos), `personaTriggers` de 2 oraciones para 7 personajes, hasta 120 noticias inyectadas agrupadas por región.
+- **Guion televisivo:** plantillas del moderador reescritas estilo Tolerancia Cero/Sin Filtros ("¡Atención, atención, país en vivo!", "¡YA BASTA! ¡Corten!", "se lo pregunto sin anestesia"); prompt de turno con ambientación televisiva (estamos en vivo, olla a presión, frases para cintillo). Regex de intro actualizado en render-audio/render-video.
+- **Runtime debate:** reintento único en Ollama + timeout 180s→300s (fallo transitorio diagnosticado; la corrida siguiente pasó 100% limpia).
+- **Voces OpenAI:** motor `openai` PRIMERO en la cadena (key en `.env` gitignored; nunca al repo). `gpt-4o-mini-tts` con voz por personaje (onyx/echo/alloy/nova) + instrucciones de cadencia ("habla con ritmo vivo y agresivo, sube el tono..."). Costo ~$0.02/episodio.
+- **Pipeline completo re-renderizado:** pauta (5 bloques, OpenAI) → debate (30 turnos, 20m50s, **9 interrupciones** — Gemma local) → audio (30 stems OpenAI + master 19.5 min) → video (30 frames, 39 cortes, `episode_1080p.mp4`). Preview: `output/preview_episodio90s.mp4`.
+
+### Decidido
+- La pauta editorial usa OpenAI (gpt-4o-mini, centavos) porque el mock heurístico era la causa de la superficialidad; el DEBATE sigue 100% local (Ollama, $0) — Matriz respetada en runtime.
+- Voces finales: OpenAI (calidad YouTube). Fallbacks: natural (WinRT), gtts, sapi, kokoro.
+
+### Bloqueantes / pendientes
+- **Commit/push pendientes** de sesiones 6ª-8ª (pipeline Fase 3 completo, mejora editorial, runtime OpenAI).
+- Fase 4 (distribución/thumbnail) y avatares 004 (FLUX caricatura + eslogan) siguen pendientes.
+- Algunas cifras de la pauta pueden ser aproximadas por el LLM (validar en edición final si es para publicar).
+
+### Próxima sesión
+- Commitear y pushear. Aplicar 004 (avatares FLUX + eslogan). Fase 4: distribución.
+
+---
+
+## Sesión: 2026-08-16 (7ª) - Debug del Mix de Audio: adelay en ms y velocidad SAPI
+
+### Problema reportado
+El master sonaba a "bullicio constante sin voz" y los stems se escuchaban ~2x rápidos.
+
+### Causa raíz (2 bugs)
+1. **`adelay` toma MILISEGUNDOS, no segundos:** se pasaban segundos decimales (`adelay=7.811|7.811` → 7.8ms ≈ 0) → los 24 stems se apilaban en t=0 → "bullicio" y master de solo ~33s (duración del stem más largo). Fix en `audio-mixer.ts`: pasar `startMs` como entero.
+2. **Pitch-shift SAPI asumía 44100Hz pero SAPI emite 22050Hz:** `asetrate=44100*K` sobre un WAV de 22050Hz → voz 1.88x rápida. Fix en `tts-pipeline.ts`: `aresample=44100` ANTES del `asetrate` (luego aresample + atempo para preservar duración).
+
+### Verificado
+- Master = 722.6s (12.0 min), coincide con el timeline, gaps de silencio naturales entre turnos.
+- Stems regenerados a velocidad real (turn_003: 27.2s → 54.4s; el doble = correcto).
+- `episode_1080p.mp4` re-renderizado: 12 min, 22.4MB. `preview_60s.mp4` regenerado.
+
+### Pendiente
+- Commit/push del fix (audio-mixer.ts, tts-pipeline.ts) + trabajos anteriores no commiteados de la sesión 6ª.
+- Sigue pendiente: aplicar cambio 004 (FLUX avatares caricatura + eslogan).
+
+---
+
+## Sesión: 2026-08-16 (6ª) - Fase 3 Implementada: Pipeline TTS + Mezclador + Render 1080p
+
+### Objetivo
+Implementar la Fase 3 del pipeline audiovisual: síntesis de voz por turno, mezcla con ducking para interrupciones y composición del video final 1080p.
+
+### Hecho por OpenCode Go
+- **`src/services/tts-pipeline.ts`:** síntesis batch de stems por turno (24) mapeando `voiceProfileId` → `voices.json`. Motor primario **edge-tts** (es-CL-LorenzoNeural/CatalinaNeural); **fallback automático a Windows SAPI** (Microsoft Sabina es-MX) con shift de pitch por ffmpeg para voces masculinas.
+  - ⚠️ **Trampa de red:** `edge-tts` devuelve 403 persistente en esta red (speech.platform.bing.com bloqueado) y `huggingface.co` devuelve 401 (kokoro-js instalado y descartado — sin acceso HF). La corrida completa usó SAPI; con red libre, edge-tts se auto-selecciona.
+- **`src/services/audio-mixer.ts`:** `computeTimeline()` coloca stems con entrada adelantada de interrupciones (`isInterruption` → inicia 1.5s antes del fin del turno previo), marca ducking (volumen 40% en el solapamiento), exporta `audio_timeline.json` y mezcla master WAV vía ffmpeg filter_complex (`adelay` + `volume eval=frame` + `amix normalize=0`) con **gong de apertura por bloque** (aevalsrc, 392Hz).
+- **`src/cli/render-audio.ts`:** end-to-end stems + timeline + master. **`src/cli/render-video.ts`:** frames SVG→PNG por turno (VideoComposer de Antigravity) vía sharp, cortes sincronizados al timeline (30 intervalos con solape de interrupciones), concat ffmpeg → mux con master → `output/episode_1080p.mp4`.
+- **Deps agregadas:** `edge-tts`, `sharp`, `ffmpeg-static`, `ffprobe-static` (binarios embebidos, sin ffmpeg del sistema).
+- **Verificado:** `npm run audio` → 24 stems, 6 duckings, master 347s. `npm run video` → **episode_1080p.mp4** 1920x1080@30fps h264+aac, 5m47s, 4.4MB. Build OK.
+- **Scripts npm:** `audio` y `video`.
+
+### Decidido
+- Motor TTS con conmutación automática: edge-tts (calidad neural es-CL) → SAPI (offline garantizado). Se prefieren voces es-CL cuando haya red.
+- Los frames del video son estáticos por turno (ponytail: la reactividad audio→boca real se delega a una mejora futura con avatares animados).
+
+### Bloqueantes / pendientes
+- **Commit/push pendientes** (no solicitado explícitamente): tts-pipeline, audio-mixer, render-audio, render-video, package.json, package-lock, output/ (o solo stems+timeline+mp4 a criterio), tasks.md, HANDOFF, README.
+- Con red libre: re-correr `npm run audio` para stems es-CL neurales (borrar `output/audio/stems/*.mp3` primero).
+- **Handoff de salida:** todo lo de la propuesta 003 completado → corresponde **archivar el cambio** (`/opsx-archive`) y pasar a optimización de avatares reactivos/animación (Antigravity para diseño) o validación FSM (Codex).
+
+---
+
 ## Sesión: 2026-08-16 (5ª) - Lanzamiento de Fase 3: Pipeline de Audio TTS & Renderizador de Estudio TV
 
 ### Objetivo

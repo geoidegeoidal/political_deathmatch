@@ -7,32 +7,6 @@ export interface OrchestratorOptions {
   maxTension?: number;
 }
 
-/** Locutor de los comerciales de televentas (no participa del debate). */
-const LOCUTOR: PersonaProfile = {
-  id: 'locutor_televentas',
-  name: 'Locutor de Televentas',
-  alias: 'La Voz de la Oferta',
-  role: 'PANELIST',
-  tier: 'COMBATIVE_EXTREME',
-  archetype: 'Vendedor de Infomercial de Televentas Nocturna',
-  ideology: 'El consumo lo arregla todo',
-  tone: 'Acelerado, entusiasmado, estridente, imperativo',
-  aggressiveness: 9,
-  catchphrases: ['¡LLAME YA!', '¡PERO ESPERE, HAY MÁS!'],
-  triggers: [],
-  avatarAssetId: 'avatar_locutor',
-  voiceProfileId: 'voice_es_cl_locutor'
-};
-
-const DYSTOPIAN_PRODUCTS = [
-  'Sirena Personal Ciudadano 3000: la alarma que le avisa al vecindario que lo están robando',
-  'App VigilanteVecino: usted vigila a su vecino y su vecino lo vigila a usted, por el bien de todos',
-  'Cápsula de Silencio Comunitario: su propio refugio de sonido para no escuchar los gritos de la calle',
-  'Muro de Emergencia Rápida: el muro privado que se arma solo en su esquina en menos de 10 minutos',
-  'Ración Nutritiva del Estado: la caja de comida oficial con sabor a futuro',
-  'Bono Digital Social: el saldo que el Estado le regala por portarse bien, canjeable en productos del propio Estado'
-];
-
 export class DebateOrchestrator {
   private moderator: PersonaProfile;
   private panelists: PersonaProfile[];
@@ -62,7 +36,7 @@ export class DebateOrchestrator {
 
     for (const block of agenda.blocks) {
       console.log(`\n📺 [BLOQUE ${block.blockNumber}] ${block.topic} (${block.category})`);
-      this.currentTension = 55; // Reset de tensión base por bloque (estudio al rojo vivo desde el inicio)
+      this.currentTension = 68; // Reset de tensión base por bloque (estudio al rojo vivo desde el inicio)
 
       // 1. INTRO_BLOCK: Moderador presenta el tema y lee el cintillo
       const introTurn = this.createModeratorIntroTurn(turnCounter++, block);
@@ -82,13 +56,9 @@ export class DebateOrchestrator {
       turns.push(...blockTurns);
       turnCounter += blockTurns.length;
 
-      // 4. MODERATOR_CUT / BLOCK_SUMMARY
+      // 4. MODERATOR_CUT / BLOCK_SUMMARY (sin comerciales: se fluye al siguiente bloque)
       const cutTurn = this.createModeratorSummaryTurn(turnCounter++, block);
       turns.push(cutTurn);
-
-      // 4b. COMERCIAL: infomercial cómico de producto distópico (voz de televentas)
-      const commercialTurn = await this.generateCommercial(turnCounter++, block.blockNumber);
-      turns.push(commercialTurn);
     }
 
     // 5. DUELO FINAL: dos panelistas aleatorios se interpelan con preguntas filosas
@@ -299,7 +269,12 @@ Respondé ÚNICAMENTE con el texto del cierre, sin comillas ni prefijos.`;
   }
 
   private createModeratorIntroTurn(turnId: number, block: DebateBlock): DebateTurn {
-    const text = `¡Atención, atención, Chile y el mundo! ¡Estamos EN VIVO y esto va a arder en pantalla! Entramos al bloque ${block.blockNumber}. ¡Cintillo urgente ya mismo, control! "${block.headlineGC}". Nos vamos a la yugular con ${block.topic}. Que nadie se mueva, que aquí no hay censura, ¡esto recién empieza!`;
+    const variants = [
+      (b: DebateBlock) => `¡Atención, atención, Chile y el mundo! ¡Estamos EN VIVO y esto va a arder en pantalla! Entramos al bloque ${b.blockNumber}. ¡Cintillo urgente ya mismo, control! "${b.headlineGC}". Nos vamos a la yugular con ${b.topic}. Que nadie se mueva, que aquí no hay censura, ¡esto recién empieza!`,
+      (b: DebateBlock) => `¡Alto ahí, país, que llegó lo que estabas esperando! Bloque ${b.blockNumber} en pantalla. ¡Cintillo urgente ya mismo, control! "${b.headlineGC}". Vamos con ${b.topic}, y les advierto: la mesa está que arde. ¡Esto es Political Deathmatch y aquí nadie se guarda nada!`,
+      (b: DebateBlock) => `¡Se prende la tele, se prende el país! Bloque ${b.blockNumber}: ${b.topic}. ¡Cintillo urgente ya mismo, control! "${b.headlineGC}". Sin filtros, sin anestesia y sin contemplaciones. ¡Atención, que esto no se va a poder ver sin indignarse!`
+    ];
+    const text = variants[(block.blockNumber - 1) % variants.length](block);
     return {
       turnId,
       blockNumber: block.blockNumber,
@@ -384,58 +359,20 @@ Respondé ÚNICAMENTE con el texto de la apertura, sin comillas ni prefijos.`;
     };
   }
 
-  /**
-   * Genera un comercial cómico de producto distópico con voz de infomercial de televentas.
-   */
-  private async generateCommercial(turnId: number, blockNumber: number): Promise<DebateTurn> {
-    const product = DYSTOPIAN_PRODUCTS[Math.floor(Math.random() * DYSTOPIAN_PRODUCTS.length)];
-
-    const prompt = `${buildPersonaSystemPrompt(LOCUTOR)}
-
-INSTRUCCIÓN: inventa un COMERCIAL CÓMICO de 4 a 7 oraciones para un producto distópico.
-PRODUCTO DE ESTA NOCHE: ${product}.
-
-ESTILO INFOMERCIAL DE TELEVENTAS:
-- Entusiasmo exagerado, acelerado, imperativo ("¡LLAME YA!", "¡PERO ESPERE, HAY MÁS!", "¡POR SOLO UNA CUOTA MENSUAL!").
-- Sátira de la realidad chilena: alude a la inseguridad, el costo de la vida, el Estado, las AFP o el vecindario con humor negro.
-- Describí el "beneficio" del producto como si fuera la gran solución del siglo.
-- Cerrá con una oferta ridícula y la urgencia de comprar.
-
-Respondé ÚNICAMENTE con el texto del comercial, sin comillas ni prefijos.`;
-
-    let speechText = '';
-    try {
-      const response = await completeText(prompt, { temperature: 0.95 });
-      speechText = this.extractPlainText(response);
-    } catch {
-      speechText = '';
-    }
-    if (!speechText) {
-      speechText = `¡Atención, atención, país! ¿Cansado de que le roben en la esquina? ¡Sirena Personal Ciudadano 3000! ¡Un botón y todo el vecindario sabe que lo están asaltando! ¡Por solo tres cuotas, sin intereses, y si llama ahora, le regalamos el silbato de emergencia! ¡LLAME YA, LA OFERTA TERMINA ESTA NOCHE!`;
-    }
-
-    return {
-      turnId,
-      blockNumber,
-      speakerId: LOCUTOR.id,
-      speakerName: LOCUTOR.name,
-      isInterruption: false,
-      emotion: 'TALKING',
-      speechText,
-      cameraCue: 'SPEAKER_FOCUS',
-      tensionAfterTurn: 40,
-      estimatedDurationSec: this.estimateDuration(speechText)
-    };
-  }
-
-  private createModeratorBajadaTurn(turnId: number, block: DebateBlock): DebateTurn {    const facts = block.factsSummary ? block.factsSummary.trim().replace(/\.\s*$/, '') : '';
+  private createModeratorBajadaTurn(turnId: number, block: DebateBlock): DebateTurn {
+    const facts = block.factsSummary ? block.factsSummary.trim().replace(/\.\s*$/, '') : '';
     const contexto = block.contextoHistorico
       ? ` Para los que vienen llegando: ${block.contextoHistorico.trim().replace(/\.\s*$/, '')}.`
       : '';
     const climax = block.climaxIdea
       ? ` Y la pregunta que tiene al país entero mordiéndose las uñas: ${block.climaxIdea.trim()}`
       : '';
-    const text = `¡Muy bien, muy bien! Antes de que estalle la discusión, la BAJADA DE NOTICIAS de la semana para los que vienen llegando: ${facts}.${contexto}${climax} ¡Eso es lo que está pasando, y de esto vamos a hablar con todo, sin anestesia!`;
+    const variants = [
+      (b: DebateBlock) => `¡Muy bien! Antes de que estalle la discusión, la BAJADA DE NOTICIAS de la semana: ${facts}.${contexto}${climax} ¡Eso es lo que está pasando, y de esto vamos a hablar con todo!`,
+      (b: DebateBlock) => `¡Escuchen esto, porque no es cualquier cosa! Lo que pasó esta semana, en crudo: ${facts}.${contexto}${climax} ¡Y esto es lo que vamos a desmenuzar ahora mismo, sin compasión!`,
+      (b: DebateBlock) => `¡Tomen nota, país! Los hechos de la semana: ${facts}.${contexto}${climax} ¡De eso vamos a hablar, y aquí nadie se va a hacer el leso!`
+    ];
+    const text = variants[(block.blockNumber - 1) % variants.length](block);
     return {
       turnId,
       blockNumber: block.blockNumber,
@@ -451,8 +388,13 @@ Respondé ÚNICAMENTE con el texto del comercial, sin comillas ni prefijos.`;
   }
 
   private createModeratorQuestionTurn(turnId: number, block: DebateBlock, target: PersonaProfile): DebateTurn {
-    const text = `${target.name}, se lo pregunto directo, sin anestesia y sin vueltas: ${block.moderatorTriggerQuestion} ¡Y no me venga con evasivas, que el país entero está mirando!`;
-    this.currentTension += 10;
+    const variants = [
+      (b: DebateBlock, t: PersonaProfile) => `${t.name}, se lo pregunto directo, sin anestesia y sin vueltas: ${b.moderatorTriggerQuestion} ¡Y no me venga con evasivas, que el país entero está mirando!`,
+      (b: DebateBlock, t: PersonaProfile) => `${t.name}, le toca el turno y le toca duro: ${b.moderatorTriggerQuestion} ¡Responda claro, que aquí no hay guion ni notas!`,
+      (b: DebateBlock, t: PersonaProfile) => `${t.name}, usted que es de lengua larga: ${b.moderatorTriggerQuestion} ¡Y cuidado con los rodeos, que a mí no me la hacen!`
+    ];
+    const text = variants[(block.blockNumber - 1) % variants.length](block, target);
+    this.currentTension += 15;
     return {
       turnId,
       blockNumber: block.blockNumber,
@@ -478,15 +420,22 @@ Respondé ÚNICAMENTE con el texto del comercial, sin comillas ni prefijos.`;
     let currentSpeaker = initialSpeaker;
     let targetOpponent = this.panelists.find(p => p.id !== currentSpeaker.id) || this.panelists[1];
 
-    const rounds = 3; // 3 intercambios por bloque
+    const rounds = 4; // 4 intercambios por bloque: más fuego cruzado
 
     for (let r = 0; r < rounds; r++) {
       const turnId = startTurnId + crossfireTurns.length;
       const historySnippet = previousTurns.concat(crossfireTurns).slice(-3).map(t => `${t.speakerName}: "${t.speechText}"`).join('\n');
 
-      const isInterruption = this.currentTension >= 75 && r > 0;
+      const isInterruption = this.currentTension >= 70 && r > 0;
       const turn = await this.generateSpeakerTurn(turnId, block, currentSpeaker, targetOpponent, historySnippet, isInterruption);
       crossfireTurns.push(turn);
+
+      // El animador llama a la calma si el tono se desmadra (estilo Sin Filtros)
+      if (this.currentTension >= 88 && r < rounds - 1) {
+        const calmTurn = this.createModeratorCalmTurn(turnId + 1, block);
+        crossfireTurns.push(calmTurn);
+        this.currentTension = calmTurn.tensionAfterTurn;
+      }
 
       // Alternar adversarios
       const nextOpponent = currentSpeaker;
@@ -553,7 +502,12 @@ Respondé ÚNICAMENTE con el texto del comercial, sin comillas ni prefijos.`;
   }
 
   private createModeratorSummaryTurn(turnId: number, block: DebateBlock): DebateTurn {
-    const text = `¡YA BASTA! ¡Corten, corten, corten! ¡Se acabó el tiempo de este bloque, pero esto no termina aquí! Esto fue ${block.topic} y el estudio quedó al rojo vivo. ¡Vamos a una pausa breve, publicidad, y volvemos con MÁS debate sin filtros, que esto se pone cada vez más bueno! ¡No se vayan!`;
+    const variants = [
+      (b: DebateBlock) => `¡YA BASTA! ¡Corten, corten, corten! ¡Se acabó el tiempo de este bloque, pero esto no termina aquí! ${b.topic} dejó el estudio al rojo vivo. ¡Seguimos de inmediato con más debate sin filtros, que esto se pone cada vez más bueno!`,
+      (b: DebateBlock) => `¡Basta, basta, basta! ¡Control, cámara al estudio! Tiempo cumplido para este bloque. La pelea por ${b.topic} sigue y nadie se va a quedar tranquilo. ¡Lo que viene promete y mucho!`,
+      (b: DebateBlock) => `¡Paren todo, paren todo! ¡Se nos acabó el reloj para este bloque, pero la mecha sigue encendida! ${b.topic} no se quedó aquí. ¡Al siguiente tema, que esto recién se pone bueno!`
+    ];
+    const text = variants[(block.blockNumber - 1) % variants.length](block);
     return {
       turnId,
       blockNumber: block.blockNumber,
@@ -564,6 +518,30 @@ Respondé ÚNICAMENTE con el texto del comercial, sin comillas ni prefijos.`;
       speechText: text,
       cameraCue: 'WIDE_PANEL',
       tensionAfterTurn: 40,
+      estimatedDurationSec: this.estimateDuration(text)
+    };
+  }
+
+  /**
+   * El animador llama a la calma cuando el tono se desmadra (estilo Sin Filtros).
+   */
+  private createModeratorCalmTurn(turnId: number, block: DebateBlock): DebateTurn {
+    const variants = [
+      `¡Ya, ya, ya! ¡Paren, paren, paren! ¡Cálmense los dos, que esto es EN VIVO, carajo! Respiren... bien. Ahora sí, sigan con su pelea, pero con un poco de elegancia... o como puedan, ¡pero sigan!`,
+      `¡Momento, momento, momento! ¡Se me está descontrolando el estudio! ¡Basta de gritos, que el país los está viendo! Tranquilos, tranquilos... ¡listo, ahora sí, continúen nomás, que esto está quedando buenísimo!`,
+      `¡Oigan, oigan, oigan! ¡Cálmense, cálmense! ¡Aquí no se van a agarrar a combos, que esto es tele, no cancha! Respiren hondo... ¡y sigan con la discusión, que el rating está por las nubes!`
+    ];
+    const text = variants[Math.floor(Math.random() * variants.length)];
+    return {
+      turnId,
+      blockNumber: block.blockNumber,
+      speakerId: this.moderator.id,
+      speakerName: this.moderator.name,
+      isInterruption: true,
+      emotion: 'OUTRAGED',
+      speechText: text,
+      cameraCue: 'WIDE_PANEL',
+      tensionAfterTurn: Math.max(40, this.currentTension - 15),
       estimatedDurationSec: this.estimateDuration(text)
     };
   }

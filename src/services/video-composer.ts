@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'fs';
+import path from 'path';
 import { VideoFrameState, VideoRenderConfig } from '../types/media.js';
 import { PersonaProfile } from '../types/debate.js';
 
@@ -14,16 +16,36 @@ export const DEFAULT_RENDER_CONFIG: VideoRenderConfig = {
   outputDir: './output/video'
 };
 
+export const BRAND_TAGLINE = 'EL PRIMER PODCAST POLÍTICO SIN CENSURA CON IA';
+
+const ASSETS_ROOT = path.join(process.cwd(), 'src', 'assets');
+
 /**
  * Generador de Layouts Visuales y Compositor de Estudio de Televisión (1080p).
+ * Usa retratos y fondos del catálogo persistente (src/assets) con degradación
+ * elegante: si falta un asset, cae al placeholder/emoji.
  */
 export class VideoComposer {
   private config: VideoRenderConfig;
   private personasMap: Map<string, PersonaProfile>;
+  private assetCache = new Map<string, string | undefined>();
 
   constructor(personas: PersonaProfile[], config: Partial<VideoRenderConfig> = {}) {
     this.config = { ...DEFAULT_RENDER_CONFIG, ...config };
     this.personasMap = new Map(personas.map(p => [p.id, p]));
+  }
+
+  /** Carga un asset PNG como data URI (cacheado). Undefined si no existe. */
+  private getAssetDataUri(kind: 'avatar' | 'background', name: string): string | undefined {
+    const key = `${kind}:${name}`;
+    if (this.assetCache.has(key)) return this.assetCache.get(key);
+    const file = path.join(ASSETS_ROOT, kind === 'avatar' ? 'avatars' : 'backgrounds', `${name}.png`);
+    let uri: string | undefined;
+    if (existsSync(file)) {
+      uri = `data:image/png;base64,${readFileSync(file).toString('base64')}`;
+    }
+    this.assetCache.set(key, uri);
+    return uri;
   }
 
   /**
@@ -36,6 +58,12 @@ export class VideoComposer {
     const speakerName = stripNickname(speaker?.name || state.speakerName);
     const opponentName = opponent ? stripNickname(opponent.name) : '';
     const speakerAlias = '';
+
+    const backgroundUri =
+      this.getAssetDataUri('background', `${state.cameraCue}_${(state.blockNumber % 3) + 1}`) ||
+      this.getAssetDataUri('background', state.cameraCue);
+    const speakerUri = this.getAssetDataUri('avatar', state.activeSpeakerId);
+    const opponentUri = state.targetSpeakerId ? this.getAssetDataUri('avatar', state.targetSpeakerId) : undefined;
 
     return `
 <svg width="${this.config.width}" height="${this.config.height}" viewBox="0 0 ${this.config.width} ${this.config.height}" xmlns="http://www.w3.org/2000/svg">
@@ -60,8 +88,10 @@ export class VideoComposer {
     </linearGradient>
   </defs>
 
-  <!-- 1. Fondo de Estudio -->
-  <rect width="1920" height="1080" fill="url(#bgGrad)" />
+  <!-- 1. Fondo de Estudio (asset persistente o gradiente de fallback) -->
+  ${backgroundUri
+    ? `<image href="${backgroundUri}" x="0" y="0" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" />`
+    : `<rect width="1920" height="1080" fill="url(#bgGrad)" />`}
   
   <!-- Luces de Estudio / Focos -->
   <circle cx="960" cy="200" r="500" fill="#3B82F6" opacity="0.08" />
@@ -70,8 +100,11 @@ export class VideoComposer {
 
   <!-- 2. Header / Top Bar -->
   <rect x="0" y="0" width="1920" height="90" fill="#000000" opacity="0.75" />
-  <text x="60" y="58" font-family="${this.config.fontFamily}" font-size="32" font-weight="900" fill="#FFFFFF" letter-spacing="2">
+  <text x="60" y="42" font-family="${this.config.fontFamily}" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="2">
     POLITICAL DEATHMATCH <tspan fill="#EF4444">TV</tspan>
+  </text>
+  <text x="60" y="70" font-family="${this.config.fontFamily}" font-size="13" font-weight="600" fill="#FACC15" letter-spacing="1">
+    ${BRAND_TAGLINE}
   </text>
   
   <rect x="520" y="24" width="140" height="42" rx="6" fill="#DC2626" />
@@ -83,7 +116,7 @@ export class VideoComposer {
   ${this.renderTensionMeterSvg(state.tensionScore)}
 
   <!-- 3. Escenario Principal según Camera Cue -->
-  ${this.renderMainStageSvg(state, speaker, opponent)}
+  ${this.renderMainStageSvg(state, speaker, opponent, speakerUri, opponentUri)}
 
   <!-- 4. Generador de Caracteres (GC) / Cintillo Inferior -->
   ${this.renderLowerThirdsSvg(state, speakerName, speakerAlias)}
@@ -111,7 +144,13 @@ export class VideoComposer {
     `;
   }
 
-  private renderMainStageSvg(state: VideoFrameState, speaker?: PersonaProfile, opponent?: PersonaProfile): string {
+  private renderMainStageSvg(
+    state: VideoFrameState,
+    speaker?: PersonaProfile,
+    opponent?: PersonaProfile,
+    speakerUri?: string,
+    opponentUri?: string
+  ): string {
     const speakerName = stripNickname(speaker?.name || state.speakerName);
     const opponentName = opponent ? stripNickname(opponent.name) : '';
     if (state.cameraCue === 'SPLIT_SCREEN_VERSUS' && opponent) {
@@ -120,7 +159,10 @@ export class VideoComposer {
       <!-- Panel Izquierdo: Orador Activo -->
       <g transform="translate(100, 140)">
         <rect width="820" height="640" rx="16" fill="#1E293B" stroke="#DC2626" stroke-width="4" />
-        <text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">🗣️</text>
+        ${speakerUri
+          ? `<clipPath id="clipLeft"><rect x="0" y="0" width="820" height="640" rx="16" /></clipPath>
+             <image href="${speakerUri}" x="0" y="0" width="820" height="640" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipLeft)" />`
+          : `<text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">🗣️</text>`}
         <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
         <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#FFFFFF" text-anchor="middle">
           ${speakerName}
@@ -140,11 +182,61 @@ export class VideoComposer {
       <!-- Panel Derecho: Oponente Interpelado -->
       <g transform="translate(1000, 140)">
         <rect width="820" height="640" rx="16" fill="#0F172A" stroke="#475569" stroke-width="3" />
-        <text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">😠</text>
+        ${opponentUri
+          ? `<clipPath id="clipRight"><rect x="0" y="0" width="820" height="640" rx="16" /></clipPath>
+             <image href="${opponentUri}" x="0" y="0" width="820" height="640" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipRight)" />`
+          : `<text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">😠</text>`}
         <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
         <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#94A3B8" text-anchor="middle">
           ${opponentName}
         </text>
+      </g>
+      `;
+    }
+
+    // WIDE_PANEL (Plano General: panelista activo + fila de mini-avatares del panel)
+    if (state.cameraCue === 'WIDE_PANEL') {
+      const panelUri =
+        this.getAssetDataUri('avatar', `${state.activeSpeakerId}_PANEL`) || speakerUri;
+      const panelists = [...this.personasMap.values()]
+        .filter(p => p.role === 'PANELIST')
+        .slice(0, 6);
+      return `
+      <!-- WIDE_PANEL -->
+      <g transform="translate(100, 140)">
+        <!-- Panelista activo en plano medio (asset PANEL o busto) -->
+        <rect x="0" y="0" width="640" height="660" rx="20" fill="#0F172A" stroke="#FACC15" stroke-width="4" />
+        ${panelUri
+          ? `<clipPath id="clipPanel"><rect x="0" y="0" width="640" height="660" rx="20" /></clipPath>
+             <image href="${panelUri}" x="0" y="0" width="640" height="660" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipPanel)" />`
+          : `<text x="320" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">${this.getEmotionEmoji(state.emotion)}</text>`}
+        <rect x="16" y="600" width="608" height="46" rx="8" fill="#000000" opacity="0.8" />
+        <text x="320" y="630" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15" text-anchor="middle">
+          ${truncateText(speakerName.toUpperCase(), 34)}
+        </text>
+      </g>
+
+      <!-- Fila del panel: mini-avatares -->
+      <g transform="translate(800, 160)">
+        <text x="0" y="30" font-family="${this.config.fontFamily}" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="2">
+          EL PANEL
+        </text>
+        ${panelists.map((p, i) => {
+          const uri = this.getAssetDataUri('avatar', p.id);
+          const active = p.id === state.activeSpeakerId;
+          const cx = 40 + i * 165;
+          return `
+          <g transform="translate(${cx - 60}, 70)">
+            <circle cx="60" cy="60" r="58" fill="#1E293B" stroke="${active ? '#FACC15' : '#475569'}" stroke-width="${active ? 5 : 3}" />
+            ${uri
+              ? `<clipPath id="clipMini${i}"><circle cx="60" cy="60" r="52" /></clipPath>
+                 <image href="${uri}" x="8" y="8" width="104" height="104" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipMini${i})" />`
+              : `<text x="60" y="75" font-family="${this.config.fontFamily}" font-size="44" text-anchor="middle">🎙️</text>`}
+            <text x="60" y="145" font-family="${this.config.fontFamily}" font-size="14" font-weight="700" fill="${active ? '#FACC15' : '#CBD5E1'}" text-anchor="middle">
+              ${truncateText(stripNickname(p.name).toUpperCase(), 15)}
+            </text>
+          </g>`;
+        }).join('')}
       </g>
       `;
     }
@@ -155,11 +247,15 @@ export class VideoComposer {
     <g transform="translate(560, 130)">
       <rect width="800" height="660" rx="24" fill="#1E293B" stroke="#3B82F6" stroke-width="4" />
       
-      <!-- Avatar Placeholder con Emoción -->
-      <circle cx="400" cy="300" r="160" fill="#0F172A" stroke="#60A5FA" stroke-width="6" />
-      <text x="400" y="350" font-family="${this.config.fontFamily}" font-size="140" text-anchor="middle">
-        ${this.getEmotionEmoji(state.emotion)}
-      </text>
+      <!-- Avatar (retrato persistente en clip circular o placeholder con emoción) -->
+      ${speakerUri
+        ? `<clipPath id="clipSpeaker"><circle cx="400" cy="300" r="160" /></clipPath>
+           <image href="${speakerUri}" x="240" y="140" width="320" height="320" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipSpeaker)" />
+           <circle cx="400" cy="300" r="160" fill="none" stroke="#60A5FA" stroke-width="6" />`
+        : `<circle cx="400" cy="300" r="160" fill="#0F172A" stroke="#60A5FA" stroke-width="6" />
+           <text x="400" y="350" font-family="${this.config.fontFamily}" font-size="140" text-anchor="middle">
+             ${this.getEmotionEmoji(state.emotion)}
+           </text>`}
 
       <!-- Badge de Emoción -->
       <rect x="275" y="490" width="250" height="44" rx="22" fill="#0284C7" />
@@ -171,21 +267,28 @@ export class VideoComposer {
   }
 
   private renderLowerThirdsSvg(state: VideoFrameState, name: string, alias: string): string {
+    const headline = state.headlineGC.toUpperCase();
+    const lines = wrapHeadline(headline, 46).slice(0, 2);
+    const fontSize = headline.length > 90 ? 26 : headline.length > 60 ? 30 : 34;
+    const firstY = lines.length === 1 ? 72 : 52;
+    const lineDelta = 40;
+    const displayName = truncateText(name.toUpperCase(), 28);
     return `
     <!-- GC / LOWER THIRDS -->
     <g transform="translate(100, 810)">
       <!-- Barra Principal del Titular (Rojo Intenso) -->
       <rect x="0" y="0" width="1720" height="110" rx="10" fill="url(#gcGrad)" stroke="#FEF08A" stroke-width="2" />
       
-      <!-- Titular GC -->
-      <text x="40" y="70" font-family="${this.config.fontFamily}" font-size="34" font-weight="900" fill="#FFFFFF" letter-spacing="1">
-        ${state.headlineGC.toUpperCase()}
-      </text>
+      <!-- Titular GC (envuelto en hasta 2 líneas, sin desbordar) -->
+      ${lines.map((line, i) => `
+      <text x="40" y="${firstY + i * lineDelta}" font-family="${this.config.fontFamily}" font-size="${fontSize}" font-weight="900" fill="#FFFFFF" letter-spacing="1">
+        ${line}
+      </text>`).join('')}
 
       <!-- Caja de Identificación del Orador (Negro/Dorado) -->
-      <rect x="0" y="-56" width="620" height="56" rx="6" fill="#09090B" stroke="#DC2626" stroke-width="2" />
-      <text x="24" y="-18" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15">
-        ${name.toUpperCase()}${alias ? ` <tspan font-size="18" font-weight="500" fill="#E2E8F0">| ${alias}</tspan>` : ''}
+      <rect x="0" y="-56" width="560" height="56" rx="6" fill="#09090B" stroke="#DC2626" stroke-width="2" />
+      <text x="24" y="-18" font-family="${this.config.fontFamily}" font-size="22" font-weight="800" fill="#FACC15">
+        ${displayName}${alias ? ` <tspan font-size="16" font-weight="500" fill="#E2E8F0">| ${truncateText(alias, 20)}</tspan>` : ''}
       </text>
     </g>
     `;
@@ -201,7 +304,7 @@ export class VideoComposer {
         ÚLTIMO MINUTO
       </text>
       <text x="260" y="32" font-family="${this.config.fontFamily}" font-size="18" font-weight="600" fill="#FFFFFF">
-        POLITICAL DEATHMATCH: DEBATIENDO EN VIVO SOBRE "${topicTitle.toUpperCase()}" • EMISIÓN SIN FILTROS
+        ${BRAND_TAGLINE} • DEBATIENDO EN VIVO SOBRE "${truncateText(topicTitle.toUpperCase(), 70)}" • EMISIÓN SIN FILTROS
       </text>
     </g>
     `;
@@ -227,4 +330,26 @@ export class VideoComposer {
 /** Quita los sobrenombres entre comillas del nombre para pantalla: 'Capitán Mauro "Cero Tolerancia" Sotomayor' -> 'Capitán Mauro Sotomayor'. */
 function stripNickname(name: string): string {
   return name.replace(/\s*"[^"]*"/g, '').trim();
+}
+
+/** Corta un texto con elipsis si excede maxChars. */
+function truncateText(text: string, maxChars: number): string {
+  return text.length > maxChars ? `${text.slice(0, maxChars - 1)}…` : text;
+}
+
+/** Envuelve un titular en líneas de hasta maxChars (corta en espacios). */
+function wrapHeadline(text: string, maxChars: number): string[] {
+  const words = text.split(/\s+/);
+  const lines: string[] = [];
+  let current = '';
+  for (const word of words) {
+    if (current && current.length + word.length + 1 > maxChars) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = current ? `${current} ${word}` : word;
+    }
+  }
+  if (current) lines.push(current);
+  return lines;
 }

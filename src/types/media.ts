@@ -9,6 +9,7 @@ export interface VoiceProfileConfig {
   rateOffset?: string; // e.g. "+10%", "-5%"
   pitchOffset?: string; // e.g. "+5Hz", "-10Hz"
   volumeOffset?: string;
+  openaiVoice?: string; // Timbre OpenAI (alloy, ash, ballad, coral, echo, fable, onyx, nova, sage, shimmer, verse)
   description: string;
 }
 

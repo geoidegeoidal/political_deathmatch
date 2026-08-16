@@ -30,6 +30,9 @@ export interface DebateBlock {
   factsSummary: string;
   contextoHistorico?: string; // Contexto político/histórico para profundidad del debate
   climaxIdea?: string; // Momento de mayor conflicto planificado del bloque
+  datosExplosivos?: string[]; // 2-3 datos/cifras escandalosos para subir la apuesta
+  viralHook?: string; // El momento de 10s diseñado para clips virales (quién dice qué, con qué cintillo)
+  confrontacion?: string; // Qué panelistas chocan y con qué acusación concreta
   moderatorTriggerQuestion: string;
   personaTriggers: Record<string, string>; // e.g. { karl_marx: "...", joven_incel: "..." }
 }

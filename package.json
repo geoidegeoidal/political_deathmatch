@@ -10,7 +10,8 @@
     "audio": "tsx src/cli/render-audio.ts",
     "video": "tsx src/cli/render-video.ts",
     "build": "tsc",
-    "test": "node --test dist/**/*.test.js"
+    "test": "node --test dist/**/*.test.js",
+    "assets": "tsx src/cli/generate-assets.ts"
   },
   "keywords": [
     "ai",

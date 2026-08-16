@@ -53,11 +53,14 @@ export async function generateWeeklyAgenda(
 
     if (!agenda) continue;
 
-    // Validación editorial: el programa es chileno -> mínimo 3 de 4 bloques CL
+    // Validación editorial: 4 bloques exactos y mínimo 3 chilenos
     const chileBlocks = (agenda.blocks || []).filter(b => b.region === 'CL').length;
-    if (agenda.blocks.length === 4 && chileBlocks < 3 && attempt < 4) {
-      console.warn(`[WARN] Pauta con solo ${chileBlocks}/4 bloques chilenos. Reintentando con feedback...`);
-      retryPrompt = `${prompt}\n\nERROR DE VALIDACIÓN EN TU RESPUESTA ANTERIOR (${chileBlocks}/4 bloques con region "CL"):\nEl programa es CHILENO. CORRIGE el JSON completo: reemplaza los bloques que no sean "CL" (excepto el internacional) por temas de POLÍTICA, SEGURIDAD, ECONOMÍA o SOCIEDAD DE CHILE presentes en la lista de noticias de la sección === CHILE ===. Mantén la estructura exacta. No repitas el mismo error.`;
+    if ((agenda.blocks.length !== 4 || chileBlocks < 3) && attempt < 4) {
+      const detail = agenda.blocks.length !== 4
+        ? `se esperaban EXACTAMENTE 4 bloques y hay ${agenda.blocks.length}`
+        : `solo ${chileBlocks}/4 bloques con region "CL"`;
+      console.warn(`[WARN] Validación editorial falló (${detail}). Reintentando con feedback...`);
+      retryPrompt = `${prompt}\n\nERROR DE VALIDACIÓN EN TU RESPUESTA ANTERIOR: ${detail}.\nCORRIGE el JSON completo: genera EXACTAMENTE 4 bloques, al menos 3 con region "CL" (el programa es CHILENO). Reemplaza bloques no-"CL" (excepto el internacional) por temas de POLÍTICA, SEGURIDAD, ECONOMÍA o SOCIEDAD DE CHILE presentes en la sección === CHILE === de las noticias. Mantén la estructura exacta con factsSummary, contextoHistorico, datosExplosivos, climaxIdea, viralHook, confrontacion y moderatorTriggerQuestion. No repitas el mismo error.`;
       continue;
     }
     break;

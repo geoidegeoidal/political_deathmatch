@@ -4,7 +4,7 @@ export function buildEditorialPrompt(articles: RawArticle[]): string {
   const byRegion = (r: string) =>
     articles
       .filter(a => a.region === r)
-      .slice(0, 45)
+      .slice(0, 60)
       .map((a, i) => `[${i + 1}] (${a.source}) ${a.title}\nResumen: ${a.summary}\n${a.contentSnippet ? `Detalle: ${a.contentSnippet}\n` : ''}`)
       .join('\n');
 
@@ -33,11 +33,16 @@ RESTRICCIÓN ESTRICTA DE REGIONES POR BLOQUE (obligatoria en el JSON):
 
 PROFUNDIDAD REQUERIDA POR BLOQUE (esto es lo más importante del episodio):
 - Elige SIEMPRE los temas con MÁS noticias y más cruces de fuentes de la semana. Un bloque sin 2-3 noticias de respaldo queda descartado.
-- "factsSummary": 4 a 6 oraciones con datos concretos: cifras, fechas, nombres de involucrados (realidad), declaraciones y la secuencia de los hechos. Nada genérico.
+- "factsSummary": 6 a 8 oraciones con datos concretos: cifras, fechas, nombres de involucrados (realidad), declaraciones textuales y la secuencia de los hechos. Nada genérico.
 - "contextoHistorico": 1 a 2 oraciones de contexto (qué pasó antes, por qué importa, qué está en juego).
+- "datosExplosivos": 2-3 datos o cifras escandalosos del tema (montos, porcentajes, comparaciones) listos para repetir en pantalla.
 - "climaxIdea": la pregunta o acusación que llevará el bloque al punto máximo de tensión (el momento para cintillo rojo y pisadas de palabra).
+- "viralHook": describe el momento de 10 segundos diseñado para ser clip viral en redes: qué panelista dice qué, contra quién, y el cintillo que debe aparecer. Debe ser cortable y autónomo.
+- "confrontacion": qué dos panelistas chocan en este bloque y con qué acusación concreta (ej: "Sotomayor acusa a Moncada de justificar el terrorismo; Moncada responde que Sotomayor es un sicario del Estado").
 - "moderatorTriggerQuestion": pregunta insidiosa, directa y provocadora, como la haría un conductor que quiere incendiar la mesa.
 - "personaTriggers": por cada personaje, UNA frase completa (2 oraciones) explicando el ángulo ideológico con el que atacará el tema, incluyendo qué diría de los hechos concretos.
+
+OBJETIVO DE VIRALIDAD: cada bloque debe contener al menos un momento "cortable" (pelea con acusación fuerte, dato escandaloso, contradicción expuesta). Si un tema no da para eso, no sirve.
 
 Tus panelistas son figuras con visiones extremas y doctrinarias ficticias:
 - Kaspar "Plusvalía" Mork (Comunismo ortodoxo ficcionalizado, ve toda noticia como lucha de clases)
@@ -69,9 +74,12 @@ Responde ÚNICAMENTE con un objeto JSON válido (sin markdown exterior, sin comi
       "topic": "Nombre conciso del tema",
       "region": "CL" | "LATAM" | "WORLD",
       "headlineGC": "TITULAR SENSACIONALISTA EN MAYÚSCULAS PARA EL CINTILLO DE TV (ej: ¡ESCÁNDALO TOTAL! ¿ALIENACIÓN O INFIDELIDAD DEL AÑO?)",
-      "factsSummary": "4-6 oraciones con datos, cifras, fechas y protagonistas reales de los hechos de la semana.",
+      "factsSummary": "6-8 oraciones con datos, cifras, fechas y protagonistas reales de los hechos de la semana.",
       "contextoHistorico": "1-2 oraciones de contexto: qué pasó antes, por qué importa, qué está en juego.",
+      "datosExplosivos": ["dato o cifra escandaloso 1", "dato 2", "dato 3"],
       "climaxIdea": "La acusación o pregunta que llevará el bloque al punto máximo de tensión.",
+      "viralHook": "Momento de 10 segundos cortable para redes: quién dice qué, contra quién, y el cintillo.",
+      "confrontacion": "Qué dos panelistas chocan y con qué acusación concreta.",
       "moderatorTriggerQuestion": "Pregunta insidiosa y provocadora del moderador para encender la mecha entre los panelistas.",
       "personaTriggers": {
         "kaspar_mork": "2 oraciones: ángulo de alienación/capital con datos del tema.",

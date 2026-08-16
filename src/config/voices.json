@@ -7,7 +7,8 @@
     "gender": "MALE",
     "rateOffset": "+8%",
     "pitchOffset": "+2Hz",
-    "description": "Conductor chileno de matinal/debate, enérgico, televisivo y rápido"
+    "description": "Conductor chileno de matinal/debate, enérgico, televisivo y rápido",
+    "openaiVoice": "echo"
   },
   {
     "voiceProfileId": "voice_es_cl_moncada",
@@ -17,7 +18,8 @@
     "gender": "MALE",
     "rateOffset": "+0%",
     "pitchOffset": "-4Hz",
-    "description": "Dirigente comunista poblacional chileno, combativo y apasionado"
+    "description": "Dirigente comunista poblacional chileno, combativo y apasionado",
+    "openaiVoice": "echo"
   },
   {
     "voiceProfileId": "voice_es_cl_sotomayor",
@@ -27,7 +29,8 @@
     "gender": "MALE",
     "rateOffset": "-2%",
     "pitchOffset": "-8Hz",
-    "description": "Ex-oficial de Carabineros chileno, marcial, grave y tajante"
+    "description": "Ex-oficial de Carabineros chileno, marcial, grave y tajante",
+    "openaiVoice": "onyx"
   },
   {
     "voiceProfileId": "voice_es_cl_economista",
@@ -37,7 +40,8 @@
     "gender": "MALE",
     "rateOffset": "-5%",
     "pitchOffset": "-2Hz",
-    "description": "Economista de Sanhattan chileno, sobrio, técnico y pausado"
+    "description": "Economista de Sanhattan chileno, sobrio, técnico y pausado",
+    "openaiVoice": "alloy"
   },
   {
     "voiceProfileId": "voice_es_cl_jurista",
@@ -47,7 +51,8 @@
     "gender": "MALE",
     "rateOffset": "-7%",
     "pitchOffset": "-5Hz",
-    "description": "Constitucionalista chileno solemne, formal y reflexivo"
+    "description": "Constitucionalista chileno solemne, formal y reflexivo",
+    "openaiVoice": "alloy"
   },
   {
     "voiceProfileId": "voice_es_cl_estadista",
@@ -57,7 +62,8 @@
     "gender": "MALE",
     "rateOffset": "-6%",
     "pitchOffset": "-7Hz",
-    "description": "Estadista concertacionista chileno veterano, voz pausada y reposada"
+    "description": "Estadista concertacionista chileno veterano, voz pausada y reposada",
+    "openaiVoice": "fable"
   },
   {
     "voiceProfileId": "voice_es_cl_sociologo",
@@ -67,7 +73,8 @@
     "gender": "MALE",
     "rateOffset": "-3%",
     "pitchOffset": "-1Hz",
-    "description": "Sociólogo chileno de Plaza Ñuñoa, intelectual y articulado"
+    "description": "Sociólogo chileno de Plaza Ñuñoa, intelectual y articulado",
+    "openaiVoice": "alloy"
   },
   {
     "voiceProfileId": "voice_es_cl_geopolitico",
@@ -77,7 +84,8 @@
     "gender": "MALE",
     "rateOffset": "-4%",
     "pitchOffset": "-4Hz",
-    "description": "Diplomático chileno de carrera, frío, analítico y formal"
+    "description": "Diplomático chileno de carrera, frío, analítico y formal",
+    "openaiVoice": "onyx"
   },
   {
     "voiceProfileId": "voice_es_cl_mork",
@@ -87,7 +95,8 @@
     "gender": "MALE",
     "rateOffset": "-6%",
     "pitchOffset": "-10Hz",
-    "description": "Sindicalista minero chileno histórico, voz ronca y potente"
+    "description": "Sindicalista minero chileno histórico, voz ronca y potente",
+    "openaiVoice": "onyx"
   },
   {
     "voiceProfileId": "voice_es_cl_ancap",
@@ -97,7 +106,8 @@
     "gender": "MALE",
     "rateOffset": "+14%",
     "pitchOffset": "+4Hz",
-    "description": "Joven libertario chileno de Las Condes, acelerado y estridente"
+    "description": "Joven libertario chileno de Las Condes, acelerado y estridente",
+    "openaiVoice": "fable"
   },
   {
     "voiceProfileId": "voice_es_cl_incel",
@@ -107,7 +117,8 @@
     "gender": "MALE",
     "rateOffset": "+9%",
     "pitchOffset": "+5Hz",
-    "description": "Gamer e incel chileno de Maipú, sarcástico y acelerado"
+    "description": "Gamer e incel chileno de Maipú, sarcástico y acelerado",
+    "openaiVoice": "ash"
   },
   {
     "voiceProfileId": "voice_es_cl_pastor",
@@ -117,7 +128,8 @@
     "gender": "MALE",
     "rateOffset": "+3%",
     "pitchOffset": "+3Hz",
-    "description": "Pastor evangélico chileno de periferia, teatral y vibrante"
+    "description": "Pastor evangélico chileno de periferia, teatral y vibrante",
+    "openaiVoice": "echo"
   },
   {
     "voiceProfileId": "voice_es_cl_nunoa",
@@ -127,7 +139,8 @@
     "gender": "FEMALE",
     "rateOffset": "+2%",
     "pitchOffset": "+3Hz",
-    "description": "Activista chilena de Plaza Ñuñoa, voz femenina con entonación de Ñuñoa"
+    "description": "Activista chilena de Plaza Ñuñoa, voz femenina con entonación de Ñuñoa",
+    "openaiVoice": "coral"
   },
   {
     "voiceProfileId": "voice_es_cl_politico",
@@ -137,7 +150,8 @@
     "gender": "MALE",
     "rateOffset": "+1%",
     "pitchOffset": "-2Hz",
-    "description": "Diputado populista chileno de matinal, tono meloso y paternalista"
+    "description": "Diputado populista chileno de matinal, tono meloso y paternalista",
+    "openaiVoice": "echo"
   },
   {
     "voiceProfileId": "voice_es_cl_militar",
@@ -147,7 +161,8 @@
     "gender": "MALE",
     "rateOffset": "-5%",
     "pitchOffset": "-12Hz",
-    "description": "Militar chileno en retiro, carrasposo, marcial y grave"
+    "description": "Militar chileno en retiro, carrasposo, marcial y grave",
+    "openaiVoice": "onyx"
   },
   {
     "voiceProfileId": "voice_es_cl_izquierda",
@@ -157,7 +172,8 @@
     "gender": "FEMALE",
     "rateOffset": "-2%",
     "pitchOffset": "-1Hz",
-    "description": "Catedrática economista, metódica, precisa y sobria"
+    "description": "Catedrática economista, metódica, precisa y sobria",
+    "openaiVoice": "sage"
   },
   {
     "voiceProfileId": "voice_es_cl_derecha",
@@ -167,7 +183,8 @@
     "gender": "MALE",
     "rateOffset": "-4%",
     "pitchOffset": "-3Hz",
-    "description": "Filósofo político, doctoral, irónico y reposado"
+    "description": "Filósofo político, doctoral, irónico y reposado",
+    "openaiVoice": "alloy"
   },
   {
     "voiceProfileId": "voice_es_cl_locutor",
@@ -177,6 +194,7 @@
     "gender": "MALE",
     "rateOffset": "+12%",
     "pitchOffset": "+4Hz",
-    "description": "Locutor de infomercial de televentas, acelerado, entusiasmado y estridente"
+    "description": "Locutor de infomercial de televentas, acelerado, entusiasmado y estridente",
+    "openaiVoice": "fable"
   }
 ]

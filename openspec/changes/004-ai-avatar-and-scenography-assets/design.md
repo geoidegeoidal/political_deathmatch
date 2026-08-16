@@ -18,10 +18,11 @@ Ver proposal.md (Why). El renderizador de la Fase 3 (`src/services/video-compose
 
 ## Decisions
 
-### 1. Motor de difusión: Ollama `bmad4t/flux.1-schnell` (cuantizado)
-- **Elección:** `ollama pull bmad4t/flux.1-schnell:q4_0` y llamadas HTTP a `POST /api/generate` con `images: []` de salida.
-- **Alternativas descartadas:** ComfyUI/A1111 (requieren checkpoints de HF/Civitai — bloqueados), SD 1.5/SDXL vía API local (instalación pesada), kokoro-js (bloqueado por HF).
-- **Racional:** mismo infraestructura que el runtime del debate (Ollama ya instalado y operativo en esta red); 12GB VRAM sobran para FLUX Q4 (~5GB). FLUX da calidad de retrato muy superior a SD 1.5.
+### 1. Motor de difusión: OpenAI `gpt-image-1` (API)
+- **Decisión (2026-08-16):** la generación local de imágenes fue descartada por infraestructura: Ollama 0.32 no soporta la arquitectura FLUX (falla validación GGUF), llama.cpp vía winget no incluye image-gen, y el checkpoint oficial FLUX.1-schnell (23.8GB bf16) excede la VRAM (12GB). Los fp8 de terceros en HF son repos sin confianza.
+- **Elección:** `POST /v1/images/generations` con `model: gpt-image-1`, `size: 1024x1024`, `quality: standard` (~$0.07-0.17/imagen; 20 assets ≈ $2-3 one-shot). Misma API y saldo que el TTS.
+- **Alternativas descartadas:** SDXL vía ModelScope (gratis pero calidad media y setup largo), placeholders SVG (sin impacto visual).
+- **Racional:** calidad necesaria para YouTube, costo trivial y único (los PNG se commitean), coherente con la decisión de voces OpenAI.
 
 ### 2. Formato de assets, estilo visual y prompt determinista
 - **Estilo decidido: caricatura satírica semi-realista** (NO fotorrealismo). Racional: el video es tipo podcast sin lipsync — un rostro fotorrealista congelado genera efecto uncanny; una caricatura estática se lee como intencional, refuerza el género satírico latino y el guardrail de parodias 100% ficticias.

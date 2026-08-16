@@ -194,6 +194,7 @@ const OPENAI_TTS_MODEL = 'gpt-4o-mini-tts';
 const OPENAI_TTS_URL = 'https://api.openai.com/v1/audio/speech';
 
 function openaiVoiceFor(persona: PersonaProfile, voice: VoiceProfileConfig): string {
+  if (voice.openaiVoice) return voice.openaiVoice;
   if (voice.gender === 'FEMALE') return 'nova';
   if (persona.aggressiveness >= 9) return 'onyx';
   if (persona.aggressiveness >= 7) return 'echo';
@@ -221,6 +222,10 @@ async function synthesizeWithOpenai(text: string, mp3Path: string, voice: VoiceP
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY no configurada.');
 
+  // Se sintetiza a un temporal y se post-procesa pitch/rate por personaje
+  // (los offsets de voices.json dan identidad física a cada voz).
+  const rawPath = mp3Path.replace(/\.mp3$/, '.openai_raw.mp3');
+
   const res = await fetch(OPENAI_TTS_URL, {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
@@ -240,7 +245,8 @@ async function synthesizeWithOpenai(text: string, mp3Path: string, voice: VoiceP
 
   const buf = Buffer.from(await res.arrayBuffer());
   if (!buf.length) throw new Error('OpenAI TTS devolvió audio vacío.');
-  await writeFile(mp3Path, buf);
+  await writeFile(rawPath, buf);
+  applyPitchAndRate(rawPath, mp3Path, voice);
 }
 
 /** Voz neural de Windows 11: rate nativo + pitch shift leve por ffmpeg. */

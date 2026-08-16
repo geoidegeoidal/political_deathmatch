@@ -367,10 +367,13 @@ Respondé ÚNICAMENTE con el texto de la apertura, sin comillas ni prefijos.`;
     const climax = block.climaxIdea
       ? ` Y la pregunta que tiene al país entero mordiéndose las uñas: ${block.climaxIdea.trim()}`
       : '';
+    const datos = block.datosExplosivos?.length
+      ? ` Y agárrense, porque los datos hacen explotar: ${block.datosExplosivos.map(d => d.trim().replace(/\.\s*$/, '')).join('; ')}.`
+      : '';
     const variants = [
-      (b: DebateBlock) => `¡Muy bien! Antes de que estalle la discusión, la BAJADA DE NOTICIAS de la semana: ${facts}.${contexto}${climax} ¡Eso es lo que está pasando, y de esto vamos a hablar con todo!`,
-      (b: DebateBlock) => `¡Escuchen esto, porque no es cualquier cosa! Lo que pasó esta semana, en crudo: ${facts}.${contexto}${climax} ¡Y esto es lo que vamos a desmenuzar ahora mismo, sin compasión!`,
-      (b: DebateBlock) => `¡Tomen nota, país! Los hechos de la semana: ${facts}.${contexto}${climax} ¡De eso vamos a hablar, y aquí nadie se va a hacer el leso!`
+      (b: DebateBlock) => `¡Muy bien! Antes de que estalle la discusión, la BAJADA DE NOTICIAS de la semana: ${facts}.${contexto}${datos}${climax} ¡Eso es lo que está pasando, y de esto vamos a hablar con todo!`,
+      (b: DebateBlock) => `¡Escuchen esto, porque no es cualquier cosa! Lo que pasó esta semana, en crudo: ${facts}.${contexto}${datos}${climax} ¡Y esto es lo que vamos a desmenuzar ahora mismo, sin compasión!`,
+      (b: DebateBlock) => `¡Tomen nota, país! Los hechos de la semana: ${facts}.${contexto}${datos}${climax} ¡De eso vamos a hablar, y aquí nadie se va a hacer el leso!`
     ];
     const text = variants[(block.blockNumber - 1) % variants.length](block);
     return {

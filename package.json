@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "pauta": "tsx src/cli/generate-pauta.ts",
+    "debate": "tsx src/cli/simulate-debate.ts",
     "build": "tsc",
     "test": "node --test dist/**/*.test.js"
   },

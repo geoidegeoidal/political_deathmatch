@@ -10,11 +10,10 @@ export interface LLMOptions {
 }
 
 /**
- * Cliente LLM unificado y resiliente (Gemini REST, OpenRouter, Ollama y Mock Fallback).
+ * Cliente LLM unificado y resiliente (Gemini REST y Mock Fallback).
  */
 export async function completeText(prompt: string, options: LLMOptions = {}): Promise<string> {
   const geminiKey = process.env.GEMINI_API_KEY;
-  const openRouterKey = process.env.OPENROUTER_API_KEY;
   const ollamaHost = process.env.OLLAMA_HOST || 'http://localhost:11434';
 
   // 1. Google Gemini API (Direct REST - Zero extra SDKs needed)
@@ -47,35 +46,33 @@ export async function completeText(prompt: string, options: LLMOptions = {}): Pr
     }
   }
 
-  // 2. OpenRouter API
-  if (openRouterKey) {
-    try {
-      const model = options.model || 'deepseek/deepseek-chat';
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${openRouterKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model,
-          messages: [{ role: 'user', content: prompt }],
-          temperature: options.temperature ?? 0.3
-        })
-      });
+  // 2. Ollama local (generación editorial sin costo)
+  try {
+    const res = await fetch(`${ollamaHost}/v1/chat/completions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: options.model || 'hf.co/HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced:Q4_K_M',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: options.temperature ?? 0.3,
+        stream: false
+      }),
+      signal: AbortSignal.timeout(180_000)
+    });
 
-      if (res.ok) {
-        const data: any = await res.json();
-        const text = data?.choices?.[0]?.message?.content;
-        if (text) return text;
-      }
-    } catch (err: any) {
-      console.warn(`[WARN] Fallo llamada a OpenRouter: ${err.message}`);
+    if (res.ok) {
+      const data: any = await res.json();
+      const text = data?.choices?.[0]?.message?.content;
+      if (text) return text;
+    } else {
+      console.warn(`[WARN] Ollama error (${res.status}): ${(await res.text()).slice(0, 200)}`);
     }
+  } catch (err: any) {
+    console.warn(`[WARN] Fallo llamada a Ollama: ${err.message}`);
   }
 
-  // 3. Fallback Heurístico Local si no hay API Key configurada
-  console.log('[INFO] Sin GEMINI_API_KEY ni OPENROUTER_API_KEY detectadas. Generando pauta con sintetizador heurístico local...');
+  // 3. Fallback Heurístico Local
+  console.log('[INFO] Sin GEMINI_API_KEY ni Ollama disponibles. Generando pauta con sintetizador heurístico local...');
   return generateHeuristicPautaMock();
 }
 

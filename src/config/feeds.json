@@ -1,0 +1,56 @@
+[
+  {
+    "id": "cooperativa-chile",
+    "name": "Cooperativa Chile",
+    "url": "https://cooperativa.cl/noticias/site/tax/port/all/rss____1.xml",
+    "region": "CL"
+  },
+  {
+    "id": "el-pais-chile",
+    "name": "El País Chile",
+    "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/chile/portada",
+    "region": "CL"
+  },
+  {
+    "id": "el-mostrador",
+    "name": "El Mostrador",
+    "url": "https://www.elmostrador.cl/destacado/feed/",
+    "region": "CL"
+  },
+  {
+    "id": "el-pais-america",
+    "name": "El País América",
+    "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada",
+    "region": "LATAM"
+  },
+  {
+    "id": "france24-espanol",
+    "name": "France 24 América Latina",
+    "url": "https://www.france24.com/es/am%C3%A9rica-latina/rss",
+    "region": "LATAM"
+  },
+  {
+    "id": "bbc-mundo",
+    "name": "BBC News Mundo",
+    "url": "https://feeds.bbci.co.uk/mundo/rss.xml",
+    "region": "WORLD"
+  },
+  {
+    "id": "dw-espanol",
+    "name": "Deutsche Welle Español",
+    "url": "https://rss.dw.com/rdf/rss-sp-all",
+    "region": "WORLD"
+  },
+  {
+    "id": "rt-espanol",
+    "name": "RT en Español",
+    "url": "https://actualidad.rt.com/rss",
+    "region": "WORLD"
+  },
+  {
+    "id": "france24-mundo",
+    "name": "France 24 Mundo",
+    "url": "https://www.france24.com/es/rss",
+    "region": "WORLD"
+  }
+]

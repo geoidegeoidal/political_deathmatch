@@ -1,0 +1,21 @@
+{
+  "name": "political-deathmatch",
+  "version": "0.1.0",
+  "description": "Plataforma de debate y simulación política automatizada con IA sin censura y formato televisivo",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "pauta": "tsx src/cli/generate-pauta.ts",
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "keywords": ["ai", "debate", "openspec", "rss", "sin-filtros", "politics"],
+  "author": "geoidegeoidal",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

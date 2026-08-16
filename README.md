@@ -142,6 +142,16 @@ El guion de producción se exporta a [`debate_transcript.json`](file:///c:/Users
 > ollama pull hf.co/HauhauCS/Gemma4-12B-QAT-Uncensored-HauhauCS-Balanced:Q4_K_M
 > ```
 
+### 5. Renderizar el Episodio (Audio + Video 1080p)
+Genera los stems de voz por turno, el timeline con ducking de interrupciones y el video final estilo estudio TV:
+
+```bash
+npm run audio   # stems .mp3 + audio_timeline.json + master_audio.wav
+npm run video   # episode_1080p.mp4 (1920x1080 @ 30fps, GC, cintillos y termómetro de tensión)
+```
+
+> **Motores de voz:** primario `edge-tts` (voces neurales es-CL); si la red bloquea el servicio, conmuta automáticamente al sintetizador del sistema (Windows SAPI es-MX) con ajuste de tono por ffmpeg.
+
 ---
 
 ## 🗺️ Roadmap de Desarrollo

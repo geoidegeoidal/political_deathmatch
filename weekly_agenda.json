@@ -1,67 +1,96 @@
 {
   "episodeId": "ep-semana-2026-08-16",
-  "theme": "¡ARDERÁ EL ESTUDIO! CRISIS DE SEGURIDAD, REFORMA POLÍTICA Y EL COLAPSO DEL ESTABLECIMIENTO",
+  "theme": "¡TENSIÓN EN CHILE! ¿QUIÉNES SON LOS VERDADEROS CULPABLES DEL CAOS HABITACIONAL?",
   "period": "Últimos 7 días (agosto de 2026)",
   "blocks": [
     {
       "blockNumber": 1,
-      "category": "SEGURIDAD",
-      "topic": "Crisis de Seguridad y Medidas de Excepción en Chile",
+      "category": "POLITICA",
+      "topic": "Crisis en la vivienda por hallazgos arqueológicos",
       "region": "CL",
-      "headlineGC": "¡ARDERÁ EL ESTUDIO! ¿ESTADO DE SITIO O DICTADURA DISFRAZADA?",
-      "factsSummary": "Durante los últimos 7 días se intensificó la presión parlamentaria por desplegar a las Fuerzas Armadas en zonas urbanas tras una seguidilla de crímenes de alto impacto.",
-      "moderatorTriggerQuestion": "¿Hasta cuándo esperamos para sacar a los militares a la calle con plenas facultades, o le tienen pánico a los organismos de derechos humanos?",
+      "headlineGC": "¡ESCÁNDALO HABITACIONAL! ¿LOS HALLAZGOS ARQUEOLÓGICOS ESTÁN SABOTEANDO NUESTRO FUTURO?",
+      "factsSummary": "El ministro de Vivienda, Iván Poduje, denunció que hallazgos arqueológicos han generado sobrecostos en proyectos de vivienda social, obligando al Estado a desembolsar 322.153,01 UF (aproximadamente 13.160 millones de pesos) entre 2021 y 2026. Este problema ha paralizado la política habitacional en Chile, afectando a miles de familias que esperan por una vivienda digna. La situación ha generado un debate intenso sobre cómo equilibrar la conservación del patrimonio con las necesidades habitacionales urgentes.",
+      "contextoHistorico": "La crisis de vivienda en Chile ha sido un tema candente desde hace años, pero la reciente normativa sobre protección del patrimonio ha complicado aún más la situación. Con elecciones a la vista, este tema podría convertirse en un punto crucial para la agenda política.",
+      "climaxIdea": "¿Es el gobierno realmente incapaz de gestionar el patrimonio arqueológico sin sacrificar el bienestar de la población?",
+      "moderatorTriggerQuestion": "¿Qué tan lejos estamos de una verdadera solución habitacional si seguimos poniendo el patrimonio por encima de la vida de las personas?",
       "personaTriggers": {
-        "kaspar_mork": "Denuncia que las FFAA y la policía son el brazo armado del capital para reprimir a la clase trabajadora.",
-        "brayan_cyberpunk": "Sostiene que la sociedad moderna está podrida por la falta de disciplina y pide mano dura sin 'corrección política'.",
-        "pastor_isaias_benavides": "Interpreta el desborde de violencia como castigo divino ante la pérdida de valores morales.",
-        "washington_chamorro": "Promete cárceles de máxima seguridad y penas del infierno para ganar votos fáciles en el matinal."
+        "kaspar_mork": "La crisis de vivienda es una clara manifestación de cómo el capitalismo prioriza el lucro sobre la vida humana. Los hallazgos arqueológicos son solo un pretexto para seguir ignorando la necesidad básica de vivienda para el pueblo.",
+        "brayan_cyberpunk": "La burocracia y la élite están jugando con las vidas de los chilenos, mientras la gente sufre en la calle. Es una burla que se hable de patrimonio cuando el verdadero patrimonio son las familias que quedan sin hogar.",
+        "pastor_isaias_benavides": "Dios está castigando a este país por su falta de atención a las necesidades más básicas de su gente. La avaricia de los políticos los ha llevado a olvidar que la verdadera riqueza está en cuidar a los más vulnerables.",
+        "dr_aurelio_vondergoltz": "Los costos de las viviendas no son solo un problema de hallazgos arqueológicos, sino de una gestión fiscal irresponsable. Es hora de que el gobierno asuma su responsabilidad y gestione adecuadamente los recursos.",
+        "washington_chamorro": "La gente necesita soluciones inmediatas, no más debates sobre patrimonio. ¡Es hora de que el gobierno escuche al pueblo y actúe!",
+        "capitan_sotomayor": "La mano dura es necesaria para asegurar que se cumplan las leyes y se protejan los derechos de los ciudadanos a tener un hogar. No podemos permitir que los delincuentes de la burocracia sigan impidiendo el progreso.",
+        "comandante_moncada": "Este es un claro ejemplo de cómo el imperialismo cultural está destruyendo nuestras raíces. Debemos proteger nuestro patrimonio, pero no a costa de la vida de nuestros compatriotas.",
+        "dra_astorga_vicuna": "La historia económica de Chile demuestra que las políticas habitacionales han fallado en atender las necesidades reales de la población. Necesitamos un enfoque basado en evidencia y no en ideologías vacías.",
+        "profesor_errazuriz": "La discusión sobre el patrimonio es importante, pero no puede eclipsar la necesidad de vivienda. Debemos encontrar un equilibrio que respete tanto la historia como el futuro de nuestro país."
       }
     },
     {
       "blockNumber": 2,
-      "category": "FARANDULA",
-      "topic": "Escándalo de Infidelidad y Polémica entre Famosos e Influencers",
+      "category": "SOCIEDAD",
+      "topic": "Violencia y seguridad en el país",
       "region": "CL",
-      "headlineGC": "¡TERREMOTO EN LA FARÁNDULA! ¿HIPERGAMIA DIGITAL O CIRCO PARA DISTRAER AL PUEBLO?",
-      "factsSummary": "Filtración de chats privados y declaraciones cruzadas entre reconocidas figuras del espectáculo y streamers paralizan las redes sociales.",
-      "moderatorTriggerQuestion": "¿Es este el reflejo de la total decadencia moral de nuestra televisión o simplemente un negocio millonario de monetización del morbo?",
+      "headlineGC": "¡ALERTA ROJA! LA VIOLENCIA EN CHILE ALCANZA NIVELES CRÍTICOS: ¿QUÉ HACER ANTE EL TERROR?",
+      "factsSummary": "En Cañete, un hombre fue asesinado con un objeto contundente en un ataque que ha dejado a la comunidad en shock. Este es solo uno de los múltiples incidentes de violencia que han aumentado en el país, generando un ambiente de inseguridad. La policía ha intensificado los operativos, pero la sensación de vulnerabilidad persiste entre los ciudadanos.",
+      "contextoHistorico": "La violencia ha sido un problema creciente en Chile, exacerbado por la crisis social y económica. Con elecciones a la vista, la seguridad se ha convertido en un tema central en la agenda política.",
+      "climaxIdea": "¿Estamos viviendo en un país donde la vida humana vale menos que una discusión en redes sociales?",
+      "moderatorTriggerQuestion": "¿Es hora de que la ciudadanía exija un cambio radical en la política de seguridad o seguiremos siendo cómplices del silencio?",
       "personaTriggers": {
-        "kaspar_mork": "Desprecia la farándula como la industria del entretenimiento burgués diseñada para adormecer la conciencia de clase.",
-        "brayan_cyberpunk": "Se despacha con una diatriba sobre las dinámicas de pareja modernas, la vanidad de las redes sociales y el fin de los valores.",
-        "pastor_isaias_benavides": "Condena la lujuria, el exhibicionismo público y advierte que Sodoma y Gomorra palidecen ante la televisión actual.",
-        "washington_chamorro": "Finge estar indignado pero cita frases del escándalo para conectar con los televidentes más jóvenes."
+        "kaspar_mork": "La violencia es una consecuencia directa de la opresión y la desigualdad que vive la clase trabajadora. No se puede hablar de seguridad sin abordar las causas estructurales de la violencia.",
+        "brayan_cyberpunk": "La sociedad se está desmoronando y la élite se niega a ver la realidad. La violencia es el grito de desesperación de una generación que no ve futuro.",
+        "pastor_isaias_benavides": "Dios nos advierte a través de la violencia que debemos volver a los valores morales. La falta de fe y moralidad nos ha llevado a este caos.",
+        "dr_aurelio_vondergoltz": "Los datos muestran que la inseguridad está aumentando, y es hora de implementar políticas que realmente funcionen. La mano blanda no ha dado resultados.",
+        "washington_chamorro": "La gente está cansada de vivir con miedo, y es hora de que los políticos tomen acciones concretas. ¡Es un llamado a la acción!",
+        "capitan_sotomayor": "La seguridad debe ser la prioridad absoluta del gobierno. No podemos permitir que la delincuencia siga ganando terreno.",
+        "comandante_moncada": "La violencia es un síntoma de un sistema que no cuida a su gente. Debemos cuestionar las estructuras que permiten esta situación.",
+        "dra_astorga_vicuna": "La situación actual es resultado de políticas fallidas que han dejado a muchos sin oportunidades. Necesitamos un cambio de enfoque que atienda las causas.",
+        "profesor_errazuriz": "La violencia no es solo un problema de seguridad, sino un reflejo de la descomposición social que hemos permitido. Es tiempo de un cambio profundo."
       }
     },
     {
       "blockNumber": 3,
+      "category": "SOCIEDAD",
+      "topic": "Fallecimiento de joven en riña",
+      "region": "CL",
+      "headlineGC": "¡TRAGEDIA EN FRUTILLAR! MUERE ADOLESCENTE EN RIÑA: ¿QUÉ HACER ANTE LA VIOLENCIA JUVENIL?",
+      "factsSummary": "Un adolescente de 17 años falleció tras ser apuñalado en una riña en Frutillar, lo que ha generado una ola de indignación en la comunidad. La policía ha arrestado a cinco sospechosos, pero la pregunta sobre la seguridad de los jóvenes sigue latente. Este incidente ha reavivado el debate sobre la violencia juvenil y la falta de espacios seguros para los adolescentes.",
+      "contextoHistorico": "La violencia entre jóvenes ha ido en aumento en Chile, reflejando problemas más profundos en la sociedad. La falta de políticas efectivas para abordar esta cuestión ha llevado a situaciones trágicas como esta.",
+      "climaxIdea": "¿Qué tan seguros están nuestros jóvenes en un país que parece haber perdido el control sobre la violencia?",
+      "moderatorTriggerQuestion": "¿Es hora de que los padres y la sociedad en general asuman su responsabilidad en la educación y protección de nuestros jóvenes?",
+      "personaTriggers": {
+        "kaspar_mork": "La violencia juvenil es un reflejo de la descomposición social y la falta de oportunidades que enfrentan los jóvenes. Necesitamos un cambio estructural en la forma en que tratamos a nuestra juventud.",
+        "brayan_cyberpunk": "Los jóvenes son víctimas de un sistema que no les ofrece nada más que frustración. La violencia es su única forma de ser escuchados.",
+        "pastor_isaias_benavides": "La violencia es un castigo divino por los pecados de la sociedad. Debemos volver a los valores que protegen a nuestros jóvenes.",
+        "dr_aurelio_vondergoltz": "Los datos muestran que la violencia juvenil está aumentando, y es hora de implementar políticas que realmente funcionen. La prevención es clave.",
+        "washington_chamorro": "Los jóvenes necesitan más oportunidades y menos criminalización. ¡Es hora de escuchar su voz!",
+        "capitan_sotomayor": "La mano dura es necesaria para controlar la violencia juvenil. No podemos permitir que sigan saliéndose con la suya.",
+        "comandante_moncada": "La violencia entre jóvenes es un síntoma de un sistema que no se preocupa por ellos. Necesitamos un cambio de enfoque hacia la inclusión.",
+        "dra_astorga_vicuna": "La violencia juvenil es un problema que puede ser prevenido con políticas adecuadas. Debemos invertir en educación y oportunidades.",
+        "profesor_errazuriz": "La violencia no es solo un problema de los jóvenes, sino de toda la sociedad. Necesitamos reflexionar sobre nuestras prioridades."
+      }
+    },
+    {
+      "blockNumber": 4,
       "category": "INTERNACIONAL",
-      "topic": "Tensiones Geopolíticas y Giros Electorales en LATAM",
-      "region": "LATAM",
-      "headlineGC": "¡BATALLA CAMPAL! ¿SOCIALISMO DEL SIGLO XXI O SHOCK LIBERTARIO?",
-      "factsSummary": "Declaraciones cruzadas entre mandatarios de la región marcan una fractura diplomática sobre el rumbo económico y las relaciones internacionales.",
-      "moderatorTriggerQuestion": "¿El modelo de shock económico es la única salida para América Latina o estamos ante un experimento inhumano?",
-      "personaTriggers": {
-        "kaspar_mork": "Analiza el imperialismo y la extracción de recursos como la raíz histórica de la miseria latinoamericana.",
-        "brayan_cyberpunk": "Defiende el libre mercado extremo y ridiculiza el estado de bienestar con memes y datos de internet.",
-        "pastor_isaias_benavides": "Alerta sobre la agenda globalista y los peligros de desviarse de los mandatos bíblicos.",
-        "washington_chamorro": "Se acomoda al discurso de moda buscando no perder votos de ninguno de los dos bandos."
-      }
-    },
-    {
-      "blockNumber": 3,
-      "topic": "Conflictos Globales y Disputa por la Hegemonía Mundial",
+      "topic": "Terremoto en Colombia",
       "region": "WORLD",
-      "headlineGC": "¡TERCERA GUERRA MUNDIAL! ¿OCCIDENTE EN DECADENCIA?",
-      "factsSummary": "Escalamiento en frentes internacionales y reacomodo de alianzas militares entre potencias globales durante la última semana.",
-      "moderatorTriggerQuestion": "¿Estamos a las puertas de un conflicto mundial a gran escala y qué bando debería apoyar nuestro país?",
+      "headlineGC": "¡TRAGEDIA EN COLOMBIA! EL TERREMOTO QUE DEJÓ 294 MUERTOS Y MÁS DE 54 MIL DAMNIFICADOS",
+      "factsSummary": "Colombia enfrenta una crisis humanitaria tras un devastador terremoto que ha dejado 294 muertos y más de 54 mil familias damnificadas. Las autoridades están luchando para proporcionar ayuda a las víctimas mientras la comunidad internacional observa con preocupación. El presidente Abelardo de la Espriella ha solicitado la suspensión de aranceles estadounidenses para ayudar a su país a recuperarse de esta tragedia.",
+      "contextoHistorico": "Colombia ha sido históricamente vulnerable a desastres naturales, pero este terremoto es uno de los más mortales en décadas. La respuesta del gobierno y la comunidad internacional será crucial para la recuperación.",
+      "climaxIdea": "¿Estamos preparados para enfrentar las consecuencias de un desastre natural de estas magnitudes en un país que ya enfrenta tantas dificultades?",
+      "moderatorTriggerQuestion": "¿Qué lecciones debemos aprender de esta tragedia para evitar que se repita en el futuro?",
       "personaTriggers": {
-        "karl_marx": "Califica la guerra como la etapa superior de la disputa entre bloques imperialistas por el reparto de mercados.",
-        "joven_incel": "Celebra el colapso del orden global y disfruta viendo a los líderes mundiales humillados en redes.",
-        "fanatico_religioso": "Profetiza el fin de los tiempos y el juicio venidero sobre las naciones soberbias.",
-        "politico_populista": "Emite comunicados vagos de 'condena enérgica' sin comprometerse con ninguna postura."
+        "kaspar_mork": "La tragedia del terremoto es un recordatorio de la lucha de clases en Colombia, donde los más vulnerables son siempre los más afectados. Necesitamos un cambio radical en la forma en que se distribuyen los recursos.",
+        "brayan_cyberpunk": "La respuesta a esta tragedia muestra las fallas del sistema que prioriza a las élites sobre el bienestar del pueblo. La desesperación de las víctimas es un grito que no podemos ignorar.",
+        "pastor_isaias_benavides": "Dios está probando la fe del pueblo colombiano, y esta tragedia es un llamado a la reflexión sobre nuestras acciones. La moralidad debe ser el centro de nuestra recuperación.",
+        "dr_aurelio_vondergoltz": "La gestión de desastres en Colombia ha sido ineficaz y muestra la necesidad de un enfoque más riguroso y basado en datos. La economía no puede ser una excusa para la falta de acción.",
+        "washington_chamorro": "El pueblo colombiano necesita apoyo inmediato, y es hora de que la comunidad internacional actúe. ¡No podemos dejar que esta tragedia se convierta en un olvido!",
+        "capitan_sotomayor": "La seguridad y el orden son esenciales en tiempos de crisis. Necesitamos asegurarnos de que la ayuda llegue a quienes más la necesitan sin interferencias.",
+        "comandante_moncada": "La tragedia del terremoto es un resultado de la desigualdad estructural en Colombia. Debemos luchar por un cambio que garantice la seguridad de todos.",
+        "dra_astorga_vicuna": "La respuesta económica y social a este desastre debe ser analizada con rigor. No podemos permitir que la tragedia se use como excusa para políticas fallidas.",
+        "profesor_errazuriz": "La historia de los desastres en Colombia muestra que la preparación es clave. Necesitamos aprender de este evento para mejorar nuestra resiliencia."
       }
     }
   ],
-  "totalArticlesScanned": 330
+  "totalArticlesScanned": 882
 }

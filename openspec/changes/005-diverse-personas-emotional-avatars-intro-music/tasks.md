@@ -2,7 +2,7 @@
 
 ## 1. Personajes Diversos
 
-- [ ] 1.1 Diseñar 5-6 personas nuevas (mujer conservadora, mujer de izquierda adicional, activista LGBTQ+, líder indígena, migrante venezolana, ecologista): arquetipo, ideología, tono, muletillas, triggers, alias y voz — parodias 100% ficticias. *(Asignado a: Antigravity - Gemini 3.7 Flash, diseño)*
+- [x] 1.1 Diseñar 5-6 personas nuevas (mujer conservadora, mujer de izquierda adicional, activista LGBTQ+, líder indígena, migrante venezolana, ecologista): arquetipo, ideología, tono, muletillas, triggers, alias y voz — parodias 100% ficticias. *(Completado por Antigravity - Gemini 3.7 Flash en design.md)*
 - [ ] 1.2 Implementar perfiles en `src/config/personas.json` y sus `voiceProfileId` + timbre OpenAI en `src/config/voices.json`. *(Asignado a: OpenCode Go)*
 - [ ] 1.3 Incluirlos en el prompt editorial (`personaTriggers`) y en la lista del debate. *(Asignado a: OpenCode Go)*
 
@@ -10,11 +10,11 @@
 
 - [ ] 2.1 Pipeline SD local (SSD-1B): dataset por persona, entrenamiento LoRA por personaje (`models/loras/{id}.safetensors`) y variantes por emoción/plano (ANGRY, SMUG, MOCKING, OUTRAGED, PANEL) vía img2img desde el retrato base. *(Asignado a: OpenCode Go)*
 - [ ] 2.2 Batch completo de variantes para todas las personas y commitear los PNG. *(Asignado a: OpenCode Go)*
-- [ ] 2.3 `src/services/video-composer.ts`: elegir `{personaId}_{emotion}.png` según `state.emotion` y `{personaId}_PANEL.png` para WIDE_PANEL, con fallback al retrato base. *(Completado por OpenCode Go - sesión 13)*
+- [x] 2.3 `src/services/video-composer.ts`: elegir `{personaId}_{emotion}.png` según `state.emotion` y `{personaId}_PANEL.png` para WIDE_PANEL, con fallback al retrato base. *(Completado por OpenCode Go - sesión 13)*
 
 ## 3. Intro del Programa
 
-- [ ] 3.1 Concepto visual de la intro (tarjeta de logo+eslogan, tarjeta del capítulo, lineup de personajes, EN VIVO). *(Asignado a: Antigravity - Gemini 3.7 Flash, diseño)*
+- [x] 3.1 Concepto visual de la intro (tarjeta de logo+eslogan, tarjeta del capítulo, lineup de personajes, EN VIVO). *(Completado por Antigravity - Gemini 3.7 Flash en design.md)*
 - [ ] 3.2 Implementar frames de intro + Ken Burns (zoompan) y mux al inicio del episodio. *(Asignado a: OpenCode Go)*
 
 ## 4. Musicalización Local (MusicGen)

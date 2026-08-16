@@ -1,4 +1,4 @@
-﻿# Tasks: AI Avatar & Scenography Assets (FLUX vÃ­a Ollama)
+# Tasks: AI Avatar & Scenography Assets (FLUX vÃ­a Ollama)
 
 ## 1. Modelo y VerificaciÃ³n
 
@@ -20,6 +20,6 @@
 ## 4. VerificaciÃ³n y Cierre
 
 - [x] 4.1 Re-renderizar el episodio completo (`npm run video`) e inspeccionar frames con retratos/fondos reales.
-- [ ] 4.2 Actualizar `HANDOFF.md` y README (comando `npm run assets`).
+- [x] 4.2 Actualizar `HANDOFF.md` y README (comando `npm run assets`).
 
 

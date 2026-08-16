@@ -1,5 +1,44 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (14ª) - Arquitectura de Diversidad, Concepto Visual de Intro & Matriz de Mezcla Musical (Fase 005)
+
+### Objetivo
+Diseñar la propuesta OpenSpec `005-diverse-personas-emotional-avatars-intro-music`: 6 personajes nuevos diversos 100% ficticios chilenos, storyboard visual de la intro de televisión y especificación de mezcla musical con ducking dinámico para MusicGen.
+
+### Hecho por Antigravity (Gemini 3.7 Flash - Arquitecto Técnico Lead)
+- **Diseño Completo de 6 Personas Nuevas Diversas (`design.md`):**
+  1. `senora_patricia_maturana`: Sra. Patricia "Familia y Patria" Maturana-Valdés (*La Matriarca de Vitacura* - Derecha tradicional, familia y colegios subvencionados).
+  2. `gladis_recabarren`: Gladis "Poder Obrero" Recabarren-Pinto (*La Voz de la Chimba* - Sindicalista combativa, ollas comunes y vivienda popular).
+  3. `alexis_disidencia`: Alexis "Furia Marica" Valderrama-Le-Flores (*El Performer de la Disidencia* - Activismo queer anticapitalista y performance).
+  4. `lonko_cayupan`: Lonko Millaray "Wallmapu Libre" Cayupán-Antilef (*La Guardiana del Pillán* - Soberanía ancestral mapuche y anti-extractivismo).
+  5. `coromoto_libertad`: Ing. Coromoto "Sin Socialismo" Rondón-Pacheco (*El Testimonio del Éxodo* - Migrante venezolana profesional, anti-chavismo y libre empresa).
+  6. `pascual_aguaslibres`: Pascual "Cero Emisiones" Huenupe-Pacheco (*El Guardián de la Patagonia* - Ecología profunda y bio-defensa de glaciares).
+- **Storyboard Visual de la Intro de Televisión (~15s):**
+  - Secuencia de 4 tarjetas SVG (Alerta de Transmisión -> Lineup Triple Split Screen -> Cartelera del Episodio -> Set de Guzmán Falcón).
+- **Matriz de Audio & Ducking Dinámico:**
+  - Definidos niveles exactos dB FS: Intro (0dB), Cama Ambiente (-22dB ducking a -28dB con voz activa y -18dB en clímax), Stingers (-10dB / -8dB).
+- **OpenSpec Estado:** `004-ai-avatar-and-scenography-assets` marcado como `✓ Complete`. `005` avanzado a 3/13 tasks.
+
+---
+
+## 🚦 AVISO DE RELEVO / HANDOFF INTER-MODELOS (FASE 005)
+
+> [!IMPORTANT]
+> **Tareas de Diseño y Arquitectura de Antigravity COMPLETADAS.**
+>
+> **RELEVO HACIA:** **OpenCode Go (Suscripción OpenCode: DeepSeek-V3 / Qwen 2.5 Coder 32B)**
+>
+> **Instrucciones para OpenCode Go:**
+> 1. Leer `openspec/changes/005-diverse-personas-emotional-avatars-intro-music/design.md` y `tasks.md`.
+> 2. Implementar los 6 nuevos perfiles en `src/config/personas.json` y sus voces en `src/config/voices.json`.
+> 3. Entrenar / generar las variantes emocionales con SD local (`models/loras/` + `src/assets/avatars/`).
+> 4. Implementar `src/services/music-generator.ts` (MusicGen) y el renderizador de la intro en `render-video.ts`.
+> 5. Probar el pipeline completo con audio y video integrado.
+
+---
+
+
+
 ## Sesión: 2026-08-16 (12ª) - Sin Filtros: Desmadre, Insultos por Tensión y Calmas del Animador
 
 ### Objetivo

@@ -24,3 +24,9 @@ El catálogo de personajes está desbalanceado (pocas mujeres, sin diversidad LG
 - `src/config/personas.json` (+5-6 personas), `src/config/voices.json` (+5-6 voces), `src/services/asset-generator.ts` (modo emociones con imagen de referencia), `src/services/video-composer.ts` (variante emocional + intro frames), `src/services/audio-mixer.ts` (beds de música con ducking), nuevo `src/services/music-generator.ts` (MusicGen local), nuevo `src/cli/render-intro.ts` o integración en render-video, README/HANDOFF.
 - **Costo:** ~$0.07-0.17 por imagen × (~30-40 emociones) ≈ $3-6 one-shot (requiere recarga de saldo OpenAI). Música: $0 local.
 - **Disco:** modelo MusicGen ~2.5GB (caché HF, fuera del repo).
+
+## Model Allocation
+
+- **Antigravity (Gemini 3.7 Flash):** diseño de los 6 personajes nuevos (arquetipos, ideologías, tonos, muletillas, triggers, mapeo de voces — parodias 100% ficticias), concepto visual de la intro (tarjeta/logo/layout) y lineamientos de mezcla musical. NO implementa código.
+- **OpenCode Go:** implementación completa: perfiles en JSON, variantes emocionales con SD local (img2img + LoRA batch), intro (frames + ffmpeg), MusicGen y mezcla con ducking, re-render.
+- **OpenAI Codex (o3-mini):** validación algorítmica: FSM de la intro/duelo, métricas de tensión y sincronización de la mezcla.

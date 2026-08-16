@@ -1,7 +1,7 @@
 import { PersonaProfile, DebateTurn, DebateTranscript, FsmState, EmotionState, CameraCue } from '../types/debate.js';
 import { WeeklyAgenda, DebateBlock } from '../types/editorial.js';
 import { buildPersonaSystemPrompt, buildTurnPrompt } from '../prompts/persona-debate.prompt.js';
-import { completeText } from './llm-client.js';
+import { completeText } from './debate-runtime.js';
 
 export interface OrchestratorOptions {
   turnsPerBlock?: number;
@@ -33,7 +33,7 @@ export class DebateOrchestrator {
 
     for (const block of agenda.blocks) {
       console.log(`\n📺 [BLOQUE ${block.blockNumber}] ${block.topic} (${block.category})`);
-      this.currentTension = 35; // Reset de tensión base por bloque
+      this.currentTension = 55; // Reset de tensión base por bloque (estudio al rojo vivo desde el inicio)
 
       // 1. INTRO_BLOCK: Moderador presenta el tema y lee el cintillo
       const introTurn = this.createModeratorIntroTurn(turnCounter++, block);
@@ -130,7 +130,7 @@ export class DebateOrchestrator {
       const turnId = startTurnId + crossfireTurns.length;
       const historySnippet = previousTurns.concat(crossfireTurns).slice(-3).map(t => `${t.speakerName}: "${t.speechText}"`).join('\n');
 
-      const isInterruption = this.currentTension >= 70 && r > 0;
+      const isInterruption = this.currentTension >= 75 && r > 0;
       const turn = await this.generateSpeakerTurn(turnId, block, currentSpeaker, targetOpponent, historySnippet, isInterruption);
       crossfireTurns.push(turn);
 

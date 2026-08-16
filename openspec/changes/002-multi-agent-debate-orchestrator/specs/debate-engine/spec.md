@@ -23,7 +23,7 @@ El orquestador DEBERÁ gestionar la secuencia de cada bloque de debate mediante 
 El sistema DEBERÁ calcular dinámicamente un valor de `tensionScore` (0 a 100) basado en la agresividad de las intervenciones.
 
 #### Scenario: Crossfire Trigger
-- GIVEN una intervención de un panelista con `tensionScore > 75`
+- GIVEN una intervención de un panelista con `tensionScore >= 75`
 - WHEN el texto contiene un gatillante ideológico de otro panelista
 - THEN insertar un evento de tipo `INTERRUPTION` en el guion
 - AND asignar la emoción del personaje que interrumpe como `OUTRAGED` o `MOCKING`.

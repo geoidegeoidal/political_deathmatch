@@ -28,26 +28,34 @@ Cada personaje DEBERÁ tener variantes de avatar por emoción con diseño persis
 - **THEN** se usa la variante emocional del personaje
 - **AND** si la variante no existe, se usa el retrato base como fallback
 
-### Requirement: Program Intro Segment
-El episodio DEBERÁ comenzar con una intro de programa de ~15 segundos.
+### Requirement: Dynamic GC with Live Cuñas
+El sistema DEBERÁ extraer o generar en cada turno una cuña polémica en mayúsculas (`quoteGC`) y renderizarla en el cintillo GC de la transmisión televisiva en vivo.
 
-#### Scenario: Intro Rendering
-- **GIVEN** el inicio del episodio
-- **WHEN** se renderiza el video
-- **THEN** se incluye un segmento de intro con logo, eslogan y lineup de personajes
-- **AND** la intro usa el tema musical de apertura a volumen completo
+#### Scenario: Dynamic Quote Display
+- **GIVEN** una intervención donde el orador lanza una frase impactante o descalificación
+- **WHEN** el generador de caracteres (GC) compone el Lower Third
+- **THEN** se muestra la cuña entre comillas en amarillo/blanco con el badge `🔴 CUÑA EN VIVO` y el nombre del orador
+- **AND** si no hay cuña específica, muestra el titular del bloque correspondiente.
 
-### Requirement: Local Program Music with Volume Control
-El sistema DEBERÁ generar música localmente (tema de apertura, stingers y cama musical) y mezclarla con volúmenes controlados.
+### Requirement: Strict No-Nicknames & Edgy Insults in High Tension
+Los personajes y el moderador DEBERÁN llamarse únicamente por su nombre formal o cargo sin pronunciar apodos en voz alta, y DEBERÁN desmadrarse con insultos y descalificaciones directas cuando la tensión sea alta (>= 65) o cuando se agoten los argumentos.
 
-#### Scenario: Music Bed with Ducking
-- **GIVEN** un episodio con cama musical ambiente
-- **WHEN** un panelista habla
-- **THEN** la cama musical se atenúa automáticamente (ducking) por debajo de la voz (~-22dB relativo)
-- **AND** en silencios vuelve a su nivel base
+#### Scenario: No Spoken Nicknames
+- **GIVEN** cualquier intervención o pregunta
+- **WHEN** un personaje interpela a otro
+- **THEN** usa el nombre formal ("Lautaro", "Capitán Sotomayor", "Dr. Errázuriz", "Guzmán", etc.)
+- **AND** jamás pronuncia los apodos o alias entre comillas.
 
-#### Scenario: Local Generation
-- **GIVEN** la generación de música solicitada
-- **WHEN** se ejecuta el generador
-- **THEN** la música se sintetiza con un modelo local open-source (MusicGen) sin costo por token
-- **AND** no requiere servicios de música en la nube.
+#### Scenario: Edgy Outrage & Direct Insults
+- **GIVEN** un momento de tensión elevada (>= 65) o un personaje de tier COMBATIVE_EXTREME acorralado
+- **WHEN** formula su respuesta o réplica
+- **THEN** pierde la paciencia y emplea descalificaciones directas ("hipócrita", "sinvergüenza mentiroso", "vendido", "facho miserable", "comunista de cartón", "chanta") sin tapujos.
+
+### Requirement: Character Poses & Camera Shot Variants
+El compositor visual DEBERÁ soportar poses dinámicas (POINTING, OUTRAGED, SMUG, ANGRY, PANEL, CLOSE_UP) y tiros de cámara reales con alta calidad gráfica editorial.
+
+#### Scenario: Dynamic Pose Resolution
+- **GIVEN** un turno con emoción o tiro de cámara específico
+- **WHEN** el compositor visual busca el asset del avatar
+- **THEN** prioriza la pose/emoción correspondiente (`{id}_{EMOTION}.png` o `{id}_{POSE}.png`)
+- **AND** aplica fallback inteligente al retrato base si no existe la variante.

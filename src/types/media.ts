@@ -67,4 +67,5 @@ export interface VideoFrameState {
   elapsedTimeMs: number;
   totalDurationMs: number;
   isInterruption: boolean;
+  quoteGC?: string;
 }

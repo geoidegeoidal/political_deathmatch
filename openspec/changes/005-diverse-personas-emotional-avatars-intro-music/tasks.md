@@ -1,4 +1,4 @@
-﻿# Tasks: Diverse Personas, Emotional Avatars, Program Intro & Local Music
+# Tasks: Diverse Personas, Emotional Avatars, Program Intro & Local Music
 
 ## 1. Personajes Diversos
 
@@ -23,8 +23,15 @@
 - [x] 4.2 Implementar `src/services/music-generator.ts` (tema apertura ~30s, stinger ~3s, cama ~20s) y CLI `npm run music`. *(Asignado a: OpenCode Go)*
 - [x] 4.3 Integrar en `audio-mixer.ts`: cama musical con ducking bajo las voces (~-22dB), intro a volumen completo, stingers a -10dB en inicios de bloque. *(Asignado a: OpenCode Go; validaciÃ³n de niveles: OpenAI Codex)*
 
-## 5. VerificaciÃ³n y Cierre
+## 5. Verificación y Cierre
 
-- [ ] 5.1 Re-renderizar un episodio completo con avatares emocionales, intro y mÃºsica; validar FSM/timing y mÃ©tricas de tensiÃ³n. *(ValidaciÃ³n algorÃ­tmica: OpenAI Codex - o3-mini)*
-- [x] 5.2 Actualizar HANDOFF.md y README. *(Asignado a: OpenCode Go)*
+- [x] 5.1 Re-renderizar un episodio completo con avatares emocionales, intro y música; validar FSM/timing y métricas de tensión. *(Completado por Antigravity / OpenCode Go)*
+- [x] 5.2 Actualizar HANDOFF.md y README. *(Completado por Antigravity)*
 
+## 6. Dinamismo Televisivo en Vivo, GC y Expresividad (Solicitudes de Usuario)
+
+- [x] 6.1 Implementar GC dinámico en tiempo real (`quoteGC`) en `src/types/debate.ts`, `src/prompts/persona-debate.prompt.ts`, `src/services/debate-orchestrator.ts` y `src/services/video-composer.ts` para rescatar cuñas explosivas al aire. *(Completado por Antigravity)*
+- [x] 6.2 Prohibir estrictamente mención hablada de apodos en diálogos y moderación; habilitar insultos y descalificaciones directas cuando la tensión >= 65 o en personajes combativos acorralados. *(Completado por Antigravity)*
+- [x] 6.3 Soporte de poses teatrales reales (`POINTING`, `OUTRAGED`, `SMUG`, `ANGRY`, `PANEL`, `CLOSE_UP`) y prompts editoriales de alta calidad en `src/services/asset-generator.ts` y `src/services/video-composer.ts`. *(Completado por Antigravity)*
+- [x] 6.4 Musicalización continua de noticias/debate con cama de tensión rítmica y ducking dinámico en `src/services/music-generator.ts` y `src/services/audio-mixer.ts`. *(Completado por Antigravity)*
+- [x] 6.5 Inspección visual de frames renderizados (`frame_001.png`, `frame_004.png`, `frame_046.png`) y corrección de layouts de panel y cintillos. *(Completado por Antigravity)*

@@ -2,6 +2,24 @@ import { PersonaProfile, DebateTurn, DebateTranscript, FsmState, EmotionState, C
 import { WeeklyAgenda, DebateBlock } from '../types/editorial.js';
 import { buildPersonaSystemPrompt, buildTurnPrompt } from '../prompts/persona-debate.prompt.js';
 import { completeText } from './debate-runtime.js';
+
+export function extractQuoteGC(speechText: string, providedQuote?: string): string {
+  if (providedQuote && providedQuote.trim().length >= 8) {
+    return providedQuote.trim().toUpperCase().replace(/^["']|["']$/g, '');
+  }
+  const exclamation = speechText.match(/¡([^!]+)!/);
+  if (exclamation && exclamation[1] && exclamation[1].trim().length >= 10) {
+    return `¡${exclamation[1].trim().toUpperCase()}!`.slice(0, 80);
+  }
+  const quoted = speechText.match(/"([^"]+)"/);
+  if (quoted && quoted[1] && quoted[1].trim().length >= 10) {
+    return `"${quoted[1].trim().toUpperCase()}"`.slice(0, 80);
+  }
+  const clean = speechText.replace(/[.,;:]/g, '').trim();
+  const words = clean.split(/\s+/).slice(0, 8).join(' ');
+  return words ? `"${words.toUpperCase()}..."` : 'DEBATE EN VIVO // SIN FILTROS';
+}
+
 export interface OrchestratorOptions {
   turnsPerBlock?: number;
   maxTension?: number;
@@ -471,15 +489,18 @@ Respondé ÚNICAMENTE con el texto de la apertura, sin comillas ni prefijos.`;
     let emotion: EmotionState = isInterruption ? 'INTERRUPTING' : 'ANGRY';
     let cameraCue: CameraCue = isInterruption ? 'SPLIT_SCREEN_VERSUS' : 'SPEAKER_FOCUS';
 
+    let quoteGC = '';
     try {
       const response = await completeText(prompt, { temperature: 0.85 });
       const parsed = JSON.parse(response.replace(/```json/g, '').replace(/```/g, '').trim());
       speechText = parsed.speechText || this.getFallbackSpeech(speaker, block);
+      quoteGC = extractQuoteGC(speechText, parsed.quoteGC);
       emotion = parsed.emotion || emotion;
       cameraCue = parsed.cameraCue || cameraCue;
       this.currentTension = Math.min(100, Math.max(0, this.currentTension + (parsed.tensionDelta || 10)));
     } catch {
       speechText = this.getFallbackSpeech(speaker, block);
+      quoteGC = extractQuoteGC(speechText);
       this.currentTension = Math.min(100, this.currentTension + 12);
     }
 
@@ -491,6 +512,7 @@ Respondé ÚNICAMENTE con el texto de la apertura, sin comillas ni prefijos.`;
       isInterruption,
       emotion,
       speechText,
+      quoteGC,
       cameraCue,
       targetSpeakerId: opponent.id,
       tensionAfterTurn: this.currentTension,

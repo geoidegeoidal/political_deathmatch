@@ -74,7 +74,8 @@ async function main() {
       tensionScore: turn.tensionAfterTurn,
       elapsedTimeMs: stem.startMs,
       totalDurationMs: timeline.totalDurationMs,
-      isInterruption: turn.isInterruption
+      isInterruption: turn.isInterruption,
+      quoteGC: turn.quoteGC
     };
 
     const framePath = path.join(framesDir, `frame_${String(turn.turnId).padStart(3, '0')}.png`);

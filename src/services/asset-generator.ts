@@ -14,23 +14,35 @@ const rootDir = process.cwd();
 const IMAGES_URL = 'https://api.openai.com/v1/images/generations';
 const IMAGE_MODEL = 'gpt-image-1';
 
-/** Estilo visual único del programa (caricatura satírica semi-realista, nunca fotorrealista). */
+/** Estilo visual cinematográfico premium: caricatura satírica editorial de alto impacto para TV. */
 const STYLE_PREFIX =
-  'Semi-realistic satirical cartoon caricature, exaggerated facial features, stylized illustrated portrait, dramatic broadcast TV studio lighting, vibrant editorial illustration style, no text, no watermark, no letters.';
+  'Masterpiece editorial political caricature illustration in the style of top satirical magazines (The Economist, Time, Der Spiegel), exaggerated expressive facial features, bold ink contours, dramatic broadcast TV studio rim lighting, vibrant volumetric colors, high-octane live television debate atmosphere, 8k resolution, award-winning character design, no text, no watermark, no typography.';
 
-function personaPrompt(p: PersonaProfile): string {
-  return `${STYLE_PREFIX} Retrato de busto de un personaje de debate televisivo chileno: ${p.archetype}. Personalidad: ${p.ideology}. Estilo de hablar: ${p.tone}. Apariencia acorde a su rol (${p.alias}), con rasgos exagerados y cómicos pero imponentes, vestimenta de estudio de TV, fondo de set de debate rojo y negro.`;
+export type AvatarPose = 'BASE' | 'POINTING' | 'OUTRAGED' | 'SMUG' | 'ANGRY' | 'PANEL' | 'CLOSE_UP';
+
+export function personaPosePrompt(p: PersonaProfile, pose: AvatarPose = 'BASE'): string {
+  const poseDescriptions: Record<AvatarPose, string> = {
+    BASE: 'Bust portrait, confident and alert expression, looking straight at the TV broadcast camera, hands near the desk, professional TV studio posture.',
+    POINTING: 'Dynamic aggressive posture, leaning forward over the debate desk, pointing an accusatory index finger directly at the rival, intense fiery stare, furious mouth open.',
+    OUTRAGED: 'Extreme explosion of anger, shouting at the top of their lungs, slamming both hands on the wooden TV desk, wide wild eyes, veins popping, total television meltdown.',
+    SMUG: 'Arrogant superior smirk, arms crossed over chest, head slightly tilted back, half-closed dismissive eyes, mocking the opponent with absolute condescension.',
+    ANGRY: 'Tight clenched teeth, furrowed heavy brows, clenched fist resting firmly on the debate table, tense ready-to-attack pose, dark red background backlights.',
+    PANEL: 'Medium shot sitting behind the modern curved TV panel desk with a broadcast microphone in front, engaging with the debate panel, full upper torso visible.',
+    CLOSE_UP: 'Extreme cinematic close-up on the face, intense rim lighting on the cheekbones, dramatic high-tension facial expression, deep shadows, live breaking news tension.'
+  };
+
+  return `${STYLE_PREFIX} Character: ${p.name} (${p.archetype}). Political persona: ${p.ideology}. Tone: ${p.tone}. Visual role: ${p.alias}. ${poseDescriptions[pose]} Wearing iconic high-end TV debate attire, studio lighting highlights in ruby red and cobalt blue.`;
 }
 
 const BACKGROUND_PROMPTS: Record<CameraCue, string> = {
   SPEAKER_FOCUS:
-    `${STYLE_PREFIX} Escenografía de estudio de TV de debate chileno: panel LED azul oscuro, escritorio de panelistas curvo, focos dramáticos, silla de orador central iluminada, ambiente de programa en vivo nocturno.`,
+    `${STYLE_PREFIX} Broadcast TV debate set background: curved high-tech panelist desk, vibrant LED wall with dark blue and crimson ambient glow, dramatic overhead spotlights, empty speaker podium illuminated in center, prime-time live show ambiance.`,
   SPLIT_SCREEN_VERSUS:
-    `${STYLE_PREFIX} Escenografía de estudio de TV de debate dividido en dos escenarios enfrentados con luces rojas y azules, mesa central con dos podios enfrentados, ambiente tenso de duelo televisivo nocturno.`,
+    `${STYLE_PREFIX} Broadcast TV duel set background: two opposing illuminated debate podiums facing each other, divided lighting split in red versus cyan, electric tension lines, metallic studio truss grid.`,
   WIDE_PANEL:
-    `${STYLE_PREFIX} Vista panorámica de estudio de TV de debate chileno: mesa larga con 6 asientos, panel LED con el logo de un programa en vivo, público de fondo borroso, luces de matinal sensacionalista, ambiente al rojo vivo.`,
+    `${STYLE_PREFIX} Wide panoramic establishing shot of a modern political talk show TV studio: 6-seat curved wooden and glass desk, giant background LED matrix screen, atmospheric studio haze, vibrant broadcast lighting.`,
   REACTION_SHOT:
-    `${STYLE_PREFIX} Escenografía de estudio de TV de debate chileno: plano del público y panelistas reaccionando, luces rojas de alerta, ambiente caótico de programa en vivo, cámara de reacción rápida.`
+    `${STYLE_PREFIX} TV studio reaction camera angle: background audience silhouette slightly blurred, flashing warning amber and red set lighting, chaotic fast-paced broadcast studio environment.`
 };
 
 export interface GenerateAssetsOptions {
@@ -38,13 +50,11 @@ export interface GenerateAssetsOptions {
   avatarsDir?: string;
   backgroundsDir?: string;
   force?: boolean;
+  poses?: AvatarPose[];
 }
 
-interface ImageGenerationResponse {
-  data?: { b64_json?: string; url?: string }[];
-}/**
- * Genera retratos de personajes y fondos de estudio con OpenAI gpt-image-1
- * (one-shot: skip si el asset ya existe). Persistente: los PNG se commitean.
+/**
+ * Genera retratos de personajes en múltiples poses y fondos de estudio con OpenAI gpt-image-1.
  */
 export async function generateAllAssets(options: GenerateAssetsOptions = {}): Promise<string[]> {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -53,6 +63,7 @@ export async function generateAllAssets(options: GenerateAssetsOptions = {}): Pr
   const personasPath = options.personasPath || path.join(rootDir, 'src', 'config', 'personas.json');
   const avatarsDir = options.avatarsDir || path.join(rootDir, 'src', 'assets', 'avatars');
   const backgroundsDir = options.backgroundsDir || path.join(rootDir, 'src', 'assets', 'backgrounds');
+  const posesToGenerate: AvatarPose[] = options.poses || ['BASE', 'POINTING', 'OUTRAGED', 'SMUG', 'ANGRY', 'PANEL'];
 
   const personas = JSON.parse(await readFile(personasPath, 'utf-8')) as PersonaProfile[];
   mkdirSync(avatarsDir, { recursive: true });
@@ -60,21 +71,27 @@ export async function generateAllAssets(options: GenerateAssetsOptions = {}): Pr
 
   const generated: string[] = [];
 
-  // Retratos por personaje
+  // 1. Generar retratos y poses por cada personaje
   for (const persona of personas) {
-    const outPath = path.join(avatarsDir, `${persona.id}.png`);
-    if (!options.force && existsSync(outPath)) {
-      console.log(`[ASSETS] ${persona.id}.png ya existe, omitiendo.`);
-      continue;
+    for (const pose of posesToGenerate) {
+      const fileName = pose === 'BASE' ? `${persona.id}.png` : `${persona.id}_${pose}.png`;
+      const outPath = path.join(avatarsDir, fileName);
+
+      if (!options.force && existsSync(outPath)) {
+        console.log(`[ASSETS] ${fileName} ya existe, omitiendo.`);
+        continue;
+      }
+
+      console.log(`[ASSETS] Generando pose ${pose} para: ${persona.name}...`);
+      const prompt = personaPosePrompt(persona, pose);
+      const image = await requestImage(prompt, apiKey);
+      await writeFile(outPath, image);
+      generated.push(outPath);
+      console.log(`[ASSETS] -> ${fileName} OK.`);
     }
-    console.log(`[ASSETS] Generando retrato: ${persona.name}...`);
-    const image = await requestImage(personaPrompt(persona), apiKey);
-    await writeFile(outPath, image);
-    generated.push(outPath);
-    console.log(`[ASSETS] -> ${persona.id}.png OK.`);
   }
 
-  // Fondos por cameraCue: 3 variantes cada uno (variedad visual por bloque)
+  // 2. Fondos por cameraCue con 3 variantes de iluminación cada uno
   const cues: CameraCue[] = ['SPEAKER_FOCUS', 'SPLIT_SCREEN_VERSUS', 'WIDE_PANEL', 'REACTION_SHOT'];
   for (const cue of cues) {
     for (let v = 1; v <= 3; v++) {
@@ -101,22 +118,28 @@ async function requestImage(prompt: string, apiKey: string): Promise<Buffer> {
     body: JSON.stringify({
       model: IMAGE_MODEL,
       prompt,
-      size: '1024x1024',
-      quality: 'medium',
-      n: 1
-    }),
-    signal: AbortSignal.timeout(180_000)
+      n: 1,
+      size: '1024x1024'
+    })
   });
+
   if (!res.ok) {
-    const body = (await res.text()).slice(0, 300);
-    throw new Error(`OpenAI images error ${res.status}: ${body}`);
+    const errorText = await res.text();
+    throw new Error(`OpenAI Images API error (${res.status}): ${errorText}`);
   }
-  const data = (await res.json()) as ImageGenerationResponse;
-  const b64 = data?.data?.[0]?.b64_json;
-  if (b64) return Buffer.from(b64, 'base64');
-  const url = data?.data?.[0]?.url;
-  if (!url) throw new Error('OpenAI images no devolvió imagen.');
-  const imgRes = await fetch(url, { signal: AbortSignal.timeout(120_000) });
-  if (!imgRes.ok) throw new Error(`Descarga de imagen falló: ${imgRes.status}`);
-  return Buffer.from(await imgRes.arrayBuffer());
+
+  const json = (await res.json()) as { data?: { b64_json?: string; url?: string }[] };
+  const first = json.data?.[0];
+  if (!first) throw new Error('No se recibió imagen en la respuesta de OpenAI.');
+
+  if (first.b64_json) {
+    return Buffer.from(first.b64_json, 'base64');
+  }
+  if (first.url) {
+    const imgRes = await fetch(first.url);
+    if (!imgRes.ok) throw new Error(`Error descargando imagen desde URL: ${imgRes.status}`);
+    return Buffer.from(await imgRes.arrayBuffer());
+  }
+
+  throw new Error('Formato de imagen no reconocido.');
 }

@@ -22,8 +22,7 @@ const ASSETS_ROOT = path.join(process.cwd(), 'src', 'assets');
 
 /**
  * Generador de Layouts Visuales y Compositor de Estudio de Televisión (1080p).
- * Usa retratos y fondos del catálogo persistente (src/assets) con degradación
- * elegante: si falta un asset, cae al placeholder/emoji.
+ * Soporta poses dinámicas, tiro de cámara real, GC con cuñas en vivo y degradación elegante.
  */
 export class VideoComposer {
   private config: VideoRenderConfig;
@@ -49,6 +48,24 @@ export class VideoComposer {
   }
 
   /**
+   * Resuelve el mejor asset de avatar según la emoción, pose y tiro de cámara.
+   */
+  private resolveAvatarUri(personaId: string, emotion: string, preferredPose?: string): string | undefined {
+    if (preferredPose) {
+      const poseUri = this.getAssetDataUri('avatar', `${personaId}_${preferredPose}`);
+      if (poseUri) return poseUri;
+    }
+    return (
+      this.getAssetDataUri('avatar', `${personaId}_${emotion}`) ||
+      this.getAssetDataUri('avatar', `${personaId}_OUTRAGED`) ||
+      this.getAssetDataUri('avatar', `${personaId}_ANGRY`) ||
+      this.getAssetDataUri('avatar', `${personaId}_SMUG`) ||
+      this.getAssetDataUri('avatar', `${personaId}_BASE`) ||
+      this.getAssetDataUri('avatar', personaId)
+    );
+  }
+
+  /**
    * Tarjeta de la intro del programa (design 005: 4 tarjetas, ~15s total).
    */
   public renderIntroCardSvg(card: number, agendaTopics: string[] = []): string {
@@ -56,9 +73,9 @@ export class VideoComposer {
     const bgTag = bg
       ? `<image href="${bg}" x="0" y="0" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" />`
       : `<rect width="1920" height="1080" fill="#020617" />`;
-    const avatar = (id: string) => this.getAssetDataUri('avatar', id);
+    const avatar = (id: string, emotion = 'BASE') => this.resolveAvatarUri(id, emotion);
     const avatarCircle = (id: string, cx: number, cy: number, r: number, label: string, badge?: string) => {
-      const uri = avatar(id);
+      const uri = avatar(id, badge || 'BASE');
       const name = xmlEscape(truncateText(stripNickname(this.personasMap.get(id)?.name || id).toUpperCase(), 18));
       return `
       <g transform="translate(${cx - r}, ${cy - r})">
@@ -127,7 +144,7 @@ export class VideoComposer {
 </svg>`;
     }
 
-    const guzman = avatar('moderador_falcon');
+    const guzman = avatar('moderador_falcon', 'OUTRAGED');
     return `
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
   ${bgTag}
@@ -148,16 +165,17 @@ export class VideoComposer {
   public generateFrameSvg(state: VideoFrameState): string {
     const speaker = this.personasMap.get(state.activeSpeakerId);
     const opponent = state.targetSpeakerId ? this.personasMap.get(state.targetSpeakerId) : undefined;
-    // En pantalla solo el nombre, sin sobrenombres (los sobrenombres viven en el guion)
     const speakerName = xmlEscape(stripNickname(speaker?.name || state.speakerName));
-    const opponentName = opponent ? stripNickname(opponent.name) : '';
-    const speakerAlias = '';
 
     const backgroundUri =
       this.getAssetDataUri('background', `${state.cameraCue}_${(state.blockNumber % 3) + 1}`) ||
       this.getAssetDataUri('background', state.cameraCue);
-    const speakerUri = this.getAssetDataUri('avatar', state.activeSpeakerId);
-    const opponentUri = state.targetSpeakerId ? this.getAssetDataUri('avatar', state.targetSpeakerId) : undefined;
+
+    // Selección dinámica de pose y emoción del orador y del oponente
+    const speakerUri = this.resolveAvatarUri(state.activeSpeakerId, state.emotion, state.cameraCue === 'WIDE_PANEL' ? 'PANEL' : undefined);
+    const opponentUri = state.targetSpeakerId
+      ? this.resolveAvatarUri(state.targetSpeakerId, 'ANGRY', 'OUTRAGED')
+      : undefined;
 
     return `
 <svg width="${this.config.width}" height="${this.config.height}" viewBox="0 0 ${this.config.width} ${this.config.height}" xmlns="http://www.w3.org/2000/svg">
@@ -193,11 +211,11 @@ export class VideoComposer {
   <circle cx="1620" cy="400" r="400" fill="#F59E0B" opacity="0.06" />
 
   <!-- 2. Header / Top Bar -->
-  <rect x="0" y="0" width="1920" height="90" fill="#000000" opacity="0.75" />
-  <text x="60" y="42" font-family="${this.config.fontFamily}" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="2">
+  <rect x="0" y="0" width="1920" height="90" fill="#000000" opacity="0.85" />
+  <text x="60" y="48" font-family="${this.config.fontFamily}" font-size="28" font-weight="900" fill="#FFFFFF" letter-spacing="2">
     POLITICAL DEATHMATCH <tspan fill="#EF4444">TV</tspan>
   </text>
-  <text x="60" y="70" font-family="${this.config.fontFamily}" font-size="13" font-weight="600" fill="#FACC15" letter-spacing="1">
+  <text x="60" y="72" font-family="${this.config.fontFamily}" font-size="13" font-weight="600" fill="#FACC15" letter-spacing="1">
     ${BRAND_TAGLINE}
   </text>
   
@@ -209,11 +227,11 @@ export class VideoComposer {
   <!-- Termómetro de Tensión / Rating -->
   ${this.renderTensionMeterSvg(state.tensionScore)}
 
-  <!-- 3. Escenario Principal según Camera Cue -->
+  <!-- 3. Escenario Principal según Camera Cue y Poses Reales -->
   ${this.renderMainStageSvg(state, speaker, opponent, speakerUri, opponentUri)}
 
-  <!-- 4. Generador de Caracteres (GC) / Cintillo Inferior -->
-  ${this.renderLowerThirdsSvg(state, speakerName, speakerAlias)}
+  <!-- 4. Generador de Caracteres Dinámico (GC) / Cintillo Inferior con Cuñas -->
+  ${this.renderLowerThirdsSvg(state, speakerName)}
 
   <!-- 5. Breaking News Ticker (Barra Rodante) -->
   ${this.renderTickerSvg(state.topicTitle)}
@@ -246,19 +264,20 @@ export class VideoComposer {
     opponentUri?: string
   ): string {
     const speakerName = xmlEscape(stripNickname(speaker?.name || state.speakerName));
-    const opponentName = opponent ? stripNickname(opponent.name) : '';
+    const opponentName = opponent ? xmlEscape(stripNickname(opponent.name)) : '';
+
     if (state.cameraCue === 'SPLIT_SCREEN_VERSUS' && opponent) {
       return `
       <!-- SPLIT SCREEN VERSUS -->
-      <!-- Panel Izquierdo: Orador Activo -->
-      <g transform="translate(100, 140)">
-        <rect width="820" height="640" rx="16" fill="#1E293B" stroke="#DC2626" stroke-width="4" />
+      <!-- Panel Izquierdo: Orador Activo con Pose Reactiva -->
+      <g transform="translate(100, 130)">
+        <rect width="820" height="660" rx="16" fill="#1E293B" stroke="#DC2626" stroke-width="4" />
         ${speakerUri
-          ? `<clipPath id="clipLeft"><rect x="0" y="0" width="820" height="640" rx="16" /></clipPath>
-             <image href="${speakerUri}" x="0" y="0" width="820" height="640" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipLeft)" />`
+          ? `<clipPath id="clipLeft"><rect x="0" y="0" width="820" height="660" rx="16" /></clipPath>
+             <image href="${speakerUri}" x="0" y="0" width="820" height="660" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipLeft)" />`
           : `<text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">🗣️</text>`}
-        <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
-        <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+        <rect x="20" y="570" width="780" height="70" rx="8" fill="#000000" opacity="0.85" />
+        <text x="410" y="615" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#FFFFFF" text-anchor="middle">
           ${speakerName}
         </text>
         ${state.isInterruption ? `
@@ -274,60 +293,61 @@ export class VideoComposer {
       <text x="960" y="475" font-family="${this.config.fontFamily}" font-size="36" font-weight="900" fill="#FFFFFF" text-anchor="middle">VS</text>
 
       <!-- Panel Derecho: Oponente Interpelado -->
-      <g transform="translate(1000, 140)">
-        <rect width="820" height="640" rx="16" fill="#0F172A" stroke="#475569" stroke-width="3" />
+      <g transform="translate(1000, 130)">
+        <rect width="820" height="660" rx="16" fill="#0F172A" stroke="#475569" stroke-width="3" />
         ${opponentUri
-          ? `<clipPath id="clipRight"><rect x="0" y="0" width="820" height="640" rx="16" /></clipPath>
-             <image href="${opponentUri}" x="0" y="0" width="820" height="640" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipRight)" />`
+          ? `<clipPath id="clipRight"><rect x="0" y="0" width="820" height="660" rx="16" /></clipPath>
+             <image href="${opponentUri}" x="0" y="0" width="820" height="660" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipRight)" />`
           : `<text x="410" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">😠</text>`}
-        <rect x="20" y="550" width="780" height="70" rx="8" fill="#000000" opacity="0.8" />
-        <text x="410" y="595" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#94A3B8" text-anchor="middle">
+        <rect x="20" y="570" width="780" height="70" rx="8" fill="#000000" opacity="0.85" />
+        <text x="410" y="615" font-family="${this.config.fontFamily}" font-size="28" font-weight="800" fill="#94A3B8" text-anchor="middle">
           ${opponentName}
         </text>
       </g>
       `;
     }
 
-    // WIDE_PANEL (Plano General: panelista activo + fila de mini-avatares del panel)
+    // WIDE_PANEL (Plano General: panelista activo + fila limpia de mini-avatares)
     if (state.cameraCue === 'WIDE_PANEL') {
-      const panelUri =
-        this.getAssetDataUri('avatar', `${state.activeSpeakerId}_PANEL`) || speakerUri;
+      const panelUri = this.resolveAvatarUri(state.activeSpeakerId, state.emotion, 'PANEL') || speakerUri;
       const panelists = [...this.personasMap.values()]
         .filter(p => p.role === 'PANELIST')
         .slice(0, 6);
       return `
       <!-- WIDE_PANEL -->
-      <g transform="translate(100, 140)">
-        <!-- Panelista activo en plano medio (asset PANEL o busto) -->
-        <rect x="0" y="0" width="640" height="660" rx="20" fill="#0F172A" stroke="#FACC15" stroke-width="4" />
+      <g transform="translate(80, 130)">
+        <!-- Panelista activo en plano medio -->
+        <rect x="0" y="0" width="660" height="660" rx="20" fill="#0F172A" stroke="#FACC15" stroke-width="4" />
         ${panelUri
-          ? `<clipPath id="clipPanel"><rect x="0" y="0" width="640" height="660" rx="20" /></clipPath>
-             <image href="${panelUri}" x="0" y="0" width="640" height="660" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipPanel)" />`
-          : `<text x="320" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">${this.getEmotionEmoji(state.emotion)}</text>`}
-        <rect x="16" y="600" width="608" height="46" rx="8" fill="#000000" opacity="0.8" />
-        <text x="320" y="630" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15" text-anchor="middle">
+          ? `<clipPath id="clipPanel"><rect x="0" y="0" width="660" height="660" rx="20" /></clipPath>
+             <image href="${panelUri}" x="0" y="0" width="660" height="660" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipPanel)" />`
+          : `<text x="330" y="340" font-family="${this.config.fontFamily}" font-size="120" text-anchor="middle">${this.getEmotionEmoji(state.emotion)}</text>`}
+        <rect x="16" y="600" width="628" height="46" rx="8" fill="#000000" opacity="0.85" />
+        <text x="330" y="630" font-family="${this.config.fontFamily}" font-size="24" font-weight="800" fill="#FACC15" text-anchor="middle">
           ${truncateText(speakerName.toUpperCase(), 34)}
         </text>
       </g>
 
-      <!-- Fila del panel: mini-avatares -->
-      <g transform="translate(800, 160)">
-        <text x="0" y="30" font-family="${this.config.fontFamily}" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="2">
+      <!-- Fila del panel: mini-avatares limpios -->
+      <g transform="translate(780, 150)">
+        <text x="20" y="30" font-family="${this.config.fontFamily}" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="2">
           EL PANEL
         </text>
         ${panelists.map((p, i) => {
-          const uri = this.getAssetDataUri('avatar', p.id);
+          const uri = this.resolveAvatarUri(p.id, 'BASE');
           const active = p.id === state.activeSpeakerId;
-          const cx = 40 + i * 165;
+          const cx = 80 + (i % 3) * 340;
+          const cy = 90 + Math.floor(i / 3) * 260;
           return `
-          <g transform="translate(${cx - 60}, 70)">
-            <circle cx="60" cy="60" r="58" fill="#1E293B" stroke="${active ? '#FACC15' : '#475569'}" stroke-width="${active ? 5 : 3}" />
+          <g transform="translate(${cx}, ${cy})">
+            <circle cx="80" cy="80" r="76" fill="#1E293B" stroke="${active ? '#FACC15' : '#475569'}" stroke-width="${active ? 5 : 3}" />
             ${uri
-              ? `<clipPath id="clipMini${i}"><circle cx="60" cy="60" r="52" /></clipPath>
-                 <image href="${uri}" x="8" y="8" width="104" height="104" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipMini${i})" />`
-              : `<text x="60" y="75" font-family="${this.config.fontFamily}" font-size="44" text-anchor="middle">🎙️</text>`}
-            <text x="60" y="145" font-family="${this.config.fontFamily}" font-size="14" font-weight="700" fill="${active ? '#FACC15' : '#CBD5E1'}" text-anchor="middle">
-              ${truncateText(stripNickname(p.name).toUpperCase(), 15)}
+              ? `<clipPath id="clipMini${i}"><circle cx="80" cy="80" r="70" /></clipPath>
+                 <image href="${uri}" x="10" y="10" width="140" height="140" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipMini${i})" />`
+              : `<text x="80" y="95" font-family="${this.config.fontFamily}" font-size="44" text-anchor="middle">🎙️</text>`}
+            <rect x="-30" y="165" width="220" height="34" rx="6" fill="#000000" opacity="0.8" />
+            <text x="80" y="188" font-family="${this.config.fontFamily}" font-size="15" font-weight="800" fill="${active ? '#FACC15' : '#CBD5E1'}" text-anchor="middle">
+              ${xmlEscape(truncateText(stripNickname(p.name).toUpperCase(), 18))}
             </text>
           </g>`;
         }).join('')}
@@ -335,54 +355,68 @@ export class VideoComposer {
       `;
     }
 
-    // SPEAKER FOCUS (Primer Plano)
+    // SPEAKER FOCUS (Primer Plano con Pose Dinámica)
     return `
     <!-- SPEAKER FOCUS -->
-    <g transform="translate(560, 130)">
-      <rect width="800" height="660" rx="24" fill="#1E293B" stroke="#3B82F6" stroke-width="4" />
+    <g transform="translate(540, 120)">
+      <rect width="840" height="680" rx="24" fill="#1E293B" stroke="#3B82F6" stroke-width="4" />
       
-      <!-- Avatar (retrato persistente en clip circular o placeholder con emoción) -->
+      <!-- Avatar con Pose y Emoción Real -->
       ${speakerUri
-        ? `<clipPath id="clipSpeaker"><circle cx="400" cy="300" r="160" /></clipPath>
-           <image href="${speakerUri}" x="240" y="140" width="320" height="320" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipSpeaker)" />
-           <circle cx="400" cy="300" r="160" fill="none" stroke="#60A5FA" stroke-width="6" />`
-        : `<circle cx="400" cy="300" r="160" fill="#0F172A" stroke="#60A5FA" stroke-width="6" />
-           <text x="400" y="350" font-family="${this.config.fontFamily}" font-size="140" text-anchor="middle">
+        ? `<clipPath id="clipSpeaker"><rect x="0" y="0" width="840" height="680" rx="24" /></clipPath>
+           <image href="${speakerUri}" x="0" y="0" width="840" height="680" preserveAspectRatio="xMidYMid slice" clip-path="url(#clipSpeaker)" />`
+        : `<circle cx="420" cy="320" r="180" fill="#0F172A" stroke="#60A5FA" stroke-width="6" />
+           <text x="420" y="370" font-family="${this.config.fontFamily}" font-size="140" text-anchor="middle">
              ${this.getEmotionEmoji(state.emotion)}
            </text>`}
 
-      <!-- Badge de Emoción -->
-      <rect x="275" y="490" width="250" height="44" rx="22" fill="#0284C7" />
-      <text x="400" y="520" font-family="${this.config.fontFamily}" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle">
+      <!-- Badge de Emoción / Estado -->
+      <rect x="295" y="610" width="250" height="44" rx="22" fill="#0284C7" />
+      <text x="420" y="640" font-family="${this.config.fontFamily}" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle">
         ESTADO: ${state.emotion}
       </text>
     </g>
     `;
   }
 
-  private renderLowerThirdsSvg(state: VideoFrameState, name: string, alias: string): string {
-    const headline = state.headlineGC.toUpperCase();
-    const lines = wrapHeadline(headline, 46).slice(0, 2);
-    const fontSize = headline.length > 90 ? 26 : headline.length > 60 ? 30 : 34;
+  /**
+   * Generador de Caracteres Dinámico (GC): Rescata cuñas en vivo del orador activo y el titular del bloque.
+   */
+  private renderLowerThirdsSvg(state: VideoFrameState, name: string): string {
+    // Si hay una cuña dinámica específica del orador, usarla; si no, usar el headline del bloque
+    const mainText = state.quoteGC && state.quoteGC.trim().length > 6
+      ? state.quoteGC.toUpperCase()
+      : (state.headlineGC || state.topicTitle || 'DEBATE EN VIVO').toUpperCase();
+
+    const isQuote = Boolean(state.quoteGC && state.quoteGC.trim().length > 6);
+    const lines = wrapHeadline(mainText, isQuote ? 44 : 48).slice(0, 2);
+    const fontSize = mainText.length > 80 ? 26 : mainText.length > 50 ? 30 : 34;
     const firstY = lines.length === 1 ? 72 : 52;
     const lineDelta = 40;
-    const displayName = xmlEscape(truncateText(name.toUpperCase(), 28));
+    const displayName = xmlEscape(truncateText(name.toUpperCase(), 32));
+
     return `
-    <!-- GC / LOWER THIRDS -->
+    <!-- GC / LOWER THIRDS DINÁMICO -->
     <g transform="translate(100, 810)">
       <!-- Barra Principal del Titular (Rojo Intenso) -->
       <rect x="0" y="0" width="1720" height="110" rx="10" fill="url(#gcGrad)" stroke="#FEF08A" stroke-width="2" />
       
-      <!-- Titular GC (envuelto en hasta 2 líneas, sin desbordar) -->
+      <!-- Badge de Tipo de Contenido GC -->
+      <rect x="30" y="10" width="${isQuote ? 180 : 140}" height="24" rx="4" fill="#000000" opacity="0.8" />
+      <text x="${isQuote ? 120 : 100}" y="27" font-family="${this.config.fontFamily}" font-size="13" font-weight="900" fill="#FACC15" text-anchor="middle" letter-spacing="1">
+        ${isQuote ? '🔴 CUÑA EN VIVO' : 'TITULAR DE LA HORA'}
+      </text>
+
+      <!-- Texto del GC (Cuña o Titular envuelto en hasta 2 líneas) -->
       ${lines.map((line, i) => `
-      <text x="40" y="${firstY + i * lineDelta}" font-family="${this.config.fontFamily}" font-size="${fontSize}" font-weight="900" fill="#FFFFFF" letter-spacing="1">
+      <text x="40" y="${firstY + i * lineDelta}" font-family="${this.config.fontFamily}" font-size="${fontSize}" font-weight="900" fill="${isQuote ? '#FEF08A' : '#FFFFFF'}" letter-spacing="1">
         ${xmlEscape(line)}
       </text>`).join('')}
 
       <!-- Caja de Identificación del Orador (Negro/Dorado) -->
       <rect x="0" y="-56" width="560" height="56" rx="6" fill="#09090B" stroke="#DC2626" stroke-width="2" />
       <text x="24" y="-18" font-family="${this.config.fontFamily}" font-size="22" font-weight="800" fill="#FACC15">
-        ${displayName}${alias ? ` <tspan font-size="16" font-weight="500" fill="#E2E8F0">| ${truncateText(alias, 20)}</tspan>` : ''}
+        ${displayName} <tspan font-size="16" font-weight="600" fill="#94A3B8">| EN VIVO</tspan>
       </text>
     </g>
     `;
@@ -421,7 +455,7 @@ export class VideoComposer {
   }
 }
 
-/** Quita los sobrenombres entre comillas del nombre para pantalla: 'Capitán Mauro "Cero Tolerancia" Sotomayor' -> 'Capitán Mauro Sotomayor'. */
+/** Quita los sobrenombres entre comillas del nombre para pantalla. */
 function stripNickname(name: string): string {
   return name.replace(/\s*"[^"]*"/g, '').trim();
 }
@@ -431,7 +465,7 @@ function truncateText(text: string, maxChars: number): string {
   return text.length > maxChars ? `${text.slice(0, maxChars - 1)}…` : text;
 }
 
-/** Escapa entidades XML en texto (evita xmlParseEntityRef con '&', '<', '>'). */
+/** Escapa entidades XML en texto. */
 function xmlEscape(text: string): string {
   return text
     .replace(/&/g, '&amp;')

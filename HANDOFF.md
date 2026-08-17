@@ -1,5 +1,41 @@
 # HANDOFF.md - Bitácora de Sesión
 
+## Sesión: 2026-08-16 (16ª) - GC Dinámico con Cuñas en Vivo, Poses Expresivas, Insultos Edgys y Cama Musical de Debate
+
+### Objetivo
+Cumplir integralmente con las directivas del usuario:
+1. Poses expresivas y variantes de tiro de cámara (`POINTING`, `OUTRAGED`, `SMUG`, `ANGRY`, `PANEL`, `CLOSE_UP`).
+2. Subir la calidad y dramatismo del generador de imágenes de estudio y avatares.
+3. Prohibir mención hablada de sobrenombres (conservarlos solo para uso interno de prompt).
+4. Insultos y descalificaciones directas chilenas en perfiles edgys cuando se agotan los argumentos o la tensión >= 65.
+5. Generador de Caracteres (GC) dinámico en tiempo real que rescata cuñas explosivas del debate (`quoteGC`).
+6. Musicalización de fondo típica de noticias y programas de debate político con tensión dinámica y ducking.
+7. Inspección visual obligatoria de los frames de video (`output/video/frames/*.png`).
+8. Registro y sincronización en OpenSpec `005-diverse-personas-emotional-avatars-intro-music`.
+
+### Hecho por Antigravity (Gemini 3.7 Flash - Arquitecto Técnico Lead)
+- **1. Generador de Caracteres Dinámico (GC) con Cuñas en Vivo:**
+  - Añadido `quoteGC?: string;` a `DebateTurn` (`src/types/debate.ts`) y `VideoFrameState` (`src/types/media.ts`).
+  - `persona-debate.prompt.ts`: El LLM genera cuñas en mayúsculas de 8-10 palabras para el cintillo de TV.
+  - `debate-orchestrator.ts`: Helper `extractQuoteGC` para extraer automáticamente cuñas explosivas y asignarlas a cada turno.
+  - `video-composer.ts`: Lower Third renderiza badge `🔴 CUÑA EN VIVO` con la frase destacada en amarillo/blanco o el titular del bloque si no hay cuña.
+- **2. Prohibición de Sobrenombres Hablados & Activación de Insultos Edgys:**
+  - `persona-debate.prompt.ts`: Regla estricta "CERO SOBRENOMBRES AL HABLAR" (los panelistas y moderador solo usan nombres formales: "Lautaro", "Capitán Sotomayor", "Dr. Errázuriz", "Guzmán", etc.).
+  - Directiva de desmadre televisivo: En tensión >= 65 o panelistas combativos, se exigen insultos directos chilenos de debate ("¡hipócrita!", "¡sinvergüenza mentiroso!", "¡vendido de mierda!", "¡facho miserable!", "¡comunista de cartón!", "¡chanta!").
+- **3. Sistema de Poses Visuales y Tiro de Cámara:**
+  - `asset-generator.ts`: Prompts de calidad cinematográfica editorial con descriptores de poses (`BASE`, `POINTING`, `OUTRAGED`, `SMUG`, `ANGRY`, `PANEL`, `CLOSE_UP`).
+  - `video-composer.ts`: Método `resolveAvatarUri` que resuelve dinámicamente la pose/emoción adecuada (`{id}_{EMOTION}.png`, `{id}_{POSE}.png`) en lugar de caer siempre a la imagen neutra.
+  - Rediseño de `WIDE_PANEL`: Cuadrícula limpia de 2x3 con círculos de avatar ampliados y badges sin truncamiento.
+- **4. Musicalización de Noticias y Debate:**
+  - `music-generator.ts`: Sintetizador broadcast de camas de noticias (drone 65Hz en Re menor + pulso rítmico de reloj a 115 BPM + fanfarria de inicio + stingers de impacto).
+  - `render-audio.ts`: Invoca automáticamente `generateProgramMusic()` antes de la mezcla master con ducking.
+- **5. Inspección Visual de Frames Renderizados:**
+  - Inspeccionados `frame_001.png` (intro con panel 2x3 limpio), `frame_004.png` (Split Screen Versus con Guzmán y Lautaro furiosos), `frame_046.png` (Duelo Final con Washington Chamorro y Camila Ñuñoa) y comprobada la legibilidad de cintillos y gráficos.
+- **6. OpenSpec & Sincronización:**
+  - Actualizados `spec.md`, `design.md` y `tasks.md` en `openspec/changes/005-diverse-personas-emotional-avatars-intro-music/`.
+
+---
+
 ## Sesión: 2026-08-16 (15ª) - Implementación Fase 005: Personas Diversas, Música MusicGen e Intro
 
 ### Objetivo

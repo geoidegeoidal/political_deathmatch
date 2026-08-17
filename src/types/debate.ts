@@ -28,6 +28,7 @@ export interface DebateTurn {
   isInterruption: boolean;
   emotion: EmotionState;
   speechText: string;
+  quoteGC?: string;
   cameraCue: CameraCue;
   targetSpeakerId?: string;
   tensionAfterTurn: number;

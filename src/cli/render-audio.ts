@@ -4,6 +4,7 @@ import { readFile } from 'fs/promises';
 import { DebateTranscript } from '../types/debate.js';
 import { synthesizeEpisodeStems } from '../services/tts-pipeline.js';
 import { computeTimeline, mixMasterAudio, exportTimeline } from '../services/audio-mixer.js';
+import { generateProgramMusic } from '../services/music-generator.js';
 
 const rootDir = process.cwd();
 
@@ -22,11 +23,14 @@ async function main() {
   console.log(`[PIPELINE] 2. Sintetizando stems de audio (${transcript.turns.length} turnos)...`);
   const stems = await synthesizeEpisodeStems();
 
-  console.log(`\n[PIPELINE] 3. Calculando timeline de audio...`);
+  console.log(`\n[PIPELINE] 3. Generando camas musicales y stingers de noticias/debate...`);
+  await generateProgramMusic();
+
+  console.log(`\n[PIPELINE] 4. Calculando timeline de audio...`);
   const timeline = computeTimeline(stems);
 
   const blockStartTurnIds = detectBlockStartTurnIds(transcript);
-  console.log(`[PIPELINE] 4. Mezclando master con ducking en ${timeline.stems.filter(s => s.duckingApplied).length} interrupciones...`);
+  console.log(`[PIPELINE] 5. Mezclando master con ducking dinámico en interrupciones y cama de tensión...`);
   const masterPath = await mixMasterAudio(timeline, transcript, blockStartTurnIds, { stemsDir });
 
   await exportTimeline(timeline, timelinePath);

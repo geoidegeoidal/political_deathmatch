@@ -124,10 +124,14 @@ export function buildTurnPrompt(params: {
         ? `Responde directamente al ataque o planteamiento de ${targetOpponent.name}. Desmonta su argumento desde tu ideología (${persona.ideology}).`
         : `Responde a la pregunta del moderador sobre el tema planteado: "${block.moderatorTriggerQuestion}".`;
 
+  const isEdgyPersona = persona.tier === 'COMBATIVE_EXTREME' || persona.aggressiveness >= 8;
   const insultDirective =
-    currentTension >= 70
-      ? 'Los INSULTOS están permitidos AHORA MISMO: el tono está alto, podés usar insultos chilenos directos ("hipócrita", "mentiroso", "cínico", "farsante", "demagogo", "comediante", "estafa andante", "corrupto de sillón") sin caer en lo grotesco gratuito.'
-      : 'Los INSULTOS todavía no: el tono está controlado, subí la apuesta con ironía y acusaciones, pero guardá los insultos directos para cuando el rival te pise la palabra.';
+    currentTension >= 65 || isEdgyPersona
+      ? `¡MODO DESMADRE Y CONFRONTACIÓN TOTAL ACTIVADO!
+- Cuando se te acaben los argumentos o el rival te acorrale, PIERDE LA PACIENCIA e insulta directamente su moral y coherencia.
+- Insultos y descalificaciones directas de debate chileno permitidos y EXIGIDOS: "¡hipócrita!", "¡sinvergüenza mentiroso!", "¡vendido de mierda!", "¡cínico!", "¡chanta de matinal!", "¡facho miserable!", "¡comunista de cartón!", "¡zángano del Estado!", "¡parásito burgués!", "¡ignorante!".
+- Úsalos con vehemencia como remate o contraataque demoledor.`
+      : 'Mantén la ironía filosa y los reproches directos; reserva los insultos explícitos para cuando la tensión sobrepase 70 o te interrumpan.';
 
   return `ESTAMOS EN EL BLOQUE ${block.blockNumber} DEL DEBATE:
 TEMA: ${block.topic} (${block.category})
@@ -141,34 +145,28 @@ ${historySummary || '(Inicio del bloque)'}
 INSTRUCCIÓN ESPECÍFICA PARA ESTE TURNO:
 ${instruction}
 
+REGLAS DE ORO (OBLIGATORIAS):
+1. **CERO SOBRENOMBRES AL HABLAR:** NUNCA pronuncies los apodos o alias de tus rivales. Llámalos SIEMPRE por su nombre formal limpio o cargo. Pronunciar apodos está estrictamente PROHIBIDO.
+2. **DINÁMICA DE FUEGO CRUZADO E INSULTOS CUANDO SE ACABAN LOS ARGUMENTOS:**
+${insultDirective}
+
 CÓMO ARGUMENTAR (ESTRUCTURA DE RÉPLICA TELEVISIVA):
 1. Acepta o descarta el punto del rival en UNA frase irónica o contundente.
 2. Contrapón tu argumento con AL MENOS UN ejemplo histórico o actual de Chile/Latinoamérica. Referencias disponibles para esta categoría (úsalas, no inventes fechas):
 ${EJEMPLOS_POR_CATEGORIA[block.category]?.map(e => `   - ${e}`).join('\n') || '   - (sin referencias específicas: usa hechos de la semana del bloque)'}
-3. Sube la apuesta con una cifra, un dato o una comparación escandalosa.
-4. Cierra con un remate al aire: una pregunta retórica al rival, una talla al conductor o una frase para el cintillo.
+3. Sube la apuesta con una cifra, un dato o una acusación escandalosa.
+4. Cierra con un remate al aire o una descalificación directa.
 
 REGISTRO LINGÜÍSTICO (IMPRESCINDIBLE):
-- Habla como la gente en estos debates: coloquial, sin academicismos, con ritmo de matinal. Modismos permitidos:
+- Habla como la gente en estos debates: coloquial, sin academicismos, con ritmo de matinal picante. Modismos permitidos:
 ${MODISMOS_ESTUDIO.map(m => `   - ${m}`).join('\n')}
 - Interpela al conductor ("mire Guzmán..."), a la cámara ("se lo digo al país entero") y al rival ("usted sabe muy bien que...").
 - No leas como documento: piensa en voz alta, indignate, dudá un segundo y rematá.
 
-AMBIENTACIÓN TELEVISIVA (estás en el programa de debate más picante de la TV chilena, estilo "Tolerancia Cero" / "Sin Filtros"):
-- Es EN VIVO: podés decirlo ("estamos en vivo", "el país nos está viendo", "esto es lo que la tele no te dice").
-- El estudio es una olla a presión: los panelistas se pisan la palabra, el conductor azuza y el público reacciona.
-- Subí el volumen emocional como en un combate: réplicas rápidas, ironía demoledora y frases para el cintillo.
-- Rematá cada intervención con una frase que el conductor pueda repetir como titular.
-
-DINÁMICA DE FUEGO CRUZADO (IMPRESCINDIBLE):
-- Sácale EN CARA al rival sus contradicciones: doble estándar, hipocresía, traición ideológica, datos que le desmienten o frases públicas que ahora niega. "¿No dijo usted mismo que...?".
-- Desmadráte cuando el tono suba: no cedas el turno, elevá la voz, señalá al rival con el dedo, ironizá sobre su pasado y sus alianzas.
-- ${insultDirective}
-- Si te interrumpen o te provocan, devolvés el ataque con el doble de fuerza: no te calles, pisá la palabra también.
-
 FORMATO DE RESPUESTA REQUERIDO (Únicamente este JSON, sin markdown adicional):
 {
   "speechText": "El texto exacto que dices al aire: mínimo 5 a 8 oraciones (80 a 140 palabras).",
+  "quoteGC": "CUÑA POLÉMICA EN MAYÚSCULAS: La frase más explosiva, escandalosa o incendiaria de lo que dijiste para el cintillo de TV (máximo 8-10 palabras, ej: '¡LOS EMPRESARIOS DE SANHATTAN NOS ESTÁN SAQUEANDO EL PAÍS!').",
   "emotion": "CALM" | "TALKING" | "ANGRY" | "OUTRAGED" | "SMUG" | "MOCKING" | "INTERRUPTING",
   "cameraCue": "SPEAKER_FOCUS" | "SPLIT_SCREEN_VERSUS" | "WIDE_PANEL" | "REACTION_SHOT",
   "tensionDelta": number (+5 a +25 según qué tan incendiario fue tu argumento)
